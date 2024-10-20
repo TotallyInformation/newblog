@@ -1,8 +1,7 @@
 {
-  "name": "newblog",
-  "version": "1.0.0",
+  "name": "@totallyinformation/newblog",
+  "version": "0.1.0",
   "description": "A fresh, new blog &amp; website to replace it.knightnet.org.uk",
-  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "astro dev",
@@ -10,9 +9,9 @@
     "build": "astro build",
     "preview": "astro preview"
   },
-  "keywords": [],
+  "keywords": ["blog","website","astro"],
   "author": "Julian Knight (Totally Information)",
-  "license": "Apache-2.0",
+  "license": "C-BY-NC-SA-4.0",
   "dependencies": {
     "@astrojs/mdx": "^3.1.8",
     "@astrojs/rss": "^4.0.9",
