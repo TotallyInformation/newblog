@@ -9,17 +9,20 @@
     "build": "astro build",
     "preview": "astro preview"
   },
-  "keywords": ["blog","website","astro"],
+  "keywords": [
+    "blog",
+    "website",
+    "astro"
+  ],
   "author": "Julian Knight (Totally Information)",
   "license": "C-BY-NC-SA-4.0",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
     "@astrojs/mdx": "^3.1.8",
     "@astrojs/rss": "^4.0.9",
     "@astrojs/sitemap": "^3.2.1",
     "astro": "^4.16.5",
-    "remark-flexible-containers": "^1.2.1"
-  },
-  "devDependencies": {
+    "remark-flexible-containers": "^1.2.1",
     "remark-obsidian-callout": "^1.5.0"
   }
 }
