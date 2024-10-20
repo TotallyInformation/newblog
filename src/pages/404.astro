@@ -1,0 +1,18 @@
+---
+/** Site about page */
+
+import siteInfo from '../site-info.json';
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+// Page metadata
+const pageMeta = siteInfo.pages.filter( (pg) => pg.path === new URL(Astro.request.url).pathname)[0] ?? {};
+pageMeta.path = new URL(Astro.request.url).pathname
+pageMeta.title = "Page not found";
+pageMeta.subtitle = "This is not the page you are looking for ...";
+
+---
+<BaseLayout frontmatter={pageMeta}>
+    <p>
+        Sorry, but we could not find the page you tried to access.
+    </p>
+</BaseLayout>

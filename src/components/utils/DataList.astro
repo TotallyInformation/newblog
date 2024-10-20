@@ -1,0 +1,16 @@
+---
+/** Create a list from a data array */
+
+const { data, type = 'ul' } = Astro.props
+const Tag = type
+---
+<Tag>
+    {
+        data.map(item => (
+            <li>
+                {/* <Fragment set:html={item.innerHTML} /> */}
+                {item}
+            </li>
+        ))
+    }
+</Tag>

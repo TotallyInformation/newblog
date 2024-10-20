@@ -1,0 +1,39 @@
+---
+/** Articles/Posts index page
+ * Layout: /src/layouts/BaseLayout.astro
+ * URL: /posts/
+ * 
+ * Pages source content: /src/content/posts
+ * Auto page creation: /src/pages/posts/[...slug].astro => /posts/<slug>
+ */
+
+ import siteInfo from '@/site-info.json';
+// Page metadata
+const pageMeta = siteInfo.pages.filter( (pg) => pg.path === new URL(Astro.request.url).pathname)[0] ?? {};
+pageMeta.path = new URL(Astro.request.url).pathname
+pageMeta.title = "Articles";
+// pageMeta.subtitle = "General";
+
+import BaseLayout from '@/layouts/BaseLayout.astro'
+
+import { getCollection } from 'astro:content';
+// const allPosts = await getCollection('posts', ({ data }) => {
+//     return import.meta.env.PROD ? data.draft !== true : true;
+// })
+const allKb = await getCollection('kb', ({ data }) => {
+    return import.meta.env.PROD ? data.draft !== true : true;
+})
+const allArticles = allKb.sort( (a, b) => {
+    // NB: updated dates are mandatory
+    if (a.data.updated > b.data.updated) return 1
+    else if (a.data.updated < b.data.updated) return -1
+    else return 0
+})
+// console.log(allArticles)
+
+---
+<BaseLayout frontmatter={pageMeta}>
+    <ul>
+        {allArticles.map(post => <li><a href={`${post.slug}`}>{post.data.title}</a></li>)}
+    </ul>
+</BaseLayout>

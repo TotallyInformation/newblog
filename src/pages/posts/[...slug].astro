@@ -1,0 +1,28 @@
+---
+// import siteInfo from '../site-info.json';
+import { getCollection } from "astro:content";
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+// 1. Generate a new path for every collection entry
+export async function getStaticPaths() {
+    const postEntries = await getCollection("posts", ({ data }) => {
+        return import.meta.env.PROD ? data.draft !== true : true;
+    });
+    return postEntries.map((entry) => ({
+        params: { slug: entry.slug },
+        props: { entry },
+    }));
+}
+
+// Props.entry = the whole article content & meta. props.entry.data contains the frontmatter
+const { entry } = Astro.props;
+const frontmatter = entry.data
+frontmatter.slug = entry.slug
+frontmatter.collection = entry.collection
+frontmatter.path = new URL(Astro.request.url).pathname
+const { Content } = await entry.render();
+---
+
+<BaseLayout frontmatter={frontmatter}>
+    <Content />
+</BaseLayout>

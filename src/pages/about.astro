@@ -1,0 +1,89 @@
+---
+/** Site about page */
+
+import siteInfo from '../site-info.json';
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+// Page metadata
+const pageMeta = siteInfo.pages.filter( (pg) => pg.path === new URL(Astro.request.url).pathname)[0] ?? {};
+pageMeta.title = "About This Site";
+pageMeta.subtitle = "... and my new GROWING Astro site!";
+
+//#region test stuff for this page
+import { Code } from "astro:components";
+
+const identity = {
+    firstName: "Sarah",
+    country: "Canada",
+    occupation: "Technical Writer",
+    hobbies: ["photography", "birdwatching", "baseball"],
+};
+
+const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "Writing Docs"];
+
+const happy = true;
+const finished = false;
+const goal = 3;
+
+const skillColor = "green";
+const fontStyle = "bold";
+//#endregion
+---
+
+<BaseLayout frontmatter={pageMeta}>
+    <p>Here are a few facts about me:</p>
+    <ul>
+        <li>My name is {identity.firstName}.</li>
+        <li>
+            I live in {identity.country} and I work as a {identity.occupation}.
+        </li>
+        {
+            identity.hobbies.length >= 2 && (
+                <li>
+                    Two of my hobbies are: {identity.hobbies[0]} and{" "}
+                    {identity.hobbies[1]}
+                </li>
+            )
+        }
+    </ul>
+
+    <p>My skills are:</p>
+    <ul>
+        {skills.map((skill) => <li class="myskills">{skill}</li>)}
+    </ul>
+
+    {happy && <p>I am happy to be learning Astro!</p>}
+
+    {finished && <p>I finished this tutorial!</p>}
+
+    {goal ? <p>My goal is to finish in {goal} days.</p> : <span />}
+
+    <Code code={`const foo = 'bar';`} lang="js" />
+
+    <p>
+        Provident cum aspernatur et enim est id. Qui provident repellendus.
+        Magnam ipsam sapiente eos quos magni atque minima. Necessitatibus et
+        numquam animi suscipit aut. Facilis praesentium et.
+    </p><p>
+        Quod quis atque sunt ut sunt. Autem sed consequatur. Impedit
+        perspiciatis tempora ut tempore vero.
+    </p><p>
+        Cum distinctio placeat facere officia fuga. Quia sunt perferendis. Vel
+        unde accusantium vel fugiat optio voluptas ex dicta. Nihil quo est rerum
+        sit voluptatum velit aut.
+    </p><p>
+        Quod quis atque sunt ut sunt. Autem sed consequatur. Impedit
+        perspiciatis tempora ut tempore vero.
+    </p><p>
+        Cum distinctio placeat facere officia fuga. Quia sunt perferendis. Vel
+        unde accusantium vel fugiat optio voluptas ex dicta. Nihil quo est rerum
+        sit voluptatum velit aut.
+    </p>
+</BaseLayout>
+
+<style define:vars={{ skillColor, fontStyle }}>
+    .myskills {
+        color: var(--skillColor);
+        font-style: var(--fontStyle);
+    }
+</style>

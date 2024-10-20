@@ -1,0 +1,22 @@
+---
+/** Create a list from a frontmatter tag list */
+
+const { tags, label } = Astro.props
+
+---
+<ul aria-label="Article tag list" title="Article tag list">{label}{tags.map(item => (<li><a href=`/tags/${item}`>{item}</a></li>))}</ul>
+<style>
+    ul {
+        list-style:none;
+        padding-inline-start: 0;
+    }
+    li {
+        display: inline;
+    }
+    li::after {
+        content: ', ';
+    }
+    li:last-of-type::after {
+        content: '';
+    }
+</style>

@@ -1,0 +1,36 @@
+---
+/** 
+ * TODO
+ * apple-touch-icon - link, can have multiple at different sizes
+ * <link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
+
+ * keywords <= no longer used by seo
+ */
+// https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta/name
+// https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML/The_head_metadata_in_HTML
+// https://faq.frontendnet.work/metatags/Miscellaneous/license
+// https://developer.x.com/en/docs/x-for-websites/cards/guides/getting-started
+
+import siteInfo from '@/site-info.json';
+const pageMeta = Astro.props.frontmatter
+if (!pageMeta.description) pageMeta.description = `${siteInfo.name}: ${pageMeta.title}`
+if (!pageMeta.path) pageMeta.path = new URL(Astro.request.url).pathname
+// console.log('PageMeta', pageMeta)
+
+---
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width" />
+<meta name="color-scheme" content="dark light" />
+<meta name="license" content={siteInfo.license} />
+<meta name="license:uri" content={siteInfo.licenseUri} />
+<meta name="copyright" content={siteInfo.copyright} />
+<meta name="creator" content={siteInfo.organisation} />
+<meta name="twitter:creator" content={siteInfo.orgTwitter}>
+<meta name="generator" content={Astro.generator} />
+<meta name="canonical" content={`${Astro.site}${pageMeta.path.replace('/','')}`} />
+<meta name="author" content={pageMeta.author || siteInfo.author} />
+<meta name="twitter:site" content={pageMeta.authorTwitter || siteInfo.authorTwitter} />
+<meta name="description" content={pageMeta.description} />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+<title>{pageMeta.title} - {siteInfo.name}</title>

@@ -1,0 +1,28 @@
+---
+/** Site homepage */
+
+import siteInfo from '../site-info.json';
+// Page metadata
+const pageMeta = siteInfo.pages.filter( (pg) => pg.path === new URL(Astro.request.url).pathname)[0] ?? {};
+pageMeta.title = "Home";
+pageMeta.subtitle = "Rablings on all things Digital, Technology and Life";
+
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import Greeting from '@/components/Greeting.astro'
+
+// imports all posts and articles
+import { getCollection } from 'astro:content';
+// const allBlogPosts = await getCollection('blog', ({ data }) => {
+//     return data.draft !== true;
+// })
+const allPosts = await getCollection('posts', ({ data }) => {
+    return import.meta.env.PROD ? data.draft !== true : true;
+})
+
+---
+<BaseLayout frontmatter={pageMeta}>
+    <Greeting />
+    <ul>
+        <li><a href="/posts/post-1/">Post 1</a></li>
+    </ul>
+</BaseLayout>

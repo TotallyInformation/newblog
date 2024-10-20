@@ -1,0 +1,40 @@
+---
+/** Knowledgebase collection page
+ * Collection: /src/content/kb
+ * Layout: /src/layouts/BaseLayout.astro
+ * Index: /src/pages/kb/index.astro => /kb/
+ * Pages: /src/pages/kb/[slug].astro => /kb/slug
+ * 
+ * TODO
+ * - Allow for frontmatter image
+ * - Auto-render frontmatter description
+ * - Add frontmatter created/updated dates, category, Collection, tags, author
+ */
+
+// import siteInfo from '../site-info.json';
+import { getCollection } from "astro:content";
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+// 1. Generate a new path for every collection entry
+export async function getStaticPaths() {
+    const kbEntries = await getCollection("kb", ({ data }) => {
+        return import.meta.env.PROD ? data.draft !== true : true;
+    });
+    return kbEntries.map((entry) => ({
+        params: { slug: entry.slug },
+        props: { entry },
+    }));
+}
+
+// Props.entry = the whole article content & meta. props.entry.data contains the frontmatter
+const { entry } = Astro.props;
+const frontmatter = entry.data
+frontmatter.slug = entry.slug
+frontmatter.collection = entry.collection
+frontmatter.path = new URL(Astro.request.url).pathname
+const { Content } = await entry.render();
+---
+
+<BaseLayout frontmatter={frontmatter}>
+    <Content />
+</BaseLayout>

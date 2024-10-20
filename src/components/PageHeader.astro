@@ -1,0 +1,61 @@
+---
+/** Page headings component 
+ * ThemeIcon is the dark/light switcher component
+ * PageNav is the page navigation component
+ */
+
+import { getImage, Image  } from "astro:assets"
+// import siteInfo from '../site-info.json';
+import PageNav from './PageNav.astro'
+import ThemeIcon from './ThemeIcon.astro'
+import BrimhamRocks from '../resources/brimham-rocks-1200x279.jpg';
+
+const BrimhamRocksOptimised = await getImage({ src: BrimhamRocks })
+const frontmatter = Astro.props.frontmatter
+// console.log('PageHeader.astro', Astro.props.frontmatter)
+
+if (!frontmatter.subtitle) frontmatter.subtitle = ''
+---
+<header>
+    <Image src={BrimhamRocks} alt="Brimham Rocks, Yorkshire, UK" />
+    <div>
+        <ThemeIcon />
+        <h1 class:list={[{'with-subtitle': frontmatter.subtitle}]}>{frontmatter.title}</h1>
+        { frontmatter.subtitle && <div role="doc-subtitle">{frontmatter.subtitle}</div> }
+        <PageNav></PageNav>
+    </div>
+
+</header>
+<style define:vars={{ headBgImg: `url(${BrimhamRocksOptimised.src})` }}>
+    header {
+        /* background-image: var(--headBgImg);
+        background-size: cover;
+        background-repeat: no-repeat; */
+        position: relative;
+        width: 100%;
+        /* display: flex;
+        justify-content: flex-start;
+        align-items: flex-start; */
+    }
+    img {
+        width: 100%;
+        height: auto; /* Maintains the aspect ratio */
+        display: block;
+        margin: 0; padding: 0;
+    }
+    header > div {
+        position: absolute;
+        top: 1rem;
+        left: 1%;
+        margin: 0; padding: 0;
+        /* color: white; */
+        background-color: rgba(0, 0, 0, 0.5); /* Optional: semi-transparent background for better text contrast */
+        padding: 1rem;
+        width: 98%;
+    }
+    header > div::after {
+        content: '';
+        display: block;
+        clear: both;
+    }
+</style>

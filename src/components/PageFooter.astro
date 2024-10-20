@@ -1,0 +1,90 @@
+---
+/** Standard page footer
+ * TODO
+ * - Dynamic (c) date (year only)
+ * - Dynamic cc stuff
+ * - Dynamic followme icons
+ * - Comments (Disqus?)
+ * - Powered by?
+ * - Design by?
+ * 
+ * Note: The item* attributes are part of the WHATWG HTML Microdata feature: https://html.spec.whatwg.org/multipage/microdata.html#microdata
+ */
+
+import siteInfo from '../site-info.json';
+const frontmatter = Astro.props.frontmatter
+
+---
+<footer>
+    <p class="foot-license" xmlns:cc="http://creativecommons.org/ns#" >
+        Copyright ©️ 2024 <span property="cc:attributionName">{siteInfo.copyright}</span>.  License: 
+        <a href={siteInfo.licenseUri} target="_blank" rel="license noopener noreferrer" title="License: Creative Commons, Attribution required,\nNon-commercial use, Adaptions must have same.\nCommercial licensing available separately">
+            {siteInfo.license}
+        </a>
+        <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" alt="Creative Commons license" title="Creative Commons license">
+        <img src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" alt="Attribution required" title="Attribution required">
+        <img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1" alt="Non-commercial use only - commercial use must be separately licensed" title="Non-commercial use only\nCommercial use must be separately licensed">
+        <img src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" alt="Adaptitions must be carry the same license" title="Adaptitions must be carry the same license">
+
+    </p><p class="follow-me" itemscope="" itemtype="http://schema.org/Organization">
+        Follow <a href="https://julianknight.net">me</a>: 
+        <link itemprop="url" href="https://julianknight.net">
+        <a href="https://twitter.com/knightnet" title="My Twitter timeline" rel="me" itemprop="sameAs">
+            <svg class="sharing" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <path fill="var(--ffSvgFill)" d="M4e2 32H48C21.5 32 0 53.5.0 80v352c0 26.5 21.5 48 48 48h352c26.5.0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-48.9 158.8c.2 2.8.2 5.7.2 8.5.0 86.7-66 186.6-186.6 186.6-37.2.0-71.7-10.8-100.7-29.4 5.3.6 10.4.8 15.8.8 30.7.0 58.9-10.4 81.4-28-28.8-.6-53-19.5-61.3-45.5 10.1 1.5 19.2 1.5 29.6-1.2-30-6.1-52.5-32.5-52.5-64.4v-.8c8.7 4.9 18.9 7.9 29.6 8.3a65.447 65.447.0 01-29.2-54.6c0-12.2 3.2-23.4 8.9-33.1 32.3 39.8 80.8 65.8 135.2 68.6-9.3-44.5 24-80.6 64-80.6 18.9.0 35.9 7.9 47.9 20.7 14.8-2.8 29-8.3 41.6-15.8-4.9 15.2-15.2 28-28.8 36.1 13.2-1.4 26-5.1 37.8-10.2-8.9 13.1-20.1 24.7-32.9 34z"></path>
+            </svg>
+        </a>
+        <a href="https://www.linkedin.com/in/julianknight2" title="My LinkedIn profile" rel="me" itemprop="sameAs">
+            <svg class="sharing" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <path fill="var(--ffSvgFill)" d="M416 32H31.9C14.3 32 0 46.5.0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6.0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3.0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2.0 38.5 17.3 38.5 38.5.0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6.0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2.0 79.7 44.3 79.7 101.9V416z"></path>
+            </svg>
+        </a>
+        <a href="https://github.com/TotallyInformation" title="My GitHub repositories" rel="me" itemprop="sameAs">
+            <svg class="sharing" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <path fill="var(--ffSvgFill)" d="M4e2 32H48C21.5 32 0 53.5.0 80v352c0 26.5 21.5 48 48 48h352c26.5.0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zM277.3 415.7c-8.4 1.5-11.5-3.7-11.5-8 0-5.4.2-33 .2-55.3.0-15.6-5.2-25.5-11.3-30.7 37-4.1 76-9.2 76-73.1.0-18.2-6.5-27.3-17.1-39 1.7-4.3 7.4-22-1.7-45-13.9-4.3-45.7 17.9-45.7 17.9-13.2-3.7-27.5-5.6-41.6-5.6s-28.4 1.9-41.6 5.6c0 0-31.8-22.2-45.7-17.9-9.1 22.9-3.5 40.6-1.7 45-10.6 11.7-15.6 20.8-15.6 39 0 63.6 37.3 69 74.3 73.1-4.8 4.3-9.1 11.7-10.6 22.3-9.5 4.3-33.8 11.7-48.3-13.9-9.1-15.8-25.5-17.1-25.5-17.1-16.2-.2-1.1 10.2-1.1 10.2 10.8 5 18.4 24.2 18.4 24.2 9.7 29.7 56.1 19.7 56.1 19.7.0 13.9.2 36.5.2 40.6.0 4.3-3 9.5-11.5 8-66-22.1-112.2-84.9-112.2-158.3.0-91.8 70.2-161.5 162-161.5S388 165.6 388 257.4c.1 73.4-44.7 136.3-110.7 158.3zm-98.1-61.1c-1.9.4-3.7-.4-3.9-1.7-.2-1.5 1.1-2.8 3-3.2 1.9-.2 3.7.6 3.9 1.9.3 1.3-1 2.6-3 3zm-9.5-.9c0 1.3-1.5 2.4-3.5 2.4-2.2.2-3.7-.9-3.7-2.4.0-1.3 1.5-2.4 3.5-2.4 1.9-.2 3.7.9 3.7 2.4zm-13.7-1.1c-.4 1.3-2.4 1.9-4.1 1.3-1.9-.4-3.2-1.9-2.8-3.2.4-1.3 2.4-1.9 4.1-1.5 2 .6 3.3 2.1 2.8 3.4zm-12.3-5.4c-.9 1.1-2.8.9-4.3-.6-1.5-1.3-1.9-3.2-.9-4.1.9-1.1 2.8-.9 4.3.6 1.3 1.3 1.8 3.3.9 4.1zm-9.1-9.1c-.9.6-2.6.0-3.7-1.5s-1.1-3.2.0-3.9c1.1-.9 2.8-.2 3.7 1.3 1.1 1.5 1.1 3.3.0 4.1zm-6.5-9.7c-.9.9-2.4.4-3.5-.6-1.1-1.3-1.3-2.8-.4-3.5.9-.9 2.4-.4 3.5.6 1.1 1.3 1.3 2.8.4 3.5zm-6.7-7.4c-.4.9-1.7 1.1-2.8.4-1.3-.6-1.9-1.7-1.5-2.6.4-.6 1.5-.9 2.8-.4 1.3.7 1.9 1.8 1.5 2.6z"></path>
+            </svg>
+        </a>
+        <a href="https://feedly.com/JulianKnight" title="My Feedly shared collections" rel="me" itemprop="sameAs">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10240 10240">
+                <g id="layer101" fill="var(--ffSvgFill)" stroke="none">
+                    <path d="M4987 10219c-32-11-77-31-1e2-46-23-14-208-191-412-393-203-202-1265-1253-2360-2336C1021 6362 112 5460 96 5440c-16-19-43-64-60-1e2-30-62-31-70-31-190 0-143 17-201 83-289 20-27 856-876 1856-1887C4553 336 4777 112 4842 70c82-54 163-73 284-68 85 3 108 8 164 34 36 17 81 44 101 60 19 16 11e2 1083 2402 2372 2349 2325 2367 2343 2404 2420 38 77 38 78 38 202 0 145-16 196-87 291-60 78-4678 4741-4735 4780-113 78-296 103-426 58z"></path>
+                </g>
+                <g id="layer102" fill="var(--ffSvgFill2)" stroke="none">
+                    <path d="M5038 7833l-257-3-116-131c-138-156-158-193-159-304-1-121 12-142 235-375 208-215 241-244 315-266 60-18 141-4 207 35 57 33 408 418 440 481 15 32 23 68 25 125 4 75 2 84-30 143-21 39-75 107-146 182l-113 120-72-2c-40-2-188-4-329-5z"></path>
+                    <path d="M3566 6666c-157-147-179-185-173-302 3-57 10-83 33-122 17-29 161-189 339-374 170-178 545-569 833-870 402-420 535-552 570-570 69-34 189-33 254 2 75 40 449 390 482 451 62 112 43 235-51 340-31 35-376 397-767 804l-710 740-136 6c-74 4-227 9-339 12l-204 6-131-123z"></path>
+                    <path d="M2473 5632c-80-77-140-143-152-169-44-89-34-214 21-289 38-51 2556-2706 2604-2746 85-71 202-85 301-37 39 19 388 337 451 411 72 85 88 216 37 312-23 42-320 360-1205 1293-646 680-1193 1256-1215 1280l-40 43-265 10c-146 5-297 12-335 14l-71 4-131-126z"></path>
+                </g>
+            </svg>
+        </a>
+        <a href="https://stackexchange.com/users/1375993">
+            <img style="height:var(--ffSvgHt);" src="https://stackexchange.com/users/flair/1375993.png" alt="Stack Exchange flair image" title="Link to my profile on Stack Exchange, a network of free, community-driven Q&amp;A sites">
+        </a>
+    </p>
+</footer>
+<style>
+    .foot-license {
+        margin-block-start: 1rem;
+        margin-block-end: 0;
+    }
+    img {
+        height: 1em;
+        vertical-align: middle;
+        background-color: transparent;
+        margin: 0;
+    }
+    .follow-me {
+        --ffSvgHt: 2.2em;
+        --ffSvgFill: var(--text1, white);
+        --ffSvgFill2: var(--surface1, black);
+        margin-block-start: 0.3rem;
+        margin-block-end: 1rem;
+    }
+    svg {
+        margin: 0;
+        background-color: transparent;
+        height: var(--ffSvgHt);
+    }
+    a {
+        text-decoration: none;
+    }
+</style>

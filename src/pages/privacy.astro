@@ -1,0 +1,13 @@
+---
+import siteInfo from '../site-info.json';
+// Page metadata
+const pageMeta = siteInfo.pages.filter( (pg) => pg.path === new URL(Astro.request.url).pathname)[0] ?? {};
+pageMeta.title = "Privacy";
+// pageMeta.subtitle = "... and my new GROWING Astro site!";
+
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout frontmatter={pageMeta}>
+    Privacy info
+</BaseLayout>

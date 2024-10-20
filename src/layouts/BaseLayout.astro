@@ -1,0 +1,26 @@
+---
+/** Layout for most pages */
+
+import siteInfo from '@/site-info.json';
+import PageMeta from '@/components/PageMeta.astro'
+import PageHeader from '@/components/PageHeader.astro'
+import PageFooter from '@/components/PageFooter.astro'
+import PageSidebar from '@/components/PageSidebar.astro'
+import '@/resources/uib-brand.css'
+
+// Page metadata
+const meta = Astro.props.frontmatter
+
+---
+<html lang="en" class={siteInfo.theme}><head>
+    <PageMeta frontmatter={meta}/>
+</head><body>
+    <div class="container">
+        <PageHeader frontmatter={meta} />
+        <main>
+            <slot />
+        </main>
+        <PageFooter frontmatter={meta} />
+        <PageSidebar frontmatter={meta} />
+    </div>
+</body></html>

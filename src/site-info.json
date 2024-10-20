@@ -1,0 +1,21 @@
+{
+    "name": "Totally Information",
+    "description": "",
+    "organisation": "Totally Information",
+    "orgTwitter": "@TotallyInformation",
+    "license": "C-BY-NC-SA-4.0",
+    "licenseUri": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+    "copyright": "Julian Knight (Totally Information)",
+    "author": "Julian Knight (Totally Information)",
+    "authorTwitter": "@knightnet",
+    "theme": "dark",
+    "pages": [
+        { "name": "Home", "path": "/", "title": "", "subtitle": "" },
+        { "name": "About", "path": "/about/" },
+        { "name": "Posts", "path": "/posts/" },
+        { "name": "Knowledgebase", "path": "/kb/" },
+        { "name": "Tags", "path": "/tags/" },
+        { "name": "Categories", "path": "/categories/" }
+    ],
+    "pages-note": "Include leading and trailing / "
+}

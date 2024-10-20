@@ -1,0 +1,36 @@
+---
+/** Page navigation component
+ * TODO
+ * - Search bar
+ * - Ability to align right
+ * - Optional logo & text
+ * - Compare with old site
+ */
+
+import siteInfo from '../site-info.json';
+
+const pathname = new URL(Astro.request.url).pathname;
+const pages = siteInfo.pages;
+---
+<nav class="nav-main" role="navigation">
+    <button aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation menu">
+        &#9776; <!-- Hamburger icon -->
+    </button>
+    <ul class="nav-menu">
+        {pages.map(page => (
+            <li class={pathname === page.path ? "active" : ""}><a href={page.path}>{page.name}</a></li>
+        ))}
+        <li class="nav-main-slot"><slot /></li>
+    </ul>
+</nav>
+<script>
+    const menuToggle = document.querySelector('.nav-main > button')  //.getElementById('menu-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+
+    menuToggle.addEventListener('click', () => {
+        console.log('toggle')
+        const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+        menuToggle.setAttribute('aria-expanded', !expanded);
+        navMenu.setAttribute('aria-expanded', !expanded);
+    });
+</script>
