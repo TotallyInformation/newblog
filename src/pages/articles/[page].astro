@@ -1,0 +1,47 @@
+---
+/** Articles/Posts index page
+ * Layout: /src/layouts/BaseLayout.astro
+ * URL: /posts/
+ * 
+ * Pages source content: /src/content/posts
+ * Auto page creation: /src/pages/posts/[...slug].astro => /posts/<slug>
+ * 
+ * TODO
+ * - Allow for frontmatter image
+ */
+
+import siteInfo from '@/site-info.json';
+// Page metadata from a static site configuration data file
+const pageMeta = siteInfo.pages.filter( (pg) => pg.path === new URL(Astro.request.url).pathname)[0] ?? {};
+pageMeta.path = new URL(Astro.request.url).pathname
+// Allows us to locally override the config data file
+pageMeta.title = "All Articles";
+pageMeta.subtitle = "All knowledge and general articles by date (newest first)";
+
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import ArticlesList from '@/components/ArticlesList.astro';
+import { getAllArticles } from '@/utilModules/getCollections.mjs'
+
+import type { GetStaticPaths } from 'astro';
+
+// Exporting this makes it available to the getStaticPaths function below
+export const articleListSize = siteInfo.articleListSize ? siteInfo.articleListSize : 5;
+
+// Pass the merged list of articles for the selected collections to the paginate method
+export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
+    // Gets the merged and sorted list of articles
+    const posts = await getAllArticles(['posts', 'kb'])
+    // Returns the list wrapped in paginated chunks - becomes available to this page as Astro.props.page
+    return paginate(posts, { pageSize: articleListSize });
+};
+
+// Reference the paginated list from above
+const page = Astro.props.page;
+
+// console.log('[src/pages/articles/[page].astro] Astro.props', Astro.props)
+// console.log('[src/pages/articles/[page].astro] page.data[0]', page.data[0])
+
+---
+<BaseLayout frontmatter={pageMeta}>
+    <ArticlesList page={page} label={pageMeta.subtitle} LabelTag="h2" />
+</BaseLayout>

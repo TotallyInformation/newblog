@@ -12,10 +12,12 @@
     "pages": [
         { "name": "Home", "path": "/", "title": "", "subtitle": "" },
         { "name": "About", "path": "/about/" },
+        { "name": "Articles", "path": "/articles/" },
         { "name": "Posts", "path": "/posts/" },
         { "name": "Knowledgebase", "path": "/kb/" },
         { "name": "Tags", "path": "/tags/" },
         { "name": "Categories", "path": "/categories/" }
     ],
-    "pages-note": "Include leading and trailing / "
+    "pages-note": "Include leading and trailing / ",
+    "articleListSize": 10
 }

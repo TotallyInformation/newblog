@@ -1,0 +1,39 @@
+---
+/** Shows a navigation bar for a paginated list of articles
+ * Must be passed an object output from `paginate()`
+ * https://docs.astro.build/en/reference/api-reference/#paginate
+ */
+
+/**
+ * @typedef {Object} Props
+ * @property {CollectionEntry} page - The collection entry
+ * @property {Array<Page>} page.data - Array of Page entries from the collection data
+ */
+
+/** @type {Props} */
+const { page } = Astro.props;
+---
+<div role="navigation" title="Article listing navigation">
+    <div>
+        ≪ <a href={page.url.first ? page.url.first : '#'}>Newest</a>
+    </div><div>
+        &lt; <a href={page.url.prev ? page.url.prev : '#'}>Newer</a>
+    </div><div>
+        Page {page.currentPage} of {page.lastPage}
+    </div><div>
+        <a href={page.url.next ? page.url.next : '#'}>Older</a> &gt;
+    </div><div>
+        <a href={page.url.last ? page.url.last : '#'}>Oldest</a> ≫
+    </div>
+</div>
+
+<style>
+    div[role="navigation"] {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    div[role="navigation"] > div {
+        flex: 1 1 content;
+        min-width: fit-content;        
+    }
+</style>

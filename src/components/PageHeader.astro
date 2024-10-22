@@ -42,6 +42,7 @@ if (!frontmatter.subtitle) frontmatter.subtitle = ''
         height: auto; /* Maintains the aspect ratio */
         display: block;
         margin: 0; padding: 0;
+        border-radius: var(--border-radius);
     }
     header > div {
         position: absolute;
@@ -52,6 +53,7 @@ if (!frontmatter.subtitle) frontmatter.subtitle = ''
         background-color: rgba(0, 0, 0, 0.5); /* Optional: semi-transparent background for better text contrast */
         padding: 1rem;
         width: 98%;
+        border-radius: var(--border-radius);
     }
     header > div::after {
         content: '';

@@ -1,0 +1,51 @@
+---
+/** Paged list of articles with paging controls and optional heading
+ * Takes a paged list in the paginate() format
+ * https://docs.astro.build/en/reference/api-reference/#paginate
+ * 
+ * TODO
+ * - Allow for frontmatter image
+ */
+
+// import siteInfo from '@/site-info.json';
+import ArticleMeta from '@/components/utils/ArticleMeta.astro';
+import ArticlesListNav from '@/components/utils/ArticlesListNav.astro'
+
+/**
+ * @typedef {Object} Props
+ * @property {CollectionEntry} page - The collection entry
+ * @property {Array<Page>} page.data - Array of Page entries from the collection data
+ * @property {string} label - The number to display.
+ * @property {string} LabelTag - The HTML tag to use to display the label. Defaults to 'div'
+ * @property {boolean} showName If true, show the article list navigation bar
+ */
+
+/** @type {Props} */
+let { page, label = '', LabelTag = 'div', showNav = true } = Astro.props
+const allArticles = page.data
+// console.log('[src/components/ArticlesList.astro] Astro.props', Astro.props)
+// console.log('[src/components/ArticlesList.astro] page.data', page.data)
+
+---
+{ label ? <LabelTag>{label}</LabelTag> : ''}
+<ul>
+    {allArticles.map(post => {
+        return (
+            <li><article>
+                <h3>
+                    {post.data.updated.toISOString().slice(0,10)} <a href={`${post.data.path}`}>{post.data.title}</a>
+                </h3>
+                <ArticleMeta page={post} />
+            </article></li>
+        )
+    })}
+</ul>
+{showNav ? <ArticlesListNav page={page} /> : ''}
+
+<style>
+    ul {
+        list-style: none;
+        margin-block-start: 0;
+        padding-inline-start: 0;
+    }
+</style>

@@ -15,25 +15,10 @@ pageMeta.title = "Articles";
 // pageMeta.subtitle = "General";
 
 import BaseLayout from '@/layouts/BaseLayout.astro'
+import ArticlesList from '@/components/ArticlesList.astro';
 
-import { getCollection } from 'astro:content';
-// const allPosts = await getCollection('posts', ({ data }) => {
-//     return import.meta.env.PROD ? data.draft !== true : true;
-// })
-const allKb = await getCollection('kb', ({ data }) => {
-    return import.meta.env.PROD ? data.draft !== true : true;
-})
-const allArticles = allKb.sort( (a, b) => {
-    // NB: updated dates are mandatory
-    if (a.data.updated > b.data.updated) return 1
-    else if (a.data.updated < b.data.updated) return -1
-    else return 0
-})
-// console.log(allArticles)
 
 ---
 <BaseLayout frontmatter={pageMeta}>
-    <ul>
-        {allArticles.map(post => <li><a href={`${post.slug}`}>{post.data.title}</a></li>)}
-    </ul>
+    <ArticlesList collections={['kb']} numPosts="10", startPost="0" label="Knowledgebase Articles" LabelTag="h2" />
 </BaseLayout>

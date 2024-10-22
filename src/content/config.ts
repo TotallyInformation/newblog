@@ -12,17 +12,18 @@ import { z, defineCollection } from 'astro:content';
 const templateCollection = defineCollection({
     type: 'content',
     schema: z.object({
+        // Minimum required
         title: z.string().max(80),
         created: z.date().transform((str) => new Date(str)),
         updated: z.date().transform((str) => new Date(str)),
-
+        // Recommended
         description: z.string().optional(),
+        category: z.string().optional(),
+        tags: z.array(z.string()).optional(),
 
+        draft: z.boolean().optional(),
         author: z.string().max(50).default("Julian Knight"),
         language: z.enum(['en', ]).default('en'),
-
-        category: z.string().optional(),
-        draft: z.boolean().optional(),
         image: z.object({
             src: z.string().url(),
             alt: z.string().max(80),
@@ -32,7 +33,11 @@ const templateCollection = defineCollection({
             index: z.number(),
         }).optional(),
         subtitle: z.string().max(80).optional(),
-        tags: z.array(z.string()).optional(),
+
+        // These are added dynamically at build-time, not to be included in entry frontmatter
+        collection: z.string().optional(),
+        // slug: z.string().optional(),
+        path: z.string().optional(),
     }),
 });
 const postsCollection = templateCollection; // general articles

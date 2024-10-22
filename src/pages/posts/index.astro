@@ -1,5 +1,5 @@
 ---
-/** Articles/Posts index page
+/** Posts index page
  * Layout: /src/layouts/BaseLayout.astro
  * URL: /posts/
  * 
@@ -14,76 +14,15 @@
 // Page metadata
 const pageMeta = siteInfo.pages.filter( (pg) => pg.path === new URL(Astro.request.url).pathname)[0] ?? {};
 pageMeta.path = new URL(Astro.request.url).pathname
-pageMeta.title = "All Articles";
-pageMeta.subtitle = "All knowledge and general articles by date (newest first)";
+pageMeta.title = "General Articles";
+pageMeta.subtitle = "General articles by date (newest first)";
 
 import BaseLayout from '@/layouts/BaseLayout.astro'
-import FrontmatterTagList from '@/components/utils/FrontmatterTagList.astro'
+import ArticlesList from '@/components/ArticlesList.astro';
 
-import { getCollection } from 'astro:content';
-const allPosts = await getCollection('posts', ( entry ) => {
-    if (!entry.data.path) entry.data.path = `/posts/${entry.slug}` // make sure we have a path to use
-    if (!entry.data.collection) entry.data.collection = `posts`
-    return import.meta.env.PROD ? entry.data.draft !== true : true;
-})
-const allKb = await getCollection('kb', ( entry ) => {
-    if (!entry.data.path) entry.data.path = `/kb/${entry.slug}` // make sure we have a path to use
-    if (!entry.data.collection) entry.data.collection = `kb`
-    return import.meta.env.PROD ? entry.data.draft !== true : true;
-})
-// Sort on updated date - NEW to OLD
-const allArticles = allPosts.concat(allKb).sort( (a, b) => {
-    // NB: updated dates are mandatory
-    if (a.data.updated < b.data.updated) return 1
-    else if (a.data.updated > b.data.updated) return -1
-    else return 0
-})
-// console.log(allArticles)
+const collections = ['posts']
 
 ---
 <BaseLayout frontmatter={pageMeta}>
-    <h2>All knowledge and general articles by date (newest first)</h2>
-    <ul>
-        {allArticles.map(post => {
-            return (
-                <li><article>
-                    <h3>
-                        {post.data.updated.toISOString().slice(0,10)} <a href={`${post.data.path}`}>{post.data.title}</a>
-                    </h3>
-                    <div>
-                        {post.data.description ?? 'No description'}
-                    </div>
-                    <div>
-                        <div>
-                            { post.data.collection ? <span>Collection: <a href=`/${post.data.collection}/`>{post.data.collection}</a></span> : '' }
-                            { post.data.collection && post.data.category ? <span>, </span> : '' }
-                            { post.data.category ? <span>Category: <a href=`/category/${post.data.category}/`>{post.data.category}</a></span> : '' }
-                        </div>
-                        <div>
-                            { post.data.tags ? <FrontmatterTagList tags={post.data.tags} label="🏷️ " /> : '' }
-                        </div>
-                    </div>
-                </article></li>
-            )
-        })}
-    </ul>
+    <ArticlesList collections={collections} numPosts="10", startPost="0" label={pageMeta.subtitle} LabelTag="h2" />
 </BaseLayout>
-
-<style>
-    ul {
-        list-style: none;
-        margin-block-start: 0;
-        padding-inline-start: 0;
-    }
-    article > div:nth-of-type(2) {
-        margin-top: .6rem;
-        font-size: smaller;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1rem;
-    }
-    article > div:nth-of-type(2) > div {
-        flex: 1 1 content;
-        min-width: fit-content;
-    }
-</style>

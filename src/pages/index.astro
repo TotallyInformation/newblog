@@ -8,6 +8,7 @@ pageMeta.title = "Home";
 pageMeta.subtitle = "Rablings on all things Digital, Technology and Life";
 
 import BaseLayout from '@/layouts/BaseLayout.astro'
+import ArticlesList from '@/components/ArticlesList.astro';
 import Greeting from '@/components/Greeting.astro'
 
 // imports all posts and articles
@@ -22,7 +23,5 @@ const allPosts = await getCollection('posts', ({ data }) => {
 ---
 <BaseLayout frontmatter={pageMeta}>
     <Greeting />
-    <ul>
-        <li><a href="/posts/post-1/">Post 1</a></li>
-    </ul>
+    <ArticlesList collections={['posts', 'kb']} numPosts="5", startPost="0" label="Latest 5 articles" LabelTag="h2" />
 </BaseLayout>

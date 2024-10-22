@@ -1,0 +1,9 @@
+---
+/** Redirect to page 1 */
+const path = new URL(Astro.request.url).pathname
+const redirectToUrl = `${path}1`
+// console.log('[/src/pages/articles/indext.astro] redirect', redirectToUrl)
+---
+<head>
+    <meta http-equiv="refresh" content={ `0; url=${ redirectToUrl }` } />
+</head>

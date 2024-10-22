@@ -1,0 +1,52 @@
+---
+/** Show a single collection article's metadata such as description, collection name, category and tags
+ * 
+ * TODO
+ * - Add last update date
+ */
+
+import FrontmatterTagList from '@/components/utils/FrontmatterTagList.astro'
+
+/**
+ * @typedef {Object} Props
+ * @property {Page} page - A single collection article page metadata
+ * @property {object} page.data - Any frontmatter defined on the article page
+ * @property {boolean} showDescription If true, show the article descriptionlist navigation bar
+ */
+
+/** @type {Props} */
+const { page, showDescription = true } = Astro.props;
+
+---
+<div>
+    {showDescription ? 
+    <div class="ArticleMetaDesc">
+        {page.data.description ?? 'No description'}
+    </div>
+    : ''}
+    <div class="ArticleMeta2">
+        <div>
+            { page.data.collection ? <span>Collection: <a href=`/${page.data.collection}/`>{page.data.collection}</a></span> : '' }
+            { page.data.collection && page.data.category ? <span>, </span> : '' }
+            { page.data.category ? <span>Category: <a href=`/category/${page.data.category}/`>{page.data.category}</a></span> : '' }
+        </div>
+        <div>
+            { page.data.tags ? <FrontmatterTagList tags={page.data.tags} label="🏷️ " /> : '' }
+        </div>
+    </div>
+</div>
+
+<style>
+    .ArticleMeta2 {
+        margin-top: .6rem;
+        font-size: smaller;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    .ArticleMeta2 > div {
+        flex: 1 1 content;
+        min-width: fit-content;
+    }
+
+</style>

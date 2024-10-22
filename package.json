@@ -16,7 +16,9 @@
   ],
   "author": "Julian Knight (Totally Information)",
   "license": "C-BY-NC-SA-4.0",
-  "dependencies": {},
+  "dependencies": {
+    "astro-expressive-code": "^0.37.1"
+  },
   "devDependencies": {
     "@astrojs/mdx": "^3.1.8",
     "@astrojs/rss": "^4.0.9",

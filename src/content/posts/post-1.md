@@ -1,15 +1,15 @@
 ---
-title: 'My First Blog Post'
+title: 'Astro: Markdown Test'
 description: |
-  What is the structure of UIBUILDER? How does it related to Node-RED and the browser?
+  Testing out what can be done in Astro Markdown
 created: 2023-02-12 02:23:54
-updated: 2023-12-30 17:01:41
-author: 'Astro Learner'
+updated: 2024-10-21 19:04:24
+author: 'Julian Knight'
 image:
     src: 'https://docs.astro.build/assets/rose.webp'
     alt: 'The Astro logo on a dark background with a pink glow.'
-tags: ["astro", "blogging", "learning in public"]
-category: test
+tags: ["astro-v4", "testing", "markdown", "testing"]
+category: astro
 ---
 # My First Blog Post
 
@@ -55,3 +55,46 @@ A note[^1]
 
 * [ ] to do
 * [x] done
+
+### Expressive Code
+
+```js title="my-test-file.js"
+console.log('Title attribute example')
+```
+
+```html
+<!-- src/content/index.html -->
+<div>File name comment example</div>
+```
+
+```bash
+echo "This terminal frame has no title"
+```
+
+```powershell title="PowerShell terminal example"
+Write-Output "This one has a title!"
+```
+
+```js {1, 4, 7-8}
+// Line 1 - targeted by line number
+// Line 2
+// Line 3
+// Line 4 - targeted by line number
+// Line 5
+// Line 6
+// Line 7 - targeted by range "7-8"
+// Line 8 - targeted by range "7-8"
+```
+
+
+### Containers
+
+::: warning title
+My paragraph with **bold text**
+:::
+
+::: info {section#foo.myclass} Title Of Information {span#baz.someclass}
+Some content
+
+And some more
+:::
