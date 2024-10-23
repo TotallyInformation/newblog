@@ -9,7 +9,18 @@ import PageSidebar from '@/components/PageSidebar.astro'
 import '@/resources/uib-brand.css'
 
 // Page metadata
-const meta = Astro.props.frontmatter
+const meta = Astro.props?.frontmatter ?? {}
+const siteName = `${siteInfo?.name ? `${siteInfo.name}: ` : '' }`
+if (!meta?.title) meta.title = `${siteName}${Astro.url.pathname.replace(/^\/(.*)\/$/, '$1')}`
+if (!meta?.description) meta.description = `${siteName}${meta.title}`
+if (!meta?.path) meta.path = Astro.url.pathname // new URL(Astro.request.url).pathname
+// console.log('[PageMeta] PageMeta', meta)
+// console.log('[PageMeta] Astro.props', Astro.props) // Passed component attributes
+// console.log('[PageMeta] Astro.params', Astro.params) // Dynamic route segments
+// console.log('[PageMeta] Astro.site', Astro.site) // site url (not actual url)
+// console.log('[PageMeta] Astro.request', Astro.request) // No url params for static site
+// console.log('[PageMeta] Astro.response', Astro.response)
+// console.log('[PageMeta] Astro.url', Astro.url, Astro.request.url)
 
 ---
 <html lang="en" class={siteInfo.theme}><head>

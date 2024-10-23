@@ -22,12 +22,13 @@ import ArticlesListNav from '@/components/utils/ArticlesListNav.astro'
 
 /** @type {Props} */
 let { page, label = '', LabelTag = 'div', showNav = true } = Astro.props
-const allArticles = page.data
+const allArticles = !page ? [] : page.data
 // console.log('[src/components/ArticlesList.astro] Astro.props', Astro.props)
 // console.log('[src/components/ArticlesList.astro] page.data', page.data)
 
 ---
 { label ? <LabelTag>{label}</LabelTag> : ''}
+{ !page || page.data.length < 1 ? <p>No articles found.</p> : '' }
 <ul>
     {allArticles.map(post => {
         return (
@@ -40,7 +41,7 @@ const allArticles = page.data
         )
     })}
 </ul>
-{showNav ? <ArticlesListNav page={page} /> : ''}
+{showNav && page ? <ArticlesListNav page={page} /> : ''}
 
 <style>
     ul {

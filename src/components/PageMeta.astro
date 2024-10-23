@@ -12,10 +12,7 @@
 // https://developer.x.com/en/docs/x-for-websites/cards/guides/getting-started
 
 import siteInfo from '@/site-info.json';
-const pageMeta = Astro.props.frontmatter
-if (!pageMeta.description) pageMeta.description = `${siteInfo.name}: ${pageMeta.title}`
-if (!pageMeta.path) pageMeta.path = new URL(Astro.request.url).pathname
-// console.log('PageMeta', pageMeta)
+let pageMeta = Astro.props.frontmatter
 
 ---
 <meta charset="utf-8" />

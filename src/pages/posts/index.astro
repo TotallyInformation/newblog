@@ -1,28 +1,9 @@
 ---
-/** Posts index page
- * Layout: /src/layouts/BaseLayout.astro
- * URL: /posts/
- * 
- * Pages source content: /src/content/posts
- * Auto page creation: /src/pages/posts/[...slug].astro => /posts/<slug>
- * 
- * TODO
- * - Allow for frontmatter image
- */
-
- import siteInfo from '@/site-info.json';
-// Page metadata
-const pageMeta = siteInfo.pages.filter( (pg) => pg.path === new URL(Astro.request.url).pathname)[0] ?? {};
-pageMeta.path = new URL(Astro.request.url).pathname
-pageMeta.title = "General Articles";
-pageMeta.subtitle = "General articles by date (newest first)";
-
-import BaseLayout from '@/layouts/BaseLayout.astro'
-import ArticlesList from '@/components/ArticlesList.astro';
-
-const collections = ['posts']
-
+/** Redirect to page 1 */
+const path = new URL(Astro.request.url).pathname
+const redirectToUrl = `${path}1`
+// console.log('[/src/pages/articles/indext.astro] redirect', redirectToUrl)
 ---
-<BaseLayout frontmatter={pageMeta}>
-    <ArticlesList collections={collections} numPosts="10", startPost="0" label={pageMeta.subtitle} LabelTag="h2" />
-</BaseLayout>
+<head>
+    <meta http-equiv="refresh" content={ `0; url=${ redirectToUrl }` } />
+</head>

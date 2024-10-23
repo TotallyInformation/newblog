@@ -11,10 +11,11 @@ import ThemeIcon from './ThemeIcon.astro'
 import BrimhamRocks from '../resources/brimham-rocks-1200x279.jpg';
 
 const BrimhamRocksOptimised = await getImage({ src: BrimhamRocks })
-const frontmatter = Astro.props.frontmatter
+const frontmatter = Astro.props.frontmatter ?? {}
 // console.log('PageHeader.astro', Astro.props.frontmatter)
 
-if (!frontmatter.subtitle) frontmatter.subtitle = ''
+if (!frontmatter?.title) frontmatter.title = ''
+if (!frontmatter?.subtitle) frontmatter.subtitle = ''
 ---
 <header>
     <Image src={BrimhamRocks} alt="Brimham Rocks, Yorkshire, UK" />
