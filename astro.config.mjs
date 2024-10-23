@@ -4,7 +4,7 @@ import sitemap from '@astrojs/sitemap';
 import expressiveCode from 'astro-expressive-code'; 
 import mdx from '@astrojs/mdx';
 import remarkFlexibleContainers from 'remark-flexible-containers'
-import remarkObsidianCallout  from 'remark-obsidian-callout'
+// import remarkObsidianCallout  from 'remark-obsidian-callout'
 // ❌ import remarkAdmonitions from 'remark-admonitions'
 
 // https://astro.build/config
@@ -25,7 +25,7 @@ export default defineConfig({
                     return `${type}${title ? `: ${title}` : ''}`
                 },
             }],
-            [remarkObsidianCallout, { /* https://github.com/escwxyz/remark-obsidian-callout */ }],
+            // [remarkObsidianCallout, { /* https://github.com/escwxyz/remark-obsidian-callout */ }],
         ]
     },
 });
