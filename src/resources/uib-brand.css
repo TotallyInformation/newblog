@@ -44,6 +44,8 @@
     color-scheme: light dark;
     --mode: light;
 
+    interpolate-size: allow-keywords;
+
     /* Create a checkable var - helps web components know if this stylesheet is loaded
      * Use this from general code: 
      *    window.getComputedStyle(document.documentElement, null).getPropertyValue('--uib-css') === 'uib-brand'

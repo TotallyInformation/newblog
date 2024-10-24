@@ -1,7 +1,8 @@
 ---
 /** Paged list of articles with paging controls and optional heading
- * Takes a paged list in the paginate() format
- * https://docs.astro.build/en/reference/api-reference/#paginate
+ * Takes EITHER:
+ * - A paged list in the [paginate() format](https://docs.astro.build/en/reference/api-reference/#paginate)
+ * - or a non-paged list, e.g. direct or indirect from getAllArticles()
  * 
  * TODO
  * - Allow for frontmatter image
@@ -13,22 +14,28 @@ import ArticlesListNav from '@/components/utils/ArticlesListNav.astro'
 
 /**
  * @typedef {Object} Props
- * @property {CollectionEntry} page - The collection entry
- * @property {Array<Page>} page.data - Array of Page entries from the collection data
- * @property {string} label - The number to display.
- * @property {string} LabelTag - The HTML tag to use to display the label. Defaults to 'div'
- * @property {boolean} showName If true, show the article list navigation bar
+ * @property {CollectionEntry=} articles - The collection entry array
+ * @property {CollectionEntry=} page - Paginated collection entries
+ * @property {Array<Page>=} page.data - Array of Page entries from the paginated collection data
+ * @property {string=} label - The number to display.
+ * @property {string=} LabelTag - The HTML tag to use to display the label. Defaults to 'div'
+ * @property {boolean=} showName If true, show the article list navigation bar
  */
 
 /** @type {Props} */
-let { page, label = '', LabelTag = 'div', showNav = true } = Astro.props
-const allArticles = !page ? [] : page.data
+let { articles = null, page = null, label = '', LabelTag = 'div', showNav = true } = Astro.props
+
+// Articles list either comes from page.data (for paginated results) or from articles AKA posts (for non-paginated results)
+const allArticles = page?.data ?? articles ?? []
+
 // console.log('[src/components/ArticlesList.astro] Astro.props', Astro.props)
 // console.log('[src/components/ArticlesList.astro] page.data', page.data)
+// console.log('[src/components/ArticlesList.astro] articles', articles)
+// console.log('[src/components/ArticlesList.astro] allArticles', allArticles)
 
 ---
 { label ? <LabelTag>{label}</LabelTag> : ''}
-{ !page || page.data.length < 1 ? <p>No articles found.</p> : '' }
+{ allArticles.length < 1 ? <p>No articles found.</p> : '' }
 <ul>
     {allArticles.map(post => {
         return (

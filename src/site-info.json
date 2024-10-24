@@ -1,6 +1,6 @@
 {
     "name": "Totally Information",
-    "description": "",
+    "description": "All things related to Digital Technology and Information, and perhaps some social and moral commentary as well",
     "organisation": "Totally Information",
     "orgTwitter": "@TotallyInformation",
     "license": "C-BY-NC-SA-4.0",
@@ -10,7 +10,7 @@
     "authorTwitter": "@knightnet",
     "theme": "dark",
     "pages": [
-        { "name": "Home", "path": "/", "title": "", "subtitle": "" },
+        { "name": "Home", "path": "/", "title": "", "subtitle": "", "filter": {} },
         { "name": "About", "path": "/about/" },
         { "name": "Articles", "path": "/articles/" },
         { "name": "Posts", "path": "/posts/" },

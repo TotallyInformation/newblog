@@ -6,84 +6,57 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 // Page metadata
 const pageMeta = siteInfo.pages.filter( (pg) => pg.path === new URL(Astro.request.url).pathname)[0] ?? {};
-pageMeta.title = "About This Site";
+pageMeta.title = "About This Site, TotallyInformation and me";
 pageMeta.subtitle = "... and my new GROWING Astro site!";
 
-//#region test stuff for this page
-import { Code } from "astro:components";
-
-const identity = {
-    firstName: "Sarah",
-    country: "Canada",
-    occupation: "Technical Writer",
-    hobbies: ["photography", "birdwatching", "baseball"],
-};
-
-const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "Writing Docs"];
-
-const happy = true;
-const finished = false;
-const goal = 3;
-
-const skillColor = "green";
-const fontStyle = "bold";
-//#endregion
 ---
-
 <BaseLayout frontmatter={pageMeta}>
-    <p>Here are a few facts about me:</p>
-    <ul>
-        <li>My name is {identity.firstName}.</li>
-        <li>
-            I live in {identity.country} and I work as a {identity.occupation}.
-        </li>
-        {
-            identity.hobbies.length >= 2 && (
-                <li>
-                    Two of my hobbies are: {identity.hobbies[0]} and{" "}
-                    {identity.hobbies[1]}
-                </li>
-            )
-        }
-    </ul>
-
-    <p>My skills are:</p>
-    <ul>
-        {skills.map((skill) => <li class="myskills">{skill}</li>)}
-    </ul>
-
-    {happy && <p>I am happy to be learning Astro!</p>}
-
-    {finished && <p>I finished this tutorial!</p>}
-
-    {goal ? <p>My goal is to finish in {goal} days.</p> : <span />}
-
-    <Code code={`const foo = 'bar';`} lang="js" />
-
+    <h2>About this site</h2>
     <p>
-        Provident cum aspernatur et enim est id. Qui provident repellendus.
-        Magnam ipsam sapiente eos quos magni atque minima. Necessitatibus et
-        numquam animi suscipit aut. Facilis praesentium et.
-    </p><p>
-        Quod quis atque sunt ut sunt. Autem sed consequatur. Impedit
-        perspiciatis tempora ut tempore vero.
-    </p><p>
-        Cum distinctio placeat facere officia fuga. Quia sunt perferendis. Vel
-        unde accusantium vel fugiat optio voluptas ex dicta. Nihil quo est rerum
-        sit voluptatum velit aut.
-    </p><p>
-        Quod quis atque sunt ut sunt. Autem sed consequatur. Impedit
-        perspiciatis tempora ut tempore vero.
-    </p><p>
-        Cum distinctio placeat facere officia fuga. Quia sunt perferendis. Vel
-        unde accusantium vel fugiat optio voluptas ex dicta. Nihil quo est rerum
-        sit voluptatum velit aut.
+        This is my latest website and blog. This is about my 5th website since the early days of the Internet.
     </p>
+    <p>
+        This version will take over from my previous blog site at <a href="https://it.knightnet.org.uk">Much Ado About IT</a> which
+        simply became too complex and messy to easily maintain after being migrated from an original DIY content mangement system to
+        Blogsite and then on to Wordpress, then a brief encounter with Jekyll - yeuk! - and finally on to Hugo/Netlify.
+    </p>
+    <p>
+        With this itteration, I'm using <a href="https://astro.build" target="_blank">Astro</a> hosted on <a href="https://pages.cloudflare.com" target="_blank">Cloudflare Pages</a>.
+    </p>
+    <p>
+        Once again returning to a mostly DIY site and using the styling taken from my work on <a>UIBUILDER for Node-RED</a>.
+    </p>
+    <h2>About TotallyInformation</h2>
+    <p>
+        TotallyInformation is a trading name that I've been using since around 2012 when I was toying with the idea that I might
+        wish to move out of the Enterprise IT world into less stressfull and more local IT. That never happened but I used the
+        TotallyInformation name mostly for my work on Open Source projects and other GitHub repositories.
+    </p>
+    <p>
+        TotallyInformation is the trading name for Julian Knight. I am based in Sheffield, UK.
+    </p>
+    <h2>About me</h2>
+    <p>
+        By day, I work as an Enterprise Architect, currently for the NHS. These days mostly working on assuring and governing large
+        Digital and Technology programmes and projects.
+    </p>
+    <p>
+        Outside of that work, amongst family committments and other activities, I mostly contribute to the Node-RED low-code application.
+        My main contribution being <a href="https://github.com/TotallyInformation/node-red-contrib-uibuilder" target="_blank">node-red-contrib-uibuilder</a>, a extension to Node-RED that facilitiates the building and management
+        of data-driven websites and apps.
+    </p>
+    <h3>Find out more about Julian Knight and TotallyInformation</h3>
+    <ul>
+        <li><a href="https://www.linkedin.com/in/julianknight2/" target="_blank">LinkedIn</a></li>
+        <li><a href="https://github.com/TotallyInformation" target="_blank">GitHub</a></li>
+        <li><a href="https://discourse.nodered.org/u/totallyinformation/" target="_blank">Node-RED Forum</a></li>
+        <li><a href="https://stackexchange.com/users/1375993" target="_blank">Stack Overflow</a><br><img src="https://stackexchange.com/users/flair/1375993.png"></li>
+        <li><a href="https://twitter.com/knightnet" target="_blank">Twitter</a></li>
+        <li><a href="http://it.knightnet.org.uk/" target="_blank">My previous blog, "Much Ado About IT"</a></li>
+        <li><a href="https://bsky.app/profile/knightnet.bsky.social" target="_blank">BSky</a></li>
+        <li><a href="https://julianknight.net" target="_blank">My personal portfolio and CV</a></li>
+        <li><a href="" target="_blank">My newsfeed</a></li>
+        <li><a href="" target="_blank">Mastodon</a></li>
+        <li><a href="" target="_blank">YouTube</a></li>
+    </ul>
 </BaseLayout>
-
-<style define:vars={{ skillColor, fontStyle }}>
-    .myskills {
-        color: var(--skillColor);
-        font-style: var(--fontStyle);
-    }
-</style>
