@@ -56,8 +56,13 @@ category: astro
 
 ### PageMeta
 
-* Add author & updated date
+* Add author & updated date to left-hand side
+* Make tags list right-aligned
 
-### ThemeIcon
+### ThemeChanger
 
 * Change from sun/moon & theme switch to a cog containing theme switch and other controls such as colour, maybe sizing, font, etc.
+
+### ArticlesListNav
+
+* Add some bottom margin
