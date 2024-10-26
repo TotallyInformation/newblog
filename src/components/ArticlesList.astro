@@ -34,21 +34,23 @@ const allArticles = page?.data ?? articles ?? []
 // console.log('[src/components/ArticlesList.astro] allArticles', allArticles)
 
 ---
-{ label ? <LabelTag>{label}</LabelTag> : ''}
-{ allArticles.length < 1 ? <p>No articles found.</p> : '' }
-<ul>
-    {allArticles.map(post => {
-        return (
-            <li><article>
-                <h3>
-                    {post.data.updated.toISOString().slice(0,10)} <a href={`${post.data.path}`}>{post.data.title}</a>
-                </h3>
-                <ArticleMeta page={post} />
-            </article></li>
-        )
-    })}
-</ul>
-{showNav && page ? <ArticlesListNav page={page} /> : ''}
+<div data-component="ArticlesList">
+    { label ? <LabelTag>{label}</LabelTag> : ''}
+    { allArticles.length < 1 ? <p>No articles found.</p> : '' }
+    <ul>
+        {allArticles.map(post => {
+            return (
+                <li><article>
+                    <h3>
+                        {post.data.updated.toISOString().slice(0,10)} <a href={`${post.data.path}`}>{post.data.title}</a>
+                    </h3>
+                    <ArticleMeta page={post} />
+                </article></li>
+            )
+        })}
+    </ul>
+    {showNav && page ? <ArticlesListNav page={page} /> : ''}
+</div>
 
 <style>
     ul {

@@ -4,7 +4,7 @@
 const { data, type = 'ul' } = Astro.props
 const Tag = type
 ---
-<Tag>
+<Tag data-component="DataList">
     {
         data.map(item => (
             <li>

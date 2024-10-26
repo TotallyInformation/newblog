@@ -13,7 +13,7 @@ import siteInfo from '../site-info.json';
 const pathname = new URL(Astro.request.url).pathname;
 const pages = siteInfo.pages;
 ---
-<nav class="nav-main" role="navigation">
+<nav class="nav-main" role="navigation"  data-component="PageNav">
     <button aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation menu">
         &#9776; <!-- Hamburger icon -->
     </button>

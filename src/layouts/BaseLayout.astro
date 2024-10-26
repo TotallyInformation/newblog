@@ -25,7 +25,7 @@ if (!meta?.path) meta.path = Astro.url.pathname // new URL(Astro.request.url).pa
 ---
 <html lang="en" class={siteInfo.theme}><head>
     <PageMeta frontmatter={meta}/>
-</head><body>
+</head><body data-layout="BaseLayout">
     <div class="container">
         <PageHeader frontmatter={meta} />
         <main>

@@ -18,13 +18,13 @@ import FrontmatterTagList from '@/components/utils/FrontmatterTagList.astro'
 const { page, showDescription = true } = Astro.props;
 
 ---
-<div>
+<div class="block" data-component="ArticleMeta">
     {showDescription ? 
     <div class="ArticleMetaDesc">
         {page.data.description ?? 'No description'}
     </div>
     : ''}
-    <div class="ArticleMeta2">
+    <div class="ArticleMeta">
         <div>
             { page.data.collection ? <span>Collection: <a href=`/${page.data.collection}/`>{page.data.collection}</a></span> : '' }
             { page.data.collection && page.data.category ? <span>, </span> : '' }
@@ -37,16 +37,15 @@ const { page, showDescription = true } = Astro.props;
 </div>
 
 <style>
-    .ArticleMeta2 {
+    .ArticleMeta {
         margin-top: .6rem;
         font-size: smaller;
         display: flex;
         flex-wrap: wrap;
         gap: 1rem;
     }
-    .ArticleMeta2 > div {
+    .ArticleMeta > div {
         flex: 1 1 content;
         min-width: fit-content;
     }
-
 </style>

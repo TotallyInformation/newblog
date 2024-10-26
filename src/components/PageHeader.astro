@@ -1,13 +1,13 @@
 ---
 /** Page headings component 
- * ThemeIcon is the dark/light switcher component
+ * ThemeChanger is the dark/light switcher component
  * PageNav is the page navigation component
  */
 
 import { getImage, Image  } from "astro:assets"
 // import siteInfo from '../site-info.json';
 import PageNav from './PageNav.astro'
-import ThemeIcon from './ThemeIcon.astro'
+import ThemeChanger from './ThemeChanger.astro'
 import BrimhamRocks from '../resources/brimham-rocks-1200x279.jpg';
 
 const BrimhamRocksOptimised = await getImage({ src: BrimhamRocks })
@@ -17,15 +17,14 @@ const frontmatter = Astro.props.frontmatter ?? {}
 if (!frontmatter?.title) frontmatter.title = ''
 if (!frontmatter?.subtitle) frontmatter.subtitle = ''
 ---
-<header>
+<header data-component="PageHeader">
     <Image src={BrimhamRocks} alt="Brimham Rocks, Yorkshire, UK" />
     <div>
-        <ThemeIcon />
+        <ThemeChanger />
         <h1 class:list={[{'with-subtitle': frontmatter.subtitle}]}>{frontmatter.title}</h1>
         { frontmatter.subtitle && <div role="doc-subtitle">{frontmatter.subtitle}</div> }
         <PageNav></PageNav>
     </div>
-
 </header>
 <style define:vars={{ headBgImg: `url(${BrimhamRocksOptimised.src})` }}>
     header {

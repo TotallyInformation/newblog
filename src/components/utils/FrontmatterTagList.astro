@@ -4,7 +4,10 @@
 const { tags, label } = Astro.props
 
 ---
-<ul aria-label="Article tag list" title="Article tag list">{label}{tags.map(item => (<li><a href=`/tags/${item}`>{item}</a></li>))}</ul>
+<ul aria-label="Article tag list" title="Article tag list" data-component="FrontmatterTagList">
+    {label}
+    {tags.map(item => (<li><a href=`/tags/${item}`>{item}</a></li>))}
+</ul>
 <style>
     ul {
         list-style:none;

@@ -16,7 +16,7 @@ import siteInfo from '@/site-info.json';
 const frontmatter = Astro.props.frontmatter
 
 ---
-<footer>
+<footer data-component="PageFooter">
     <p class="foot-license" xmlns:cc="http://creativecommons.org/ns#" >
         Copyright ©️ 2024 <span property="cc:attributionName">{siteInfo.copyright}</span>.  License: 
         <a href={siteInfo.licenseUri} target="_blank" rel="license noopener noreferrer" title="License: Creative Commons, Attribution required,\nNon-commercial use, Adaptions must have same.\nCommercial licensing available separately">
