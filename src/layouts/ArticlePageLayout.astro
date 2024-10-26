@@ -1,0 +1,49 @@
+---
+/** Layout for article pages */
+
+import siteInfo from '@/site-info.json';
+import PageMeta from '@/components/PageMeta.astro'
+import PageHeader from '@/components/PageHeader.astro'
+import PageFooter from '@/components/PageFooter.astro'
+import PageSidebar from '@/components/PageSidebar.astro'
+import ArticleMeta from '@/components/utils/ArticleMeta.astro';
+import '@/resources/uib-brand.css'
+
+/**
+ * @typedef {Object} Props
+ * @property {Page} page - A single collection article page metadata
+ * @property {object} page.data - Any frontmatter defined on the article page
+ * @property {boolean} showDescription If true, show the article descriptionlist navigation bar
+ * @property {string} wrapperClass Set to a classname to apply to the wrapping div
+ */
+
+/** @type {Props} */
+
+// Page metadata
+const frontmatter = Astro.props?.frontmatter ?? {}
+const siteName = `${siteInfo?.name ? `${siteInfo.name}: ` : '' }`
+if (!frontmatter?.title) frontmatter.title = `${siteName}${Astro.url.pathname.replace(/^\/(.*)\/$/, '$1')}`
+if (!frontmatter?.description) frontmatter.description = `${siteName}${frontmatter.title}`
+if (!frontmatter?.path) frontmatter.path = Astro.url.pathname // new URL(Astro.request.url).pathname
+// console.log('[PageMeta] PageMeta', meta)
+// console.log('[PageMeta] Astro.props', Astro.props) // Passed component attributes
+// console.log('[PageMeta] Astro.params', Astro.params) // Dynamic route segments
+// console.log('[PageMeta] Astro.site', Astro.site) // site url (not actual url)
+// console.log('[PageMeta] Astro.request', Astro.request) // No url params for static site
+// console.log('[PageMeta] Astro.response', Astro.response)
+// console.log('[PageMeta] Astro.url', Astro.url, Astro.request.url)
+
+---
+<html lang="en" class={siteInfo.theme}><head>
+    <PageMeta frontmatter={frontmatter}/>
+</head><body data-layout="ArticlePageLayout">
+    <div class="container">
+        <PageHeader frontmatter={frontmatter} />
+        <main>
+            <ArticleMeta frontmatter={frontmatter} wrapperClass="block" />
+            <slot />
+        </main>
+        <PageFooter frontmatter={frontmatter} />
+        <PageSidebar frontmatter={frontmatter} />
+    </div>
+</body></html>

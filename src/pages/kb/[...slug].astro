@@ -13,8 +13,7 @@
 
 // import siteInfo from '../site-info.json';
 import { getCollection } from "astro:content";
-import BaseLayout from '@/layouts/BaseLayout.astro';
-import ArticleMeta from '@/components/utils/ArticleMeta.astro';
+import ArticlePageLayout from '@/layouts/ArticlePageLayout.astro';
 
 // 1. Generate a new path for every collection entry
 export async function getStaticPaths() {
@@ -35,9 +34,9 @@ frontmatter.collection = entry.collection
 frontmatter.path = new URL(Astro.request.url).pathname
 const { Content } = await entry.render();
 // console.log('[/src/pages/kb/[...slug].astro] Astro.props', Astro.props)
+console.log('[/src/pages/kb/[...slug].astro] frontmatter', frontmatter)
 ---
 
-<BaseLayout frontmatter={frontmatter}>
-    <ArticleMeta page={entry} />
+<ArticlePageLayout frontmatter={frontmatter}>
     <Content />
-</BaseLayout>
+</ArticlePageLayout>

@@ -9,29 +9,29 @@ import FrontmatterTagList from '@/components/utils/FrontmatterTagList.astro'
 
 /**
  * @typedef {Object} Props
- * @property {Page} page - A single collection article page metadata
- * @property {object} page.data - Any frontmatter defined on the article page
+ * @property {object} frontmatter - Any frontmatter defined on the article page
  * @property {boolean} showDescription If true, show the article descriptionlist navigation bar
+ * @property {string} wrapperClass Set to a classname to apply to the wrapping div
  */
 
 /** @type {Props} */
-const { page, showDescription = true } = Astro.props;
+const { frontmatter, showDescription = true, wrapperClass = "" } = Astro.props;
 
 ---
-<div class="block" data-component="ArticleMeta">
+<div class={wrapperClass} data-component="ArticleMeta">
     {showDescription ? 
     <div class="ArticleMetaDesc">
-        {page.data.description ?? 'No description'}
+        {frontmatter?.description ?? 'No description'}
     </div>
     : ''}
     <div class="ArticleMeta">
         <div>
-            { page.data.collection ? <span>Collection: <a href=`/${page.data.collection}/`>{page.data.collection}</a></span> : '' }
-            { page.data.collection && page.data.category ? <span>, </span> : '' }
-            { page.data.category ? <span>Category: <a href=`/category/${page.data.category}/`>{page.data.category}</a></span> : '' }
+            { frontmatter?.collection ? <span>Collection: <a href=`/${frontmatter.collection}/`>{frontmatter.collection}</a></span> : '' }
+            { frontmatter?.collection && frontmatter.category ? <span>, </span> : '' }
+            { frontmatter?.category ? <span>Category: <a href=`/category/${frontmatter.category}/`>{frontmatter.category}</a></span> : '' }
         </div>
         <div>
-            { page.data.tags ? <FrontmatterTagList tags={page.data.tags} label="🏷️ " /> : '' }
+            { frontmatter?.tags ? <FrontmatterTagList tags={frontmatter.tags} label="🏷️ " /> : '' }
         </div>
     </div>
 </div>
