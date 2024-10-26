@@ -1,3 +1,8 @@
+/** Produce a site-wide RSS feed
+ * TODO
+ * - Work out how to include content - probably requires Astro v5
+ */
+
 import rss, { pagesGlobToRssItems } from '@astrojs/rss';
 import siteInfo from '@/site-info.json';
 import { getAllArticles } from '@/utilModules/getCollections.mjs'
@@ -43,7 +48,7 @@ export async function GET(context) {
         items: allItems.map((post) => ({
             title: post.data.title,
             pubDate: post.data.updated,
-            description: post.data.description ?? post.data.title,
+            description: post.data?.description ?? post.data.title,
             link: post.data.path,
             // categories: allCats,
             author: post.data?.author ?? siteInfo.author,
