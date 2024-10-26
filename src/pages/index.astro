@@ -1,7 +1,7 @@
 ---
 /** Site homepage */
 
-import siteInfo from '../site-info.json';
+import siteInfo from '@/site-info.json';
 // Page metadata
 const pageMeta = siteInfo.pages.filter( (pg) => pg.path === new URL(Astro.request.url).pathname)[0] ?? {};
 pageMeta.title = "Home";
@@ -10,18 +10,12 @@ pageMeta.subtitle = "Rablings on all things Digital, Technology and Life";
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import ArticlesList from '@/components/ArticlesList.astro';
 import Greeting from '@/components/Greeting.astro'
+import { getAllArticles } from '@/utilModules/getCollections.mjs'
 
-// imports all posts and articles
-import { getCollection } from 'astro:content';
-// const allBlogPosts = await getCollection('blog', ({ data }) => {
-//     return data.draft !== true;
-// })
-const allPosts = await getCollection('posts', ({ data }) => {
-    return import.meta.env.PROD ? data.draft !== true : true;
-})
+const posts = await getAllArticles(['posts', 'kb'])
 
 ---
 <BaseLayout frontmatter={pageMeta}>
     <Greeting />
-    <ArticlesList collections={['posts', 'kb']} numPosts="5", startPost="0" label="Latest 5 articles" LabelTag="h2" />
+    <ArticlesList articles={posts.slice(0,5)} label="Latest 5 posts" LabelTag="h2" />
 </BaseLayout>

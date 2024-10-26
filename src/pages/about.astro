@@ -3,6 +3,8 @@
 
 import siteInfo from '../site-info.json';
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { Image } from 'astro:assets';
+import seFlairImg from "@/resources/StackExchangeFlair.jpg";
 
 // Page metadata
 const pageMeta = siteInfo.pages.filter( (pg) => pg.path === new URL(Astro.request.url).pathname)[0] ?? {};
@@ -26,6 +28,10 @@ pageMeta.subtitle = "... and my new GROWING Astro site!";
     <p>
         Once again returning to a mostly DIY site and using the styling taken from my work on <a>UIBUILDER for Node-RED</a>.
     </p>
+    <h2>Privacy</h2>
+    <p>
+        This site is statically generated and does not keep any personal details about visitors. Please see the <a href="/privacy">Privacy page</a> for more details.
+    </p>
     <h2>About TotallyInformation</h2>
     <p>
         TotallyInformation is a trading name that I've been using since around 2012 when I was toying with the idea that I might
@@ -46,17 +52,29 @@ pageMeta.subtitle = "... and my new GROWING Astro site!";
         of data-driven websites and apps.
     </p>
     <h3>Find out more about Julian Knight and TotallyInformation</h3>
+    <h4>Totally Information</h4>
     <ul>
-        <li><a href="https://www.linkedin.com/in/julianknight2/" target="_blank">LinkedIn</a></li>
         <li><a href="https://github.com/TotallyInformation" target="_blank">GitHub</a></li>
         <li><a href="https://discourse.nodered.org/u/totallyinformation/" target="_blank">Node-RED Forum</a></li>
-        <li><a href="https://stackexchange.com/users/1375993" target="_blank">Stack Overflow</a><br><img src="https://stackexchange.com/users/flair/1375993.png"></li>
-        <li><a href="https://twitter.com/knightnet" target="_blank">Twitter</a></li>
+    </ul>
+    <h4>Julian</h4>
+    <ul>
+        <li><a href="https://www.linkedin.com/in/julianknight2/" target="_blank">LinkedIn</a></li>
+        <li><a href="http://www.youtube.com/@JulianKnight-IT" target="_blank">My YouTube videos (mostly UIBUILDER for Node-RED)</a></li>
+        <li>
+            <a href="https://stackexchange.com/users/1375993" target="_blank">Stack Overflow</a><br>
+            <Image src={seFlairImg} width="208" height="58"
+                alt="Stack Exchange flair image" title="Link to my profile on Stack Exchange, a network of free, community-driven Q&amp;A sites" />
+        </li>
         <li><a href="http://it.knightnet.org.uk/" target="_blank">My previous blog, "Much Ado About IT"</a></li>
-        <li><a href="https://bsky.app/profile/knightnet.bsky.social" target="_blank">BSky</a></li>
         <li><a href="https://julianknight.net" target="_blank">My personal portfolio and CV</a></li>
-        <li><a href="" target="_blank">My newsfeed</a></li>
-        <li><a href="" target="_blank">Mastodon</a></li>
-        <li><a href="" target="_blank">YouTube</a></li>
+        <li><a href="https://feedly.com/JulianKnight" target="_blank">My newsfeed (Feedly.com)</a></li>
+    </ul>
+    <h4>Julian's Social Media Connections</h4>
+    <ul>
+        <li><a href="https://telegram.me/jk_knightnet" target="_blank">Telegram</a></li>
+        <li><a href="https://twitter.com/knightnet" target="_blank">Twitter</a></li>
+        <li><a href="https://mastodon.org.uk/@JulianKnight" target="_blank">Mastodon (not used much as yet)</a></li>
+        <li><a href="https://bsky.app/@knightnet" target="_blank">Bluesky (not used much as yet)</a></li>        
     </ul>
 </BaseLayout>

@@ -11,7 +11,8 @@
  * Note: The item* attributes are part of the WHATWG HTML Microdata feature: https://html.spec.whatwg.org/multipage/microdata.html#microdata
  */
 
-import siteInfo from '../site-info.json';
+import siteInfo from '@/site-info.json';
+
 const frontmatter = Astro.props.frontmatter
 
 ---
@@ -56,8 +57,15 @@ const frontmatter = Astro.props.frontmatter
                 </g>
             </svg>
         </a>
-        <a href="https://stackexchange.com/users/1375993">
-            <img style="height:var(--ffSvgHt);" src="https://stackexchange.com/users/flair/1375993.png" alt="Stack Exchange flair image" title="Link to my profile on Stack Exchange, a network of free, community-driven Q&amp;A sites">
+        <a href="https://stackexchange.com/users/1375993" title="Link to my profile on Stack Exchange, a network of free, community-driven Q&amp;A sites">
+            <svg style="background-color: var(--text1);" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" >
+                <g id="layer102" fill="var(--ffSvgFill2)" stroke="none">
+                    <path d="M21,5c0-1.676-1.302-3-3-3H7C5.302,2,4,3.324,4,5v1h17V5z" />
+                    <rect x="4" y="11" width="17" height="3" />
+                    <path d="M4,15.73C4,17.406,5.302,19,7,19h6v3h1.48l3.182-3H18c1.698,0,3-1.324,3-3v-1H4V15.73z" />
+                    <rect x="4" y="7" width="17" height="3" />
+                </g>
+            </svg>
         </a>
     </p>
 </footer>
