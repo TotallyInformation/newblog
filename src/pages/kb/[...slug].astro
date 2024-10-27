@@ -34,7 +34,7 @@ frontmatter.collection = entry.collection
 frontmatter.path = new URL(Astro.request.url).pathname
 const { Content } = await entry.render();
 // console.log('[/src/pages/kb/[...slug].astro] Astro.props', Astro.props)
-console.log('[/src/pages/kb/[...slug].astro] frontmatter', frontmatter)
+// console.log('[/src/pages/kb/[...slug].astro] frontmatter', frontmatter)
 ---
 
 <ArticlePageLayout frontmatter={frontmatter}>
