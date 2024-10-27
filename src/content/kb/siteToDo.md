@@ -5,7 +5,7 @@ description: |
   and styles, there is rather a lot to create and finesse. This page documents
   what is left to do.
 created: 2024-10-26 17:16:38
-updated: 2024-10-26 17:16:43
+updated: 2024-10-27 17:54:16
 tags: ["astro-v4", "website", "development", "web-development"]
 category: astro
 ---
@@ -24,7 +24,7 @@ category: astro
 
 ### Home (index.astro)
 
-* Show latest 5 posts
+* [x] Show latest 5 posts
 
 ### Article pages
 
@@ -38,6 +38,7 @@ category: astro
 
 * Include full article content - but how?
 * Consider per-tag/category feeds - how?
+* Add page links to rss feeds
 
 ## Ongoing Stylesheet improvements
 
@@ -56,8 +57,8 @@ category: astro
 
 ### PageMeta
 
-* Add author & updated date to left-hand side
-* Make tags list right-aligned
+* [x] Add author & updated date to left-hand side
+* [x] Make tags list right-aligned
 
 ### ThemeChanger
 
@@ -65,4 +66,4 @@ category: astro
 
 ### ArticlesListNav
 
-* Add some bottom margin
+* [x] Add some bottom margin
