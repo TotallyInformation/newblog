@@ -5,7 +5,8 @@
  * - Add last update date
  */
 
-import FrontmatterTagList from '@/components/utils/FrontmatterTagList.astro'
+import FrontmatterTagList from '@/components/utils/FrontmatterTagList.astro';
+import siteInfo from '@/site-info.json';
 
 /**
  * @typedef {Object} Props
@@ -15,17 +16,26 @@ import FrontmatterTagList from '@/components/utils/FrontmatterTagList.astro'
  */
 
 /** @type {Props} */
-const { frontmatter, showDescription = true, wrapperClass = "" } = Astro.props;
+let { frontmatter, showDescription = true, wrapperClass = "" } = Astro.props;
+
+if (!frontmatter?.author) frontmatter.author = siteInfo.author ?? '';
+
+let isUpdated = false;
+
+const created = frontmatter?.created.toISOString().slice(0,10);
+const updated = frontmatter?.updated.toISOString().slice(0,10);
+
+if (created !== updated) isUpdated = true;
+
+// console.log('[src/components/utils/ArticleMeta.astro] created, updated, isUpdated', created, updated, isUpdated)
 
 ---
 <div class={wrapperClass} data-component="ArticleMeta">
-    {showDescription ? 
-    <div class="ArticleMetaDesc">
-        {frontmatter?.description ?? 'No description'}
-    </div>
-    : ''}
+    {showDescription ?  <div class="ArticleMetaDesc">{frontmatter?.description ?? 'No description'}</div> : ''}
     <div class="ArticleMeta">
         <div>
+            { isUpdated ? <span>Updated: {updated},</span> : '' }
+            <span>Created: {created}</span>.
             { frontmatter?.collection ? <span>Collection: <a href=`/${frontmatter.collection}/`>{frontmatter.collection}</a></span> : '' }
             { frontmatter?.collection && frontmatter.category ? <span>, </span> : '' }
             { frontmatter?.category ? <span>Category: <a href=`/category/${frontmatter.category}/`>{frontmatter.category}</a></span> : '' }
@@ -38,14 +48,20 @@ const { frontmatter, showDescription = true, wrapperClass = "" } = Astro.props;
 
 <style>
     .ArticleMeta {
-        margin-top: .6rem;
-        font-size: smaller;
+        margin: .4rem -.5rem -.5rem -.5rem;
+        padding: .5rem;
+        border-radius: 0  0 var(--border-radius) var(--border-radius);
+        font-size: small;
         display: flex;
         flex-wrap: wrap;
         gap: 1rem;
+        background-color: var(--surface4);
     }
     .ArticleMeta > div {
         flex: 1 1 content;
         min-width: fit-content;
+    }
+    .ArticleMeta > div:last-of-type {
+        text-align: right;
     }
 </style>

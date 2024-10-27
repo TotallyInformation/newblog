@@ -42,7 +42,7 @@ const allArticles = page?.data ?? articles ?? []
             return (
                 <li><article>
                     <h3>
-                        {post.data.updated.toISOString().slice(0,10)} <a href={`${post.data.path}`}>{post.data.title}</a>
+                        <a href={`${post.data.path}`}>{post.data.title}</a>
                     </h3>
                     <ArticleMeta frontmatter={post.data} />
                 </article></li>
