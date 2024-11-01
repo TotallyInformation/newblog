@@ -14,17 +14,18 @@
     "website",
     "astro",
     "open-source",
-    "it", "web", "cyber"
+    "it",
+    "web",
+    "cyber"
   ],
   "author": "Julian Knight (Totally Information)",
   "license": "C-BY-NC-SA-4.0",
-  "dependencies": {},
   "devDependencies": {
     "@astrojs/mdx": "^3.1.8",
     "@astrojs/rss": "^4.0.9",
     "@astrojs/sitemap": "^3.2.1",
     "astro": "^4.16.5",
-    "astro-expressive-code": "^0.37.1",
+    "astro-expressive-code": "^0.38.0",
     "rehype-autolink-headings": "^7.1.0",
     "rehype-slug": "^6.0.0",
     "remark-flexible-containers": "^1.2.1",
