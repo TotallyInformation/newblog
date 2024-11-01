@@ -103,7 +103,7 @@ And some more
 
 We only use NOTE, TIP, and WARNING to be in keeping with all of Obsidian, GitHub, Docsify and Typora.
 
-> [!NOTE]
+> [!NOTE] This is a custom title
 > This is a note
 
 > [!TIP]
