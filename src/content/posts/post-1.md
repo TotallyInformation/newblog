@@ -98,3 +98,37 @@ Some content
 
 And some more
 :::
+
+### Obsidian/GitHub Callouts
+
+We only use NOTE, TIP, and WARNING to be in keeping with all of Obsidian, GitHub, Docsify and Typora.
+
+> [!NOTE]
+> This is a note
+
+> [!TIP]
+> This is a tip
+
+> [!WARNING]
+> This is a WARNING
+
+> A blockquote, not a callout
+
+But the plugin supports:
+
+* **note**: pencilIcon,
+* **tip**/hint/important: flameIcon,
+* **warning**/attention/caution: alertTriangleIcon,
+
+#
+
+* abstract/summary/tldr: clipboardListIcon,
+* info: infoIcon,
+* todo: checkCircleIcon,
+* success/check/done: checkIcon,
+* question/help/faq: helpCircleIcon,
+* failure/missing/fail: xIcon,
+* danger/error: zapIcon,
+* bug: bugIcon,
+* example: listIcon,
+* quote/cite: quoteIcon,

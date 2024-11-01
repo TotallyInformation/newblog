@@ -5,7 +5,7 @@ description: |
   and styles, there is rather a lot to create and finesse. This page documents
   what is left to do.
 created: 2024-10-26 17:16:38
-updated: 2024-10-27 17:54:16
+updated: 2024-10-29 16:51:49
 tags: ["astro-v4", "website", "development", "web-development"]
 category: astro
 ---
@@ -29,10 +29,13 @@ category: astro
 ### Article pages
 
 * Collapsible sections
-* Heading anchors
+* [x] Heading anchors - still needs better config - using rehype-slug & rehype-autolink-headings
 * Heading underline and colour
 * ToC sidebar
-* Callouts
+* [x] Callouts - uses my custom version of remark-obsidian-callout - still needs tweaking
+* [ ] Add reading time
+* [ ] Allow mermaid
+* [ ] Custom heading ids
 
 ## RSS Feeds
 

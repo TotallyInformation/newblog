@@ -6,6 +6,7 @@ import PageMeta from '@/components/PageMeta.astro'
 import PageHeader from '@/components/PageHeader.astro'
 import PageFooter from '@/components/PageFooter.astro'
 import PageSidebar from '@/components/PageSidebar.astro'
+import PageGreeting from '@/components/PageGreeting.astro';
 import ArticleMeta from '@/components/utils/ArticleMeta.astro';
 import '@/resources/uib-brand.css'
 
@@ -41,6 +42,7 @@ if (!frontmatter?.path) frontmatter.path = Astro.url.pathname // new URL(Astro.r
         <PageHeader frontmatter={frontmatter} />
         <main>
             <ArticleMeta frontmatter={frontmatter} wrapperClass="block" />
+            <PageGreeting />
             <slot />
         </main>
         <PageFooter frontmatter={frontmatter} />

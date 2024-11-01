@@ -1320,3 +1320,40 @@ aside.sidebar {
 }
 
 /*#endregion ---- ---- ---- */
+
+/* GH style callouts */
+blockquote[data-callout] {
+    --callout-note-bg: hsl(210, 15%, 20%);
+    --callout-note-fg: hsl(203, 86%, 75%);
+    --callout-tip-bg: hsl(180, 15%, 19%);
+    --callout-tip-fg: hsl(134, 61%, 51%);
+    --callout-warn-bg: hsl(30, 18%, 19%);
+    --callout-warn-fg: hsl(37, 77%, 71%);
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    background-color: hsl(207, 63%, 10%);
+}
+blockquote[data-callout] svg {
+    margin: 0;
+}
+.callout-note {
+    background-color: var(--callout-note-bg);
+    color: var(--callout-note-fg);
+    border-left-color: var(--callout-note-fg);
+}
+.callout-tip {
+    background-color: var(--callout-tip-bg);
+    color: var(--callout-tip-fg);
+    border-left-color: var(--callout-tip-fg);
+}
+.callout-warning {
+    background-color: var(--callout-warn-bg);
+    color: var(--callout-warn-fg);
+    border-left-color: var(--callout-warn-fg);
+}
+/*
+                obsidian       docsify
+callout-note: hsl(210, 15%, 20%) hsl(207, 63%, 10%)
+callout-tip: hsl(180, 15%, 19%) or hsl(207, 63%, 10%)
+callout-warning: hsl(30, 18%, 19%)
+*/

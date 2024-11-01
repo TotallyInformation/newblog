@@ -16,6 +16,12 @@ category: astro
 
 ## How to define dynamic routes
 
+## Remark enhancements
+
+* [remark-obsidian-flavoured-footnotes](https://github.com/SimonTalaga/remark-obsidian-flavoured-footnotes?tab=readme-ov-file#remark-obsidian-flavoured-footnotes)
+* remark-toc
+* remark-codesandbox
+* remark-mermaid
 
 ## GET STUFF DONE
 
