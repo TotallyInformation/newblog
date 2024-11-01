@@ -8,7 +8,7 @@ description: |
   secure access to their digital services. For small busnesses and non-professional uses however, while
   still possible to do, it can be daunting. This article examines the various options open to people who
   may wish to provide secure access to services at minimal cost and complexity.
-draft: true
+draft: false
 tags: ["remote", "remote access", "security", "vpn", "cloud"]
 category: security
 author: 'Julian Knight'
