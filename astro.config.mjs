@@ -1,10 +1,13 @@
 import { defineConfig } from 'astro/config';
 
 import sitemap from '@astrojs/sitemap';
-import expressiveCode from 'astro-expressive-code'; 
+import expressiveCode from 'astro-expressive-code';
 import mdx from '@astrojs/mdx';
 import remarkFlexibleContainers from 'remark-flexible-containers'
-// import remarkObsidianCallout  from 'remark-obsidian-callout'
+import remarkObsidianCallout from 'remark-obsidian-callout'
+import rehypeSlug from 'rehype-slug'
+import rehypeAutolinkHeadings from 'rehype-autolink-headings'
+
 // ❌ import remarkAdmonitions from 'remark-admonitions'
 
 // https://astro.build/config
@@ -25,7 +28,28 @@ export default defineConfig({
                     return `${type}${title ? `: ${title}` : ''}`
                 },
             }],
-            // [remarkObsidianCallout, { /* https://github.com/escwxyz/remark-obsidian-callout */ }],
-        ]
+            [remarkObsidianCallout, { 
+                /** https://github.com/escwxyz/remark-obsidian-callout
+                 *  https://github.com/TotallyInformation/remark-obsidian-callout-fixed
+                 *  Only use note, tip and warning to overlap with gitub, obsidian and docsify
+                 *  obsidian://open?vault=Obsidian%20Vault&file=Programming%2Fuibuilder%2FDocs%20-%20Alerts%20%26%20Callouts
+                 */
+            }],
+        ],
+        rehypePlugins: [
+            // rehypeSlug,
+            // [ /* https://github.com/rehypejs/rehype-autolink-headings */
+            //     rehypeAutolinkHeadings, {
+            //         behavior: 'wrap',
+            //         content: {
+            //             type: 'text',
+            //             value: ' 🔗',
+            //         },
+            //         headingProperties: {
+            //             class: 'linkedheading'
+            //         },
+            //     }
+            // ],
+        ],
     },
 });
