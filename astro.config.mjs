@@ -12,7 +12,7 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 
 // https://astro.build/config
 export default defineConfig({
-    site: "https://www.totallyinformation.com",
+    site: "https://www.totallyinformation.net",
     integrations: [
         // astro-expressive-code - https://expressive-code.com/reference/configuration/
         expressiveCode(),
