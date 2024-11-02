@@ -9,6 +9,7 @@ import PageSidebar from '@/components/PageSidebar.astro'
 import PageGreeting from '@/components/PageGreeting.astro';
 import ArticleMeta from '@/components/utils/ArticleMeta.astro';
 import '@/resources/uib-brand.css'
+import { Picture } from 'astro:assets';
 
 /**
  * @typedef {Object} Props
@@ -26,6 +27,7 @@ const siteName = `${siteInfo?.name ? `${siteInfo.name}: ` : '' }`
 if (!frontmatter?.title) frontmatter.title = `${siteName}${Astro.url.pathname.replace(/^\/(.*)\/$/, '$1')}`
 if (!frontmatter?.description) frontmatter.description = `${siteName}${frontmatter.title}`
 if (!frontmatter?.path) frontmatter.path = Astro.url.pathname // new URL(Astro.request.url).pathname
+
 // console.log('[PageMeta] PageMeta', meta)
 // console.log('[PageMeta] Astro.props', Astro.props) // Passed component attributes
 // console.log('[PageMeta] Astro.params', Astro.params) // Dynamic route segments
@@ -42,6 +44,7 @@ if (!frontmatter?.path) frontmatter.path = Astro.url.pathname // new URL(Astro.r
         <PageHeader frontmatter={frontmatter} />
         <main>
             <ArticleMeta frontmatter={frontmatter} wrapperClass="block" />
+            {frontmatter.cover ? <Picture src={frontmatter.cover} alt={frontmatter.coverAlt || 'Generic cover image'} /> : ''}
             <PageGreeting />
             <slot />
         </main>
@@ -49,3 +52,13 @@ if (!frontmatter?.path) frontmatter.path = Astro.url.pathname // new URL(Astro.r
         <PageSidebar frontmatter={frontmatter} />
     </div>
 </body></html>
+<style>
+    picture {
+        float: right;
+        max-width: 50%;
+    }
+    picture, picture img {
+        margin:0; padding:0;
+        /* max-height: 10em; */
+    }
+</style>
