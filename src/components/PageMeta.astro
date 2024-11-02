@@ -48,5 +48,5 @@ let pageMeta = Astro.props.frontmatter
 
 <title>{pageMeta.title} - {siteInfo.name}</title>
 
-{pageMeta.cover ? <meta property="og:image" content={pageMeta.cover.src}><meta name="twitter:image" content={pageMeta.cover.src}> : ''}
+{pageMeta.cover ? <meta property="og:image" content={`${Astro.site}${pageMeta.cover.src.replace('/','')}`}><meta name="twitter:image" content={`${Astro.site}${pageMeta.cover.src.replace('/','')}`}> : ''}
 <!-- End of PageMeta -->
