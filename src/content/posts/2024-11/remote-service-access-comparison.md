@@ -12,11 +12,11 @@ draft: false
 tags: ["remote", "remote access", "security", "vpn", "cloud"]
 category: security
 author: 'Julian Knight'
+# cover: './remote-service-access-comparison.png'
+cover: '@/resources/images/SASE.jpg'
+coverAlt: 'Generic image'
 
 #subtitle: A subtitle
-#image:
-#  src: 'https://docs.astro.build/assets/rose.webp'
-#  alt: 'The Astro logo on a dark background with a pink glow.'
 #language: en
 #series:
 #  name: 'My Series'
