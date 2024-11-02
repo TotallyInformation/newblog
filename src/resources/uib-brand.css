@@ -1357,3 +1357,21 @@ callout-note: hsl(210, 15%, 20%) hsl(207, 63%, 10%)
 callout-tip: hsl(180, 15%, 19%) or hsl(207, 63%, 10%)
 callout-warning: hsl(30, 18%, 19%)
 */
+
+:root.light {
+    --linkedHeadingColor: hsl(217, 71%, 53%);
+}
+:root.dark {
+    --linkedHeadingColor: hsl(204, 90%, 65%);
+}
+
+.linkedheading:hover::after {
+    content: " 🔗";
+    font-family: var(--emoji-fonts);
+    font-size: .7rem;
+    vertical-align:middle;
+}
+.linkedheading > a {
+    color: var(--linkedHeadingColor);
+    text-decoration: none;
+}
