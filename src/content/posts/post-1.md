@@ -5,9 +5,8 @@ description: |
 created: 2023-02-12 02:23:54
 updated: 2024-10-21 19:04:24
 author: 'Julian Knight'
-image:
-    src: 'https://docs.astro.build/assets/rose.webp'
-    alt: 'The Astro logo on a dark background with a pink glow.'
+cover: '@/resources/brimham-rocks-1200x279.jpg'
+coverAlt: 'Picture of Brimham Rocks, Yorkshire, UK'
 tags: ["astro-v4", "testing", "markdown", "testing"]
 category: astro
 ---

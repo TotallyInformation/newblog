@@ -11,7 +11,7 @@ import { z, defineCollection } from 'astro:content';
 // 2. Define your collection(s)
 const templateCollection = defineCollection({
     type: 'content',
-    schema: z.object({
+    schema: ({ image }) => z.object({
         // Minimum required
         title: z.string().max(80),
         created: z.date().transform((str) => new Date(str)),
@@ -24,10 +24,12 @@ const templateCollection = defineCollection({
         draft: z.boolean().optional(),
         author: z.string().max(50).default("Julian Knight"),
         language: z.enum(['en', ]).default('en'),
-        image: z.object({
-            src: z.string().url(),
-            alt: z.string().max(80),
-        }).optional(),
+        cover: image().optional(),
+        coverAlt: z.string().max(80).optional(),
+        // image: z.object({
+        //     src: z.string(), //.url(),
+        //     alt: z.string().max(80),
+        // }).optional(),
         series: z.object({
             name: z.string().max(80),
             index: z.number(),
