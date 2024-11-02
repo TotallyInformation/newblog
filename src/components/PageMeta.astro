@@ -5,16 +5,31 @@
  * <link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
 
  * keywords <= no longer used by seo
+ *
+ * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta/name
+ * https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML/The_head_metadata_in_HTML
+ * https://faq.frontendnet.work/metatags/Miscellaneous/license
+ * https://developer.x.com/en/docs/x-for-websites/cards/guides/getting-started
+ * 
+ * Opengraph image generator: https://www.opengraph.xyz
+ * 
+ * <meta name="twitter:card" content="summary_large_image">
+ * <meta property="twitter:domain" content="totallyinformation.net">
+ * <meta property="twitter:url" content="https://www.totallyinformation.net/posts/2024-11/remote-service-access-comparison/">
+ * <meta name="twitter:title" content="">
+ * <meta name="twitter:description" content="">
+ * <!-- Facebook Meta Tags -->
+ * <meta property="og:url" content="https://www.totallyinformation.net/posts/2024-11/remote-service-access-comparison/">
+ * <meta property="og:type" content="website">
+ * <meta property="og:title" content="">
+ * <meta property="og:description" content="">
  */
-// https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta/name
-// https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML/The_head_metadata_in_HTML
-// https://faq.frontendnet.work/metatags/Miscellaneous/license
-// https://developer.x.com/en/docs/x-for-websites/cards/guides/getting-started
 
 import siteInfo from '@/site-info.json';
 let pageMeta = Astro.props.frontmatter
 
 ---
+<!-- PageMeta -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width" />
 <meta name="color-scheme" content="dark light" />
@@ -32,3 +47,6 @@ let pageMeta = Astro.props.frontmatter
 <link rel="alternate" type="application/rss+xml" title={`${siteInfo.title} | Latest Articles`} href={new URL("rss.xml", Astro.site)} />
 
 <title>{pageMeta.title} - {siteInfo.name}</title>
+
+{pageMeta.cover ? <meta property="og:image" content={pageMeta.cover.src}><meta name="twitter:image" content={pageMeta.cover.src}> : ''}
+<!-- End of PageMeta -->
