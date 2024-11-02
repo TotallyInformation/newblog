@@ -1,7 +1,7 @@
 ---
 title: 'Comparison of remote service access services'
 created: 2024-11-01 11:10:11
-updated: 2024-11-01 17:06:30
+updated: 2024-11-02 14:49:57
 
 description: |
   Businesses, especially large ones, can afford to provide security infrastructure that lets them provide
@@ -56,7 +56,11 @@ Also note that these are not VPN's in any traditional sense. They all use a smal
 
 [Website](https://www.cloudflare.com/en-gb/zero-trust/), [Documentation](https://www.twingate.com/docs/).
 
-Cloudflare Zero Trust is a full edge-security solution that includes a number of components: Zero Trust Network Access (ZTNA), Cloud Access Security Broker (CASB), Secure Web Gateway (SWG), Firewall as a Service, WAN as a Service. This makes it significantly more comprehensive than the other products mentioned here. However, it can also be a little more complex to set up. 
+For what it is worth, this is the service I use personally.
+
+Cloudflare Zero Trust is a full edge-security solution that includes a number of components: Zero Trust Network Access (ZTNA), Cloud Access Security Broker (CASB), Secure Web Gateway (SWG), Firewall as a Service, WAN as a Service.
+
+This product is significantly more comprehensive than the other products mentioned here. However, it can also be a little more complex to set up. But it provides a comprehensive, integrated edge security service for connecting private networks/apps to the Internet.
 
 Not all of the components need to be configured in order to implement remote service access, mostly just the ZTNA and SWG. Without configuration, many of the other features have sensible defaults so you still benefit from CF's extensive threat management.
 
@@ -75,27 +79,74 @@ Free tier:
 * Upload/download controls.
 * Global interconnects (Cloudflare has one of the largest global networks).
 * Full DNS integration - especially when using CF for DNS.
+* CF Shared external TLS certificates.
 * [And a lot more](https://www.cloudflare.com/en-gb/plans/zero-trust-services/).
+
+#
+
+* [Cloudflare WARP](https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/warp/download-warp/) cross-platform client enables corporate *devices* to be interconnected securely (similar to Tailscale?) but still benefits from all of the other Zero Trust features. As it is included in ZTNA, it is available on the free tier.
+* [Cloudflare Tunnel](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/) (`cloudflared` cross-platform app) is the feature that allows private endpoints to be accessed from the Internet without needing complex local firewall rules or exposure of private networks.
+* [Identity Management](https://developers.cloudflare.com/cloudflare-one/identity/) can be via an external identity provider (e.g. GitHub, Google, Microsoft, etc. or your own IdM supporting OIDC/OAuth or SAML), a one-time pin (OTP) or a combination. *Note that CF ZT does not have its own user identity store*. When a user accesses a resource, they are authenticated against the external provider and consume one "seat" (50 seats available in the free tier). It is possible to set expiration periods on seats (1 month up to 1 year) so that occasional users do not consume all seats. So it is possible to have >50 users as long as they are only occasionally accessing your services. Documentation for 20+ public IdMs is provided. Note that some cloud IdM's have free tiers, social logins are mostly free.
 
 Paid tiers: Pay-as-you-go US$7 per user per month. Contract plans.
 
+Identity Providers with free tiers: [Auth0](https://auth0.com) (25k monthly active users, supports passkeys)
+
 ### Tailscale
+
+[Website](https://tailscale.com), [Documentation](https://tailscale.com/kb/1017/install).
 
 Node-RED contributor Bart Butenaers has [a good write-up of using Tailscale with Node-RED](https://discourse.nodered.org/t/tailscale/92474/21).
 
+Free tier:
+* 3 users only.
+* 100 devices only.
+* "nearly all of Tailscale's features"
+
+[Paid plans](https://tailscale.com/pricing): US$5 per month Personal+ (6 users), $6 per user per month Starter, $18pu/pm Premium, Enterprise.
+
 ### NGROK
 
-TBC
+[Website](https://ngrok.com), [Documentation](https://ngrok.com/docs).
+
+> [!Quote]
+> Your app’s front door.
+> All-in-one API gateway, Kubernetes Ingress, DDoS protection, firewall, and global load balancing as a service.
+
+Free tier is easy to set up but is really only suitable for testing and development.
+
+Free tier:
+* HTTP only.
+* Ephemeral/random domain names for testing.
+* Automated TLS certificates.
+* OAuth support.
+* Request inspection and replay.
+* Email support only.
+* No custom domain.
+
+[Paid Plans](https://ngrok.com/pricing): 
 
 ### Zerotier
 
-TBC
+[Website](https://www.zerotier.com), [Documentation](https://docs.zerotier.com/).
+
+> [!Quote]
+> Connect all of your devices on a single network that you provision and control.
+
+Promotes the service as 2-way IoT connectivity, SD-WAN (campus, branch sites, etc) and VPN.
+
+Free Tier:
+* 1 Admin
+* 10 Devices
+* 3 Networks
+
+[Paid Tiers](https://www.zerotier.com/pricing/): US$5 per month (+$2 per authorised device) Essential plan, Commercial plans.
 
 ### Twingate
 
 [Website](https://www.twingate.com), [Documentation](https://www.twingate.com/docs/).
 
-> [!QUOTE]
+> [!Quote]
 > Keep private resources and internet traffic protected with Zero Trust security tools built for the modern world of work.
 
 Free tier:
