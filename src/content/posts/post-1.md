@@ -1,5 +1,5 @@
 ---
-title: 'Astro: Markdown Test'
+title: 'SITE: Markdown Test'
 description: |
   Testing out what can be done in Astro Markdown
 created: 2023-02-12 02:23:54
@@ -11,24 +11,14 @@ image:
 tags: ["astro-v4", "testing", "markdown", "testing"]
 category: astro
 ---
-# My First Blog Post
+
+We can't get dynamic data on a plain markdown page, use an MDX page for that:
 
 Published on: {frontmatter.updated}
 {{$page.title}}
 
-Welcome to my _new blog_ about learning Astro! Here, I will share my learning journey as I build a new website.
-
-## What I've accomplished
-
-1. **Installing Astro**: First, I created a new Astro project and set up my online accounts.
-
-2. **Making Pages**: I then learned how to make pages by creating new `.astro` files and placing them in the `src/pages/` folder.
-
-3. **Making Blog Posts**: This is my first blog post! I now have Astro pages and Markdown posts!
-
-## What's next
-
-I will finish the Astro tutorial, and then keep adding more posts. Watch this space for more to come.
+> [!Tip]
+> Headings have auto-links - hover over them to see them.
 
 ## GFM
 
@@ -38,41 +28,65 @@ www.example.com, https://example.com, and contact@example.com.
 
 ### Footnote
 
-A note[^1]
+A footnote[^1]
 
-[^1]: Big note.
+[^1]: The bigger bit of the footnote.
+
+```markdown
+A footnote[^1]
+
+[^1]: The bigger bit of the footnote.
+```
 
 ### Strikethrough
 
 ~one~ or ~~two~~ tildes.
 
+```markdown
+~one~ or ~~two~~ tildes.
+```
+
 ### Table
 
-| a | b  |  c |  d  |
-| - | :- | -: | :-: |
+| a  | b  |  c |  d  |
+| -  | :- | -: | :-: |
+| a1 | b1 | c1 | d1  |
+
+```markdown
+| a  | b  |  c |  d  |
+| -  | :- | -: | :-: |
+| a1 | b1 | c1 | d1  |
+```
 
 ### Tasklist
 
 * [ ] to do
 * [x] done
 
+```markdown
+* [ ] to do
+* [x] done
+```
+
 ### Expressive Code
 
 ```js title="my-test-file.js"
 console.log('Title attribute example')
+
+\\ ```js title="my-test-file.js"
 ```
 
 ```html
 <!-- src/content/index.html -->
-<div>File name comment example</div>
+<div>File name comment example with hidden HTML comment</div>
 ```
 
 ```bash
-echo "This terminal frame has no title"
+echo "This terminal frame (bash) has no title"
 ```
 
 ```powershell title="PowerShell terminal example"
-Write-Output "This one has a title!"
+Write-Output "This one has a title! (powershell)"
 ```
 
 ```js {1, 4, 7-8}
@@ -84,20 +98,9 @@ Write-Output "This one has a title!"
 // Line 6
 // Line 7 - targeted by range "7-8"
 // Line 8 - targeted by range "7-8"
+
+// Highlighted lines {1, 4, 7-8}
 ```
-
-
-### Containers
-
-::: warning title
-My paragraph with **bold text**
-:::
-
-::: info {section#foo.myclass} Title Of Information {span#baz.someclass}
-Some content
-
-And some more
-:::
 
 ### Obsidian/GitHub Callouts
 
@@ -132,3 +135,19 @@ But the plugin supports:
 * bug: bugIcon,
 * example: listIcon,
 * quote/cite: quoteIcon,
+
+
+### Containers
+
+Note that these may not yet be properly styled...
+
+::: warning title
+My paragraph with **bold text**
+:::
+
+::: info {section#foo.myclass} Title Of Information {span#baz.someclass}
+Some content
+
+And some more
+:::
+
