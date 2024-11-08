@@ -1,7 +1,7 @@
 ---
 title: 'Comparison of remote service access services'
 created: 2024-11-01 11:10:11
-updated: 2024-11-02 14:49:57
+updated: 2024-11-06 15:10:16
 
 description: |
   Businesses, especially large ones, can afford to provide security infrastructure that lets them provide
@@ -23,6 +23,9 @@ coverAlt: 'Generic image'
 #  number: 1
 ---
 
+> [!Info] Article Status
+> Incomplete (Expect further updates)
+
 > [!WARNING] Disclaimer
 > Information provided here is only my own view. It must not be treated as professional guidance.
 > In addition, you should not treat anything on this page as a professional recommendation.
@@ -40,6 +43,7 @@ In this article (which I will likely update from time-to-time), I will cover the
   * NGROK
   * Zerotier
   * Twingate
+  * Holesail
 * On-premise services
   * Virtual Private Networks (VPN's)
   * Proxy/Security services
@@ -82,7 +86,7 @@ Free tier:
 * CF Shared external TLS certificates.
 * [And a lot more](https://www.cloudflare.com/en-gb/plans/zero-trust-services/).
 
-#
+####
 
 * [Cloudflare WARP](https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/warp/download-warp/) cross-platform client enables corporate *devices* to be interconnected securely (similar to Tailscale?) but still benefits from all of the other Zero Trust features. As it is included in ZTNA, it is available on the free tier.
 * [Cloudflare Tunnel](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/) (`cloudflared` cross-platform app) is the feature that allows private endpoints to be accessed from the Internet without needing complex local firewall rules or exposure of private networks.
@@ -104,6 +108,8 @@ Free tier:
 * "nearly all of Tailscale's features"
 
 [Paid plans](https://tailscale.com/pricing): US$5 per month Personal+ (6 users), $6 per user per month Starter, $18pu/pm Premium, Enterprise.
+
+Like Cloudflare Zero Trust, Tailscale does not handle user identities directly, you use an external identity provider.
 
 ### NGROK
 
@@ -160,6 +166,15 @@ Free tier:
 
 Paid tiers at US$5 or $10 per user per month
 
+### Holesail
+
+[Website](https://holesail.io)
+
+Free, open source.
+
+> [!Quote]
+> Enabling you to create Peer-to-Peer network tunnels securely on your local network.
+
 ## On-premise services
 
 On-premise services are applications you run on your own site and infrastructure as opposed to running in a vendor cloud platform.
@@ -177,3 +192,17 @@ For this reason I strongly advise avoiding VPN's unless you really know what you
 ### Proxy and security services
 
 TBC
+
+#### Headscale/Ionscale
+
+These are on-premise versions of the Tailscale cloud service.
+
+> [!Quote] Headscale
+> An open source, self-hosted implementation of the Tailscale control server
+
+> [!Quote] Ionscale
+> A lightweight implementation of a Tailscale control server
+
+Headscale: [Website](https://github.com/juanfont/headscale)
+
+Ionscale: [Website](https://github.com/jsiebens/ionscale)
