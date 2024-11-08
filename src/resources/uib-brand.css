@@ -17,7 +17,7 @@
  * https://unifyned.com/colors.html extends the above
  * https://chromatichq.com/insights/understanding-and-using-hsl-your-css gives calculations for the color wheel
  *
- * @version: 1.33 2024-03-28
+ * @version: 2024-11-08
  * @author: Julian Knight (TotallyInformation)
  * @license: Apache 2.0
  * @created: 2022-05-02
@@ -55,7 +55,8 @@
      */
     --uib-css:uib-brand;
     /* Sans-serif is much easier to read on-screen */
-    --font-family: "lato", sans-serif;
+    /* --font-family: "lato", sans-serif; */
+    --font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     --base-font-size: 110%;
     --base-line-height: 1.5; /* Accessible line-height */
 
@@ -656,6 +657,16 @@ a:hover, a:focus {
     text-decoration-line: none;
 }
 /* a:active {} */
+
+kbd {
+    font-family: monospace;
+    font-size: 90%;
+    padding: 0.1rem 0.2rem;
+    border: 1px solid var(--text4);
+    border-radius: 0.1rem;
+    background-color: var(--surface3);
+}
+
 /*#endregion --- Basic reset --- */
 
 /*#region --- Tables --- */
@@ -1374,4 +1385,12 @@ callout-warning: hsl(30, 18%, 19%)
 .linkedheading > a {
     color: var(--linkedHeadingColor);
     text-decoration: none;
+}
+
+span.imgright {
+    display:block;
+    float: right;
+    border:1px solid silver;
+    margin:.3rem;
+    padding:0;
 }
