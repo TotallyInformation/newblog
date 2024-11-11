@@ -11,42 +11,48 @@
  * https://faq.frontendnet.work/metatags/Miscellaneous/license
  * https://developer.x.com/en/docs/x-for-websites/cards/guides/getting-started
  * 
- * Opengraph image generator: https://www.opengraph.xyz
- * 
- * <meta name="twitter:card" content="summary_large_image">
- * <meta property="twitter:domain" content="totallyinformation.net">
- * <meta property="twitter:url" content="https://www.totallyinformation.net/posts/2024-11/remote-service-access-comparison/">
- * <meta name="twitter:title" content="">
- * <meta name="twitter:description" content="">
- * <!-- Facebook Meta Tags -->
- * <meta property="og:url" content="https://www.totallyinformation.net/posts/2024-11/remote-service-access-comparison/">
- * <meta property="og:type" content="website">
- * <meta property="og:title" content="">
- * <meta property="og:description" content="">
+ * Opengraph image generator: https://www.opengraph.xyz - og is used by Facebook
+ * Twitter title, description, & image fall back to og equivalents if not set
  */
 
 import siteInfo from '@/site-info.json';
 let pageMeta = Astro.props.frontmatter
+
+const pageUrl = `${Astro.site}${pageMeta.path.replace('/','')}`
+const pageCover = pageMeta.cover ? `${Astro.site}${pageMeta.cover.src.replace('/','')}` : undefined
+const description = pageMeta.description || "Article"
 
 ---
 <!-- PageMeta -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width" />
 <meta name="color-scheme" content="dark light" />
+
 <meta name="license" content={siteInfo.license} />
 <meta name="license:uri" content={siteInfo.licenseUri} />
 <meta name="copyright" content={siteInfo.copyright} />
 <meta name="creator" content={siteInfo.organisation} />
-<meta name="twitter:creator" content={siteInfo.orgTwitter}>
 <meta name="generator" content={Astro.generator} />
-<meta name="canonical" content={`${Astro.site}${pageMeta.path.replace('/','')}`} />
+<meta name="canonical" content={pageUrl} />
 <meta name="author" content={pageMeta.author || siteInfo.author} />
+<meta name="description" content={description} />
+
+<meta property="og:title" content={pageMeta.title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={pageUrl} />
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content={siteInfo.name} />
+<meta property="og:locale" content={siteInfo.locale} />
+{pageCover ? <meta property="og:image" content={pageCover} /> : ''}
+{pageMeta.coverAlt ? <meta property="og:image:alt" content={pageMeta.coverAlt} /> : ''}
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:creator" content={siteInfo.orgTwitter} />
 <meta name="twitter:site" content={pageMeta.authorTwitter || siteInfo.authorTwitter} />
-<meta name="description" content={pageMeta.description} />
+
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-<link rel="alternate" type="application/rss+xml" title={`${siteInfo.title} | Latest Articles`} href={new URL("rss.xml", Astro.site)} />
+<link rel="alternate" type="application/rss+xml" title={`${siteInfo.name} | Latest Articles`} href={new URL("rss.xml", Astro.site)} />
 
 <title>{pageMeta.title} - {siteInfo.name}</title>
 
-{pageMeta.cover ? <meta property="og:image" content={`${Astro.site}${pageMeta.cover.src.replace('/','')}`}><meta name="twitter:image" content={`${Astro.site}${pageMeta.cover.src.replace('/','')}`}> : ''}
 <!-- End of PageMeta -->
