@@ -133,3 +133,5 @@ dist
 *.code-workspace
 .vscode
 .astro/
+.frontmatter/
+frontmatter.json
