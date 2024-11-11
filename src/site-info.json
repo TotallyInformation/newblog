@@ -2,6 +2,7 @@
     "name": "Totally Information",
     "description": "All things related to Digital Technology and Information, and perhaps some social and moral commentary as well",
     "organisation": "Totally Information",
+    "locale": "en-GB",
     "orgTwitter": "@TotallyInformation",
     "license": "C-BY-NC-SA-4.0",
     "licenseUri": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
@@ -19,6 +20,9 @@
         { "name": "Tags", "path": "/tags/" },
         { "name": "Categories", "path": "/categories/" }
     ],
-    "pages-note": "Include leading and trailing / ",
-    "articleListSize": 10
+    "articleListSize": 10,
+    
+    "NOTES": {
+        "pages": "Include leading and trailing / "
+    }
 }
