@@ -1,0 +1,337 @@
+---
+/** Site homepage */
+
+import siteInfo from "@/site-info.json";
+// Page metadata
+const pageMeta =
+    siteInfo.pages.filter(
+        (pg) => pg.path === new URL(Astro.request.url).pathname,
+    )[0] ?? {};
+pageMeta.title = "Testing Astro, HTML and CSS";
+pageMeta.subtitle = "Testing features and ideas";
+
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import ArticlesList from "@/components/ArticlesList.astro";
+import Greeting from "@/components/Greeting.astro";
+import { getAllArticles } from "@/utilModules/getCollections.mjs";
+
+const posts = await getAllArticles(["posts", "kb"]);
+
+/** Schema for forms
+ * REQUIREMENTS:
+ * - Form settings
+ *   - autocomplete (on/off)
+ *   - name (string)
+ * - form-page (object) - wraps fields/buttons in a display area allowing multi-page forms
+ * - Fields (object) / field-group (object)
+ *   - Field definition (object) - creates div wrapper
+ *     - name (string) - prefixed with form name/id
+ *     - id (string) - name prefixed with form name/id
+ *     - label (html)
+ *     - type (any input type and select, textarea)
+ *     - required (boolean)
+ *
+ *   - Group (object) - wraps in fieldset
+ * - Buttons (object) - can be anywhere
+ */
+---
+
+<BaseLayout frontmatter={pageMeta}>
+    <div class="disclosures">
+        <details name="starWars" open>
+            <summary><h2>Prequels</h2></summary>
+            <ul>
+                <li>Episode I: The Phantom Menace</li>
+                <li>Episode II: Attack of the Clones</li>
+                <li>Episode III: Revenge of the Sith</li>
+            </ul>
+        </details>
+
+        <details name="starWars">
+            <summary>Originals</summary>
+            <ul>
+                <li>Episode IV: A New Hope</li>
+                <li>Episode V: The Empire Strikes Back</li>
+                <li>Episode VI: Return of the Jedi</li>
+            </ul>
+        </details>
+
+        <details name="starWars">
+            <summary>Sequels</summary>
+            <ul>
+                <li>Episode VII: The Force Awakens</li>
+                <li>Episode VIII: The Last Jedi</li>
+                <li>Episode IX: The Rise of Skywalker</li>
+            </ul>
+        </details>
+    </div>
+
+    <form autocomplete="on" name="form1">
+        <div class="form-entry">
+            <label for="form1_name">Name:</label>
+            <input
+                type="text"
+                id="form1_name"
+                name="name"
+                required
+                aria-describedby="form1_name_hint"
+            />
+            <div id="form1_name_hint" class="input-hint">
+                Please enter your full name
+            </div>
+            <div class="input-error">Please enter your name</div>
+        </div>
+
+        <div class="form-entry">
+            <label for="form1_email">Email:</label>
+            <input type="email" id="form1_email" name="email" required />
+            <div class="input-error">Enter your email</div>
+        </div>
+
+        <div class="form-entry">
+            <label for="form1_password">Password:</label>
+            <input
+                type="password"
+                id="form1_password"
+                name="password"
+                required
+            />
+            <div class="input-error">Enter your Password</div>
+        </div>
+
+        <div class="form-entry">
+            <label for="form1_message">Message:</label>
+            <textarea id="form1_message" name="message"></textarea>
+        </div>
+
+        <div class="form-entry">
+            <fieldset role="radiogroup">
+                <legend>Choose your favorite fruit:</legend>
+                <div>
+                    <input
+                        type="radio"
+                        id="form1_fruit_apple"
+                        name="fruit"
+                        value="apple"
+                        required
+                    />
+                    <label for="form1_fruit_apple">Apple</label>
+                </div>
+                <div>
+                    <input
+                        type="radio"
+                        id="form1_fruit_banana"
+                        name="fruit"
+                        value="banana"
+                        required
+                    />
+                    <label for="form1_fruit_banana">Banana</label>
+                </div>
+                <div>
+                    <input
+                        type="radio"
+                        id="form1_fruit_cherry"
+                        name="fruit"
+                        value="cherry"
+                        required
+                    />
+                    <label for="form1_fruit_cherry">Cherry</label>
+                </div>
+            </fieldset>
+        </div>
+
+        <div class="form-entry">
+            <input
+                type="checkbox"
+                id="newsletter-checkbox"
+                name="newsletter"
+                value="newsletter-subscription"
+            />
+            <label for="newsletter-checkbox"
+                >Yes, I want to receive your monthly newsletter!</label
+            >
+        </div>
+
+        <div class="form-entry">
+            <label for="form1_simple_select">Select:</label>
+            <select id="form1_simple_select" name="simple">
+                <option>Banana</option>
+                <option selected>Cherry</option>
+                <option>Lemon</option>
+            </select>
+        </div>
+
+        <div class="form-entry">
+            <label for="form1_group_select">Select another:</label>
+            <select id="form1_group_select" name="groups">
+                <optgroup label="fruits">
+                    <option>Banana</option>
+                    <option>Cherry</option>
+                    <option>Lemon</option>
+                </optgroup>
+                <optgroup label="vegetables">
+                    <option>Carrot</option>
+                    <option>Eggplant</option>
+                    <option selected>Potato</option>
+                </optgroup>
+            </select>
+        </div>
+
+        <div class="form-entry">
+            <label for="form1_autocomplete">What's your favorite fruit?</label>
+            <input
+                type="text"
+                name="myFruit"
+                id="form1_autocomplete"
+                list="mySuggestion"
+            />
+            <datalist id="mySuggestion">
+                <option>Apple</option>
+                <option>Banana</option>
+                <option>Blackberry</option>
+                <option>Blueberry</option>
+                <option>Lemon</option>
+                <option>Lychee</option>
+                <option>Peach</option>
+                <option>Pear</option>
+            </datalist>
+        </div>
+
+        <div class="form-entry">
+            <label for="temp">Choose a comfortable temperature:</label>
+            <input
+                type="range"
+                id="temp"
+                name="temp"
+                step="25"
+                list="markers"
+            />
+            <datalist id="markers">
+                <option value="0" label="very cold!"></option>
+                <option value="25" label="cool"></option>
+                <option value="50" label="medium"></option>
+                <option value="75" label="getting warm!"></option>
+                <option value="100" label="hot!"></option>
+            </datalist>
+        </div>
+
+        <div class="form-buttons">
+            <button type="button">Submit</button>
+            <input type="button" value="Reset" />
+        </div>
+    </form>
+</BaseLayout>
+<script>
+    document.querySelectorAll("details").forEach((details) => {
+        details.addEventListener("toggle", (event) => {
+            // The disclosure was toggled
+            console.log(details.open);
+            if (details.open) {
+                // The disclosure was opened
+            } else {
+                // The disclosure was closed
+            }
+        });
+    });
+</script>
+<style>
+    summary {
+        display: block; /* Or anything else that isn't list-item */
+    }
+    .__disclosures {
+        gap: 1ch;
+        display: flex;
+        position: relative;
+
+        details {
+            min-height: 106px; /* Prevents content shift */
+
+            &[open] summary,
+            &[open]::details-content {
+                background: #eee;
+            }
+
+            &[open]::details-content {
+                left: 0;
+                position: absolute;
+            }
+        }
+    }
+    ._disclosures {
+        display: inline-grid;
+        anchor-name: --wrapper;
+
+        details[open] {
+            summary,
+            &::details-content {
+                background: #eee;
+            }
+
+            &::details-content {
+                position: absolute;
+                position-anchor: --wrapper;
+                top: anchor(top);
+                left: anchor(right);
+            }
+        }
+    }
+
+    * {
+        /* Turn off the native look and feel for inputs
+         * See: https://developer.mozilla.org/en-US/docs/Learn/Forms/Property_compatibility_table_for_form_controls#t_tweaked
+         * NOTE: Stops select dropdowns from having a visible maker
+         */
+        /* appearance: none; */
+    }
+
+    /* When a label is before the input. If label after, we want inline for radio/checkbox */
+    label ~ input {
+        display: block;
+        width: 100%;
+    }
+    /* Most inputs should be block */
+    input:not(
+            [type="button" i],
+            [type="reset" i],
+            [type="submit" i],
+            [type="checkbox" i],
+            [type="radio" i]
+        ),
+    textarea,
+    select {
+        display: block;
+        width: 100%;
+        padding: 0.5rem;
+        border: 1px solid var(--text3);
+        border-radius: var(--border-radius);
+        resize: vertical;
+    }
+    /* Wrap all label/input pairs in a div */
+    .form-entry {
+        margin-bottom: 1rem;
+    }
+
+    /* For invalid fields, mark them */
+    input:invalid,
+    textarea:invalid,
+    select:invalid {
+        border-color: var(--failure);
+    }
+    /* For required fields, mark valid ones */
+    input:valid:not(:optional),
+    textarea:valid:not(:optional),
+    select:valid:not(:optional) {
+        border-color: var(--success);
+    }
+
+    /* Add div with class input-error after each input */
+    .input-error {
+        display: none;
+    }
+    input:invalid ~ .input-error,
+    textarea:invalid ~ .input-error,
+    select:invalid ~ .input-error {
+        display: block;
+        color: var(--failure);
+    }
+</style>
