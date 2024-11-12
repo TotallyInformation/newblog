@@ -15,27 +15,18 @@ category: astro
 * Category/tag descriptions metadata
 * Search
 * Related posts
+* Site map (PageMeta)
+* [ ] oEmbed and OpenGraph tags
+* Add article share buttons: https://developer.x.com/en/docs/x-for-websites/tweet-button/overview
+* Consider replacing default code formats with Prism
+* Consider fallback site image/alt in site-info.json and PageMeta
+* Consider moving to [rehype-callouts](https://github.com/lin-stephanie/rehype-callouts)
 
 ## Content
 
 ### **NEW**: Authors
 
-## Specific pages
-
-### Home (index.astro)
-
-* [x] Show latest 5 posts
-
 ### Article pages
-
-* [x] Callouts - uses my custom version of remark-obsidian-callout
-
-* [ ] Headings:
-  * [x] Heading anchors - still needs better config - using rehype-slug & rehype-autolink-headings
-  * [x] Heading underline and colour
-
-  * [ ] Hide link icon unless hovered, make smaller
-  * [ ] Add title attrib giving the heading level
 
 * Collapsible sections
 * ToC sidebar
