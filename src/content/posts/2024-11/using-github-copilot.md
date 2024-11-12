@@ -63,9 +63,9 @@ When using GitHub CoPilot with VSCode, you can give it a set of fixed guidance i
 
 ### Example instructions file
 
-This is the file I'm using to help steer responses for an Astro build respository.
+This is the file I'm using to help steer responses for an Astro build repository. As you can see, it is a Markdown formatted file.
 
-```Markdown
+```markdown
 # Copilot Instructions
 
 ## Core Requirements
@@ -126,20 +126,6 @@ This is the file I'm using to help steer responses for an Astro build respositor
 - Validate data on server-side
 - Follow OWASP guidelines
 - Use Content Security Policy
-
-
-Assume the use of Astro (https://astro.build)
-
-Always add code comments.
-
-Use eslint.config.js or .eslint if present.
-
-For all JavaScript/node.js/TypeScript code:
-* Do not use trailing ;
-* Use single quotes for strings.
-
-For HTML/CSS code:
-* Make sure that resulting UI meets WCAG 2.2 AA accessibility standards.
 ```
 
 ## VSCode Extensions that use CoPilot
@@ -160,3 +146,4 @@ You can [search the VSCode extensions marketplace](https://marketplace.visualstu
 * [GitHub: Prompt engineering for CoPilot](https://docs.github.com/en/copilot/using-github-copilot/prompt-engineering-for-github-copilot)
 * [Visual Studio Code: GitHub CoPilot Documentation](https://code.visualstudio.com/docs/copilot/overview)
 * [Prompt Engineering Guide](https://www.promptingguide.ai)
+* [GitHub CoPilot Blog](https://github.blog/changelog/label/copilot/)
