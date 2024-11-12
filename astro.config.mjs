@@ -7,6 +7,7 @@ import remarkFlexibleContainers from 'remark-flexible-containers'
 import remarkObsidianCallout from 'remark-obsidian-callout'
 import rehypeSlug from 'rehype-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
+import {h} from 'hastscript'
 
 // ❌ import remarkAdmonitions from 'remark-admonitions'
 
@@ -47,14 +48,12 @@ export default defineConfig({
                        https://github.com/rehypejs/rehype-autolink-headings
                      */
                     behavior: 'wrap',
-                    // content: {
-                    //     type: 'element',
-                    //     tagName: 'i',
-                    //     properties: {},
-                    //     children: [{type: 'text', value: ' 🔗'}]
-                    // },
-                    headingProperties: {
-                        class: 'linkedheading'
+                    headingProperties: (node) => {
+                        return {
+                            class: 'linkedheading',
+                            title: node.tagName,
+                            'data-level': node.tagName[1],
+                        }
                     },
                 }
             ],
