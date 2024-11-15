@@ -3,7 +3,7 @@ title: 'My experiences with GitHub CoPilot'
 description: |
   Using this article to capture my thoughts and feelings about GitHub CoPilot and its integration to Visual Studio Code starting in November 2024. Also assessing value for money for an unfunded open source developer.
 created: 2024-11-06 11:37:10
-updated: 2024-11-12 15:03:32
+updated: 2024-11-15 17:33:54
 
 draft: false
 tags: ["vscode","github","copilot","ai","llm"]
@@ -55,7 +55,14 @@ Summary: As with all LLM-based AI tools, they only really work when they have pl
 * When you write a comment in code, you may get some inline CoPilot code suggestions that appear ghosted.
 * How to use those suggestions is far from obvious and behaviours seem a little flaky (though that might be partially due to other extensions interferring?).
 * There is a mix of <kbd>tab</kbd>, <kbd>Enter</kbd>, and <kbd>Shift</kbd>-<kbd>Enter</kbd> keys to make things happen in the editor. Requires new muscle memory to be built up to avoid repeatedly pressing the wrong thing which may cancel when you want to insert or the other way around.
-* <span class="imgright">![copilot vscode editor prompt](./copilot-ctrl-i.png)</span>OMG! Why choose one of THE most common keyboard shortcuts, <kbd>Ctrl</kbd>-<kbd>i</kbd> to kick CoPilot into doing something in the editor! 😕 If there is a way to change that shortcut, I haven't found it yet (though I've not really looked yet either).
+
+### Successes
+
+* When writing either documentation or web pages, CoPilot can nicely suggest some text. For example, on [this site's Privacy page](/privacy), it provided a description of the giscus local storage entry and a link to the giscus home page. It also added the privacy page's link here.
+
+### Failures
+
+* <span class="imgright">![copilot vscode editor prompt](./copilot-ctrl-i.png)</span>OMG! Why choose one of THE most common keyboard shortcuts, <kbd>Ctrl</kbd>-<kbd>i</kbd> to kick CoPilot into doing something in the editor! 😕 I even asked a GitHub staffer and had it confirmed that there is no way to change it. However, you can 
 
 ## Steering CoPilot Responses
 
