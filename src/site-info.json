@@ -17,12 +17,15 @@
     "theme": "dark",
     "pages": [
         { "name": "Home", "path": "/", "title": "", "subtitle": "", "filter": {} },
-        { "name": "About", "path": "/about/" },
-        { "name": "Articles", "path": "/articles/" },
-        { "name": "Posts", "path": "/posts/" },
-        { "name": "Knowledgebase", "path": "/kb/" },
-        { "name": "Tags", "path": "/tags/" },
-        { "name": "Categories", "path": "/categories/" }
+        { "name": "About", "path": "/about/", "sub": [
+            { "name": "Privacy", "path": "/privacy/" }
+        ]},
+        { "name": "Articles", "path": "/articles/", "sub": [
+            { "name": "Posts", "path": "/posts/" },
+            { "name": "Knowledgebase", "path": "/kb/" },
+            { "name": "Tags", "path": "/tags/" },
+            { "name": "Categories", "path": "/categories/" }    
+        ]}
     ],
     "articleListSize": 10,
     
