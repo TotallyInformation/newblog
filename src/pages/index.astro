@@ -5,7 +5,7 @@ import siteInfo from '@/site-info.json';
 // Page metadata
 const pageMeta = siteInfo.pages.filter( (pg) => pg.path === new URL(Astro.request.url).pathname)[0] ?? {};
 pageMeta.title = "Totally Information's Web Log";
-pageMeta.subtitle = "Rablings on all things Digital, Technology and Life";
+pageMeta.subtitle = "Ramblings on all things Digital, Technology and Life";
 
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import ArticlesList from '@/components/ArticlesList.astro';
