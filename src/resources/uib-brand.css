@@ -17,7 +17,7 @@
  * https://unifyned.com/colors.html extends the above
  * https://chromatichq.com/insights/understanding-and-using-hsl-your-css gives calculations for the color wheel
  *
- * @version: 2024-11-08
+ * @version: 2024-11-15
  * @author: Julian Knight (TotallyInformation)
  * @license: Apache 2.0
  * @created: 2022-05-02
@@ -43,8 +43,6 @@
 :root, :root.light, body.light {
     color-scheme: light dark;
     --mode: light;
-
-    interpolate-size: allow-keywords;
 
     /* Create a checkable var - helps web components know if this stylesheet is loaded
      * Use this from general code: 
@@ -356,6 +354,8 @@
     );
     --secondary: var(--secondary-bg);
     /*#endregion --- --- */
+
+    interpolate-size: allow-keywords;
 }
 
 /* If the browser reports it, we can adjust for light/dark theme preferences
@@ -667,6 +667,15 @@ kbd {
     background-color: var(--surface3);
 }
 
+/* Accessibility improvements */
+/* [aria-hidden="true"] {
+    display: none;
+} */
+  
+[role="button"] {
+    cursor: pointer;
+}
+
 /*#endregion --- Basic reset --- */
 
 /*#region --- Tables --- */
@@ -719,7 +728,7 @@ td br, th br {
 /*#endregion --- Tables --- */
 
 /*#region --- Forms --- */
-form {
+/* form {
     border: 1px solid var(--text3);
     margin: 0.5rem;
     padding: 0.5rem;
@@ -733,16 +742,18 @@ input[type="color"] {
     width: 100%;
     height: 2.5rem;
 }
-input:invalid, textarea:invalid, select:invalid {
-    /* outline: 2px solid var(--failure); */
-    border: 2px solid var(--failure);
+form:invalid {
+    border: 1px solid var(--failure);
 }
-/* input:valid, textarea:valid, select:valid {
-    border: 3px solid var(--success);
+input:invalid, textarea:invalid, select:invalid {
+    border-color: var(--failure);
+}
+input:valid:not(:optional), textarea:valid:not(:optional), select:valid:not(:optional) {
+    border-color: var(--success);
 } */
 /* at any level of nesting */
-form input, form textarea, form select, form fieldset, form output {
-    /* width: 75%; */
+/* form input, form textarea, form select, form fieldset, form output {
+    display:inline-block;
     flex: 2;
     border-radius: var(--border-radius);
     padding:0.2rem;
@@ -754,7 +765,6 @@ form select {
     box-shadow: inset 1px 1px 2px rgba(255,255,255, .3),
                 inset -1px -1px 2px rgba(0,0,0, .3);
     background-color: 
-        /* var(--brand); */
         hsl(
             var(--brand-hue)
             calc(60% * var(--saturation))
@@ -780,9 +790,9 @@ form label {
 }
 form label[required]::after {
     content: " *"
-}
+} */
 /* first level only */
-form > div {
+/* form > div {
     display: inherit;
     vertical-align: middle;
 }
@@ -795,9 +805,9 @@ form > label {
 }
 form > label:focus-within {
     font-weight: bold;
-}
+} */
 /* Small screen (37.5em @ 16pt is about 600px) */
-@media all and (max-width: 37.5em) {
+/* @media all and (max-width: 37.5em) {
     form, form * {
         display:block;
         width:100%;
@@ -808,7 +818,7 @@ form > label:focus-within {
     form > :not(label) {
         margin-bottom: 0.5rem;
     }
-}
+} */
 
 /*#endregion --- Forms --- */
 
@@ -1159,7 +1169,8 @@ button.compact {
     --container-layout:
         "header header"
         "main main"
-        "footer footer";    
+        "footer footer"
+        "comments comments";    
     
 
     --container-max-width: 1000px;
@@ -1219,10 +1230,19 @@ header {
 footer {
     /* at the bottom, (c), dates, etc */
     grid-area: footer;
-    margin-top: 0;
-    background-color: var(--surface3);
+    margin-top: 1.5rem;
     padding: 0 0.5rem;
+    border-radius: var(--border-radius);
+    background-color: var(--surface3);
+    font-size: smaller;
     /* border: 1px dashed green; */
+}
+
+.giscus {
+    grid-area: comments;
+    background-color: var(--surface1);
+    padding: 0.5rem;
+    border: 1px solid var(--text4);
 }
 
 /* We might want other sidebars so be more explicit for this */
@@ -1232,7 +1252,6 @@ aside.sidebar {
     /* border: 1px dashed violet; */
 }
 
-/* Simple horizontal navigation main menu (in the header) */
 .nav-main {
     background-color: var(--surface3);
 
@@ -1241,94 +1260,6 @@ aside.sidebar {
     align-items: center;
 }
 
-.nav-main > button {
-    display: none !important;
-    /* font-size: 1.5rem; */
-    /* color: white; */
-    background: none;
-    border: none;
-    cursor: pointer;
-}
-
-.nav-main > ul { /* .nav-menu */
-    /* Remove bullet points */
-    list-style-type: none;
-    /* Remove default padding */
-    padding: 0;
-    /* Remove default margin */
-    margin: 0;
-    /* Use Flexbox to align items horizontally */
-    display: flex;
-}
-
-/* Add space between menu items */
-.nav-main li {
-    margin-right: 1rem;
-    /* position: relative; */
-}
-
-/* Remove margin on the last item */
-.nav-main li:last-child {
-    margin-right: 0;
-}
-
-.nav-main a, .nav-main button {
-    /* Remove underline from links */
-    text-decoration: none;
-    /* Add padding for better click area */
-    padding: var(--border-pad);
-    /* Ensure the entire area is clickable */
-    display: block;
-}
-
-/* Highlight on hover */
-.nav-main a:hover {
-    background-color: var(--surface5);
-    /* Optional: Add rounded corners */
-    /* border-radius: var(--border-radius); */
-}
-
-.nav-main .active {
-    font-weight: bolder;
-    font-style: italic;
-    background-color: var(--surface4);
-}
-
-/* Adapt for mobile phones (37.5em @ 16pt is about 600px) */
-@media only screen and (max-width: 37.5em) {
-    /* Very simple adaption example, a single column, 4 rows */
-    .container {
-        gap: 0.5rem;
-
-        /* 1 cols x 4 rows layout. 2nd row is larger */
-        grid-template-columns: 1fr;
-        grid-template-rows: 0.1fr 1fr 0.1fr 0.1fr;
-        grid-template-areas:
-            "header"
-            "main"
-            "sidebar"
-            "footer";
-    }
-
-    .nav-main > button {
-        display: block;
-    }
-
-    .nav-main > ul { /* .nav-menu */
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        background-color: #333;
-    }
-
-    .nav-menu[aria-expanded='true'] {
-        display: flex;
-    }
-    
-    .nav-menu li {
-        width: 100%;
-    }
-}
 
 /*#endregion ---- ---- ---- */
 
@@ -1389,8 +1320,20 @@ callout-warning: hsl(30, 18%, 19%)
 
 span.imgright {
     display:block;
+    /* width: 60%; */
+    max-width: 75%;
+    height: auto;
     float: right;
-    border:1px solid silver;
-    margin:.3rem;
-    padding:0;
+    border: 1px solid var(--text4);
+    margin: .3rem;
+    padding: 0;
+    overflow: hidden;
+}
+.imgright img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: none;
+    margin: 0;
+    padding: 0;
 }
