@@ -46,12 +46,9 @@ const description = pageMeta.description || "Article"
 {pageCover ? <meta property="og:image" content={pageCover} /> : ''}
 {pageMeta.coverAlt ? <meta property="og:image:alt" content={pageMeta.coverAlt} /> : ''}
 
-<meta name="twitter:card" content="summary" />
-<meta name="twitter:creator" content={siteInfo.orgTwitter} />
-<meta name="twitter:site" content={pageMeta.authorTwitter || siteInfo.authorTwitter} />
-
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="alternate" type="application/rss+xml" title={`${siteInfo.name} | Latest Articles`} href={new URL("rss.xml", Astro.site)} />
+<link rel="sitemap" href="/sitemap-index.xml" />
 
 <title>{pageMeta.title} - {siteInfo.name}</title>
 
