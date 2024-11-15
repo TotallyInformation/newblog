@@ -1,6 +1,6 @@
 {
   "name": "@totallyinformation/newblog",
-  "version": "2024.11.01",
+  "version": "2024.11.15",
   "description": "A fresh, new blog &amp; website at www.totallyinformation.net to replace it.knightnet.org.uk",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -16,7 +16,8 @@
     "open-source",
     "it",
     "web",
-    "cyber"
+    "cyber",
+    "giscus"
   ],
   "author": "Julian Knight (Totally Information)",
   "license": "C-BY-NC-SA-4.0",

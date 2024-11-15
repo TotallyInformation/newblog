@@ -7,6 +7,7 @@ import PageHeader from '@/components/PageHeader.astro'
 import PageFooter from '@/components/PageFooter.astro'
 import PageSidebar from '@/components/PageSidebar.astro'
 import PageGreeting from '@/components/PageGreeting.astro';
+import PageComments from '@/components/PageComments.astro';
 import ArticleMeta from '@/components/utils/ArticleMeta.astro';
 import '@/resources/uib-brand.css'
 import { Picture } from 'astro:assets';
@@ -50,6 +51,7 @@ if (!frontmatter?.path) frontmatter.path = Astro.url.pathname // new URL(Astro.r
             <slot />
         </main>
         <PageFooter frontmatter={frontmatter} />
+        <PageComments />
         <PageSidebar frontmatter={frontmatter} />
     </div>
 </body></html>

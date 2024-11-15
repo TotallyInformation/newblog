@@ -2,18 +2,19 @@
 /** Layout for most pages */
 
 import siteInfo from '@/site-info.json';
-import PageMeta from '@/components/PageMeta.astro'
-import PageHeader from '@/components/PageHeader.astro'
-import PageFooter from '@/components/PageFooter.astro'
-import PageSidebar from '@/components/PageSidebar.astro'
-import '@/resources/uib-brand.css'
+import PageMeta from '@/components/PageMeta.astro';
+import PageHeader from '@/components/PageHeader.astro';
+import PageFooter from '@/components/PageFooter.astro';
+import PageSidebar from '@/components/PageSidebar.astro';
+import PageComments from '@/components/PageComments.astro';
+import '@/resources/uib-brand.css';
 
 // Page metadata
-const meta = Astro.props?.frontmatter ?? {}
-const siteName = `${siteInfo?.name ? `${siteInfo.name}: ` : '' }`
-if (!meta?.title) meta.title = `${siteName}${Astro.url.pathname.replace(/^\/(.*)\/$/, '$1')}`
-if (!meta?.description) meta.description = `${siteName}${meta.title}`
-if (!meta?.path) meta.path = Astro.url.pathname // new URL(Astro.request.url).pathname
+const meta = Astro.props?.frontmatter ?? {};
+const siteName = `${siteInfo?.name ? `${siteInfo.name}: ` : '' }`;
+if (!meta?.title) meta.title = `${siteName}${Astro.url.pathname.replace(/^\/(.*)\/$/, '$1')}`;
+if (!meta?.description) meta.description = `${siteName}${meta.title}`;
+if (!meta?.path) meta.path = Astro.url.pathname; // new URL(Astro.request.url).pathname
 // console.log('[PageMeta] PageMeta', meta)
 // console.log('[PageMeta] Astro.props', Astro.props) // Passed component attributes
 // console.log('[PageMeta] Astro.params', Astro.params) // Dynamic route segments
@@ -33,6 +34,7 @@ if (!meta?.path) meta.path = Astro.url.pathname // new URL(Astro.request.url).pa
             <slot />
         </main>
         <PageFooter frontmatter={meta} />
+        <PageComments />
         <PageSidebar frontmatter={meta} />
     </div>
 </body></html>
