@@ -9,7 +9,11 @@
     "copyright": "Julian Knight (Totally Information)",
     "author": "Julian Knight (Totally Information)",
     "authorTwitter": "@knightnet",
-    "stackExchangeUserId": "1375993",
+    "authorBSky": "knightnet.bsky.social",
+    "authorLinkedIn": "julianknight2",
+    "authorGitHub": "TotallyInformation",
+    "authorFeedly": "JulianKnight",
+    "authorStackExchange": "1375993",
     "theme": "dark",
     "pages": [
         { "name": "Home", "path": "/", "title": "", "subtitle": "", "filter": {} },
