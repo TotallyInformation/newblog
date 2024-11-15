@@ -20,7 +20,13 @@ export default defineConfig({
         // Official MDX support
         mdx(),
         // @astrojs/sitemap - outputs /sitemap-index.xml
-        sitemap(),
+        sitemap({
+            filter: (page) => page !== 'https://www.totallyinformation.net/tests/',
+            // serialize: (item) => {
+            //     console.log(item)
+            //     return item
+            // },
+        }),
     ],
     markdown: {
         remarkPlugins: [
