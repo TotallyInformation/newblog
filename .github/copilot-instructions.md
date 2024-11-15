@@ -37,6 +37,7 @@
 - Use CSS custom properties
 - Follow BEM naming convention
 - Include print styles
+- Always use hsl colors
 
 ## Testing
 
