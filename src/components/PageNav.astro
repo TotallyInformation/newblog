@@ -1,5 +1,10 @@
 ---
 /** Page navigation component
+ * The  PageNav.astro  component is a simple navigation menu that can be used to navigate between pages. It reads the page information from the  site-info.json  file and generates the navigation menu based on the data. The component also includes a responsive design that collapses the menu into a hamburger icon on smaller screens. 
+ * The component uses Astro's built-in  request  object to get the current URL pathname and highlights the active page in the navigation menu. It also supports nested submenus for pages with subpages. 
+ * The component includes a toggle button to show/hide the menu on smaller screens and submenu toggles to expand/collapse submenus. The styles are written in the same file using Astro's style tag. 
+ * Overall, the  PageNav.astro  component provides a flexible and customizable navigation menu for the website. 
+ *
  * TODO
  * - Search bar
  * - Ability to align right
@@ -8,30 +13,171 @@
  * - Nested menus - Astro.self?
  */
 
-import siteInfo from '../site-info.json';
+import siteInfo from "@/site-info.json";
 
 const pathname = new URL(Astro.request.url).pathname;
 const pages = siteInfo.pages;
+     
 ---
-<nav class="nav-main" role="navigation"  data-component="PageNav">
-    <button aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation menu">
+<nav class="nav-main" role="navigation" aria-label="Main Navigation" data-component="PageNav">
+    <button
+        id="menu-toggle"
+        aria-expanded="false"
+        aria-controls="nav-menu"
+        aria-label="Toggle navigation menu"
+    >
         &#9776; <!-- Hamburger icon -->
     </button>
-    <ul class="nav-menu">
-        {pages.map(page => (
-            <li class={pathname === page.path ? "active" : ""}><a href={page.path}>{page.name}</a></li>
+    <ul id="nav-menu" class="nav-menu" aria-hidden="true" role="menubar">
+        {pages.map((page) => (
+            <li class={pathname === page.path ? 'active' : ''} role="menuitem">
+                <a href={page.path}>{page.name}</a>
+                {page.sub && (
+                    <>
+                        <ul class="submenu" aria-hidden="true" role="menu">
+                            {page.sub.map((sub) => (
+                                <li class={pathname === sub.path ? 'active' : ''} role="none">
+                                    <a href={sub.path} role="menuitem">{sub.name}</a>
+                                </li>
+                            ))}
+                        </ul>
+                    </>
+                )}
+            </li>
         ))}
         <li class="nav-main-slot"><slot /></li>
     </ul>
 </nav>
 <script>
-    const menuToggle = document.querySelector('.nav-main > button')  //.getElementById('menu-toggle');
-    const navMenu = document.querySelector('.nav-menu');
+    const menuToggle = document.getElementById('menu-toggle')
+    const navMenu = document.getElementById('nav-menu')
+    const submenuToggles = document.querySelectorAll('.submenu-toggle')
 
     menuToggle.addEventListener('click', () => {
-        console.log('toggle')
-        const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
-        menuToggle.setAttribute('aria-expanded', !expanded);
-        navMenu.setAttribute('aria-expanded', !expanded);
-    });
+        const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false
+        menuToggle.setAttribute('aria-expanded', !expanded)
+        navMenu.setAttribute('aria-hidden', expanded)
+    })
+
+    submenuToggles.forEach((toggle) => {
+        toggle.addEventListener('click', () => {
+            const expanded = toggle.getAttribute('aria-expanded') === 'true' || false
+            toggle.setAttribute('aria-expanded', !expanded)
+            toggle.nextElementSibling.setAttribute('aria-hidden', expanded)
+        })
+    })
 </script>
+<style>
+    :root {
+        --nav-bg-color: hsl(0, 0%, 20%);
+        --nav-hover-bg-color: hsl(0, 0%, 30%);
+        --nav-text-color: hsl(0, 0%, 100%);
+    }
+
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    #menu-toggle {
+        display: none;
+        font-size: 1.5rem;
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: var(--nav-text-color);
+    }
+
+    .nav-menu {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+    }
+
+    .nav-menu li {
+        position: relative;
+    }
+
+    .nav-menu a,
+    .nav-menu button {
+        display: block;
+        padding: 1rem;
+        color: var(--nav-text-color);
+        text-decoration: none;
+        background-color: var(--nav-bg-color);
+        border: none;
+        cursor: pointer;
+    }
+
+    .nav-menu a:hover,
+    .nav-menu button:hover {
+        background-color: var(--nav-hover-bg-color);
+    }
+
+    .submenu-toggle {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        color: var(--nav-text-color);
+        cursor: pointer;
+    }
+
+    .submenu {
+        display: none;
+        position: absolute;
+        left: 1em;
+        top: 100%;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        background-color: var(--nav-bg-color);
+        z-index: 1;
+    }
+
+    .submenu li a {
+        padding: 1rem;
+        width: 200px;
+    }
+
+    .nav-menu li:hover > .submenu,
+    .nav-menu li .submenu-toggle[aria-expanded='true'] + .submenu {
+        display: block;
+    }
+
+    /* Responsive styles */
+    @media (max-width: 768px) {
+        #menu-toggle {
+            display: block;
+        }
+
+        .nav-menu {
+            display: none;
+            flex-direction: column;
+            width: 100%;
+            background-color: var(--nav-bg-color);
+        }
+
+        .nav-menu[aria-hidden='false'] {
+            display: flex;
+        }
+
+        .nav-menu li {
+            width: 100%;
+        }
+
+        .submenu {
+            position: relative;
+            width: 100%;
+        }
+
+        .submenu-toggle {
+            position: static;
+            transform: none;
+        }
+    }
+</style>
