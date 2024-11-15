@@ -7,57 +7,67 @@
 import { getImage, Image  } from "astro:assets"
 // import siteInfo from '../site-info.json';
 import PageNav from './PageNav.astro'
-import ThemeChanger from './ThemeChanger.astro'
+// import ThemeChanger from './ThemeChanger.astro'
 import BrimhamRocks from '../resources/brimham-rocks-1200x279.jpg';
 
-const BrimhamRocksOptimised = await getImage({ src: BrimhamRocks })
+// const BrimhamRocksOptimised = await getImage({ src: BrimhamRocks })
 const frontmatter = Astro.props.frontmatter ?? {}
 // console.log('PageHeader.astro', Astro.props.frontmatter)
 
 if (!frontmatter?.title) frontmatter.title = ''
 if (!frontmatter?.subtitle) frontmatter.subtitle = ''
+
+// <style define:vars={{ headBgImg: `url(${BrimhamRocksOptimised.src})` }}>
 ---
 <header data-component="PageHeader">
-    <Image src={BrimhamRocks} alt="Brimham Rocks, Yorkshire, UK" />
-    <div>
-        <ThemeChanger />
-        <h1 class:list={[{'with-subtitle': frontmatter.subtitle}]}>{frontmatter.title}</h1>
-        { frontmatter.subtitle && <div role="doc-subtitle">{frontmatter.subtitle}</div> }
-        <PageNav></PageNav>
+    <div id="head-banner">
+        <Image id="head-img" src={BrimhamRocks} alt="Brimham Rocks, Yorkshire, UK" />
+        <div id="head-text">
+            <h1 id="head-h1" class:list={['head-h1', {'with-subtitle': frontmatter.subtitle}]}>{frontmatter.title}</h1>
+            { frontmatter.subtitle && <div role="doc-subtitle" id="head-subh1">{frontmatter.subtitle}</div> }
+        </div>
     </div>
+    <PageNav></PageNav>
 </header>
-<style define:vars={{ headBgImg: `url(${BrimhamRocksOptimised.src})` }}>
+<style>
     header {
-        /* background-image: var(--headBgImg);
-        background-size: cover;
-        background-repeat: no-repeat; */
+        position: relative;
+    }
+    
+    #head-h1 {
+        margin: 0;
+    }
+    #head-subh1 {
+        margin-bottom: 0;
+    }
+
+    #head-banner {
         position: relative;
         width: 100%;
-        /* display: flex;
-        justify-content: flex-start;
-        align-items: flex-start; */
+        height: auto;
+        overflow: hidden;
     }
-    img {
+
+    #head-img {
         width: 100%;
-        height: auto; /* Maintains the aspect ratio */
+        height: auto;
         display: block;
-        margin: 0; padding: 0;
-        border-radius: var(--border-radius);
+        margin:0;
     }
-    header > div {
+
+    #head-text {
         position: absolute;
-        top: 1rem;
-        left: 1%;
-        margin: 0; padding: 0;
-        /* color: white; */
-        background-color: rgba(0, 0, 0, 0.5); /* Optional: semi-transparent background for better text contrast */
-        padding: 1rem;
-        width: 98%;
-        border-radius: var(--border-radius);
+        top: .5rem;
+        left: .5rem;
+        width: calc(100% - 1rem);
+        height: auto;
+        background: rgba(0, 0, 0, 0.5);
+        padding: 0.5rem;
+        overflow: hidden;
     }
-    header > div::after {
-        content: '';
-        display: block;
-        clear: both;
+
+    .header__title {
+        font-size: 2rem;
+        margin: 0;
     }
 </style>
