@@ -1,9 +1,8 @@
 ---
 title: 'My experiences with GitHub CoPilot'
-description: |
-  Using this article to capture my thoughts and feelings about GitHub CoPilot and its integration to Visual Studio Code starting in November 2024. Also assessing value for money for an unfunded open source developer.
+description: 'Capturing my thoughts on GitHub CoPilot and its integration with VSCode, assessing its value for an unfunded open source developer.'
 created: 2024-11-06 11:37:10
-updated: 2024-11-15 17:33:54
+updated: 2024-11-16 16:31:47
 
 draft: false
 tags: ["vscode","github","copilot","ai","llm"]
@@ -47,6 +46,8 @@ Summary: [RTFM!](https://code.visualstudio.com/docs/copilot/overview). 😊
 ### Failures
 
 * With an Astro Markdown content file open, I asked both CoPilot and Claude `In the selected file, how can I tell Astro via the markdown to apply a specific class to the copilot-ctrl-i.png image?`. Both models completely failed to give a correct, workable answer. Both models started to go round in circles after a few attempts, trying to suggest the same, incorrect answers.
+
+* When trying to get CoPilot to generate a `.d.ts` definition file for my `uibuilder.module.js` library which is around 3,300 lines long, it failed to generate a complete file. When forced, it started to hallucinate methods that didn't exist. It claims not to have a size limit on source reference files but when pressed it admitted that it may truncate references which it clearly does. I don't think that the file size was that large so this is clearly a major issue to watch out for.
 
 Summary: As with all LLM-based AI tools, they only really work when they have plenty of source material to work with. The more specialist the data/question, the less likely to are to get a decent answer.
 
