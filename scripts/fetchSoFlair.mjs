@@ -7,11 +7,11 @@ const downloadImage = async (jsonFilePath, outputFolder, outputFilename) => {
   try {
     // Read and parse JSON file
     const jsonData = await readFile(jsonFilePath, 'utf-8')
-    const { stackExchangeUserId } = JSON.parse(jsonData)
-    if (!stackExchangeUserId) throw new Error('No stackExchangeUserId property found in JSON file')
+    const { authorStackExchange } = JSON.parse(jsonData)
+    if (!authorStackExchange) throw new Error('No stackExchangeUserId property found in site-info.json file')
 
     // Fetch the image from the URL
-    const response = await fetch(`https://stackexchange.com/users/flair/${stackExchangeUserId}.png`)
+    const response = await fetch(`https://stackexchange.com/users/flair/${authorStackExchange}.png`)
     if (!response.ok) throw new Error(`Failed to fetch image: ${response.statusText}`)
 
     const arrayBuffer = await response.arrayBuffer()
