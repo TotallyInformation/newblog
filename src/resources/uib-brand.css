@@ -1200,7 +1200,6 @@ button.compact {
 main {
     grid-area: main;
     position: relative;
-    z-index: -1;
 }
 
 /* Set a child div to have same format as an article */
@@ -1224,8 +1223,7 @@ main {
 header {
     /* Headings, nav, etc */
     grid-area: header;
-    
-    /* border: 1px dashed gold; */
+    z-index: 1;
 }
 
 footer {
@@ -1236,7 +1234,6 @@ footer {
     border-radius: var(--border-radius);
     background-color: var(--surface3);
     font-size: smaller;
-    /* border: 1px dashed green; */
 }
 
 .giscus {
