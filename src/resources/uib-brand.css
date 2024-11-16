@@ -1199,7 +1199,8 @@ button.compact {
 /* Assign the main areas to the grid */
 main {
     grid-area: main;
-    /* border: 1px dashed silver; */
+    position: relative;
+    z-index: -1;
 }
 
 /* Set a child div to have same format as an article */
