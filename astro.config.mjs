@@ -91,12 +91,12 @@ const tiHooks = {
     name: 'ti-hooks',
     hooks: {
         'astro:build:start': async () => {
-            console.log('[astro:build:start] >>')
+            console.log('[astro:build:start] >> ', process.cwd, process.env)
         },
-        'astro:build:done': async () => {
-            console.log('[astro:build:done] Generating new content list')
-            await generateNewContentList()
-        }
+        // 'astro:build:done': async () => {
+        //     console.log('[astro:build:done] Generating new content list')
+        //     await generateNewContentList()
+        // }
     }
 }
 
