@@ -5,23 +5,27 @@
  *
  */
 
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getCollection } from 'astro:content';
+import { markdown } from '@astropub/md'
 import siteInfo from "@/site-info.json";
+// import the tech timeline image from the resources folder
+import techTimeline from "@/resources/images/tech-timeline-ai.webp";
+import { Image } from "astro:assets";
+
 // Page metadata from a static site configuration data file
 const pageMeta =
     siteInfo.pages.filter(
         (pg) => pg.path === new URL(Astro.request.url).pathname,
     )[0] ?? {};
 pageMeta.path = new URL(Astro.request.url).pathname;
+
 // Allows us to locally override the config data file
 pageMeta.title = "Knowledgebase: My IT Timeline";
 pageMeta.subtitle = "An incomplete history of my IT journey";
 
-import BaseLayout from "@/layouts/BaseLayout.astro";
-
-import { getCollection } from 'astro:content';
-
+// Get the timeline data
 const timeline = await getCollection('it-timeline');
-import { markdown } from '@astropub/md'
 
 // console.log('[it-timeline]', timeline[0].data);
 
@@ -271,6 +275,8 @@ import { markdown } from '@astropub/md'
 
 <BaseLayout frontmatter={pageMeta}>
     <section>
+        <Image src={techTimeline} alt="Tech Timeline AI generated image" style="float: right; width: 25%; height: auto;" />
+    
         <p>My IT journey has been a long and varied one. Here are some of the key points along the way.</p>
         <ul>
         {timeline[0].data.map((decade) => (
