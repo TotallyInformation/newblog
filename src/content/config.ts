@@ -10,6 +10,22 @@ import { z, defineCollection } from 'astro:content';
 
 const STATUSES = ["Complete", "Incomplete", "Draft", "TBC"] as const;
 
+const itTimeline = defineCollection({
+    type: 'data',
+    schema: z.array(
+        z.object({
+            decade: z.string(),
+            events: z.array(
+                z.object({
+                    year: z.string(),
+                    event: z.string().optional(),
+                    markdown: z.string().optional(),
+                })
+            )
+        })
+    )
+})
+
 // TODO - Add lookups for categories and tags
 
 // 2. Define your collection(s)
@@ -77,4 +93,6 @@ const kbCollection = templateCollection; // knowledgebase
 export const collections = {
     'posts': postsCollection,
     'kb': kbCollection,
+    // 'categories': categoriesCollection,
+    'it-timeline': itTimeline,
 };

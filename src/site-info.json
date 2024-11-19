@@ -18,6 +18,7 @@
     "pages": [
         { "name": "Home", "path": "/", "title": "", "subtitle": "", "filter": {} },
         { "name": "About", "path": "/about/", "sub": [
+            { "name": "My IT Timeline", "path": "/kb/it-timeline" },
             { "name": "Privacy", "path": "/privacy/" }
         ]},
         { "name": "Articles", "path": "/articles/", "sub": [

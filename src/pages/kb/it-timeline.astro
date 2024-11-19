@@ -1,0 +1,319 @@
+---
+/** Knowledgebase: My IT Timeline
+ * Layout: /src/layouts/BaseLayout.astro
+ * URL: /kb/it-timeline
+ *
+ */
+
+import siteInfo from "@/site-info.json";
+// Page metadata from a static site configuration data file
+const pageMeta =
+    siteInfo.pages.filter(
+        (pg) => pg.path === new URL(Astro.request.url).pathname,
+    )[0] ?? {};
+pageMeta.path = new URL(Astro.request.url).pathname;
+// Allows us to locally override the config data file
+pageMeta.title = "Knowledgebase: My IT Timeline";
+pageMeta.subtitle = "An incomplete history of my IT journey";
+
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+import { getCollection } from 'astro:content';
+
+const timeline = await getCollection('it-timeline');
+import { markdown } from '@astropub/md'
+
+// console.log('[it-timeline]', timeline[0].data);
+
+// const data = [
+//     {
+//         "decade": "1960",
+//         "events": [
+//             {
+//                 "year": "1964",
+//                 "event": "Introduction of IBM mainframe computers"
+//             },
+//             {
+//                 "year": "1969",
+//                 "event": "Charles Goldfarb at IBM helps invent Generalised Markup Language (GML) the first forerunner of HTML",
+//                 "markdown": "[Charles Goldfarb](http://en.wikipedia.org/wiki/Charles_Goldfarb) at [IBM](http://en.wikipedia.org/wiki/Ibm) helps invent [“Generalised Markup Language” (GML)](http://en.wikipedia.org/wiki/IBM_Generalized_Markup_Language) the first forerunner of HTML"
+//             }
+//         ]
+//     },
+//     {
+//         "decade": "1970",
+//         "events":[
+//             {
+//                 "year": "1974",
+//                 "event": "Charles Goldfarb developed “Standard Generalised Markup” (SGML) language. The direct forerunner of HTML.",
+//                 "markdown": "[Charles Goldfarb](http://en.wikipedia.org/wiki/Charles_Goldfarb) developed [“Standard Generalised Markup” (SGML)](http://www.drdobbs.com/blog/archives/2009/08/beyond_html_an.html) language. The direct forerunner of HTML."
+//             },
+//             {
+//                 "year": "1975",
+//                 "event": "Information Builders introduce FOCUS for IBM mainframes. I would later (mid-80's) learn and support FOCUS."
+//             },
+//             {
+//                 "year": "1978",
+//                 "event": "I Left school and did summer jobs for the next 3 years in a mainframe operations department using IBM mainframes. IBM’s “Document Composition Facility” product introduced using GML."
+//             },
+//             {
+//                 "year": "1978",
+//                 "event": "IBM “Document Composition Facility” product introduced using GML",
+//                 "markdown": "IBM “Document Composition Facility” product introduced using [GML](http://en.wikipedia.org/wiki/IBM_Generalized_Markup_Language)"
+//             },
+//             {
+//                 "year": "1979",
+//                 "event": "Commodore PET released. Sinclair ZX80 released. First graphical microcomputer [spreadsheet](http://en.wikipedia.org/wiki/Spreadsheet), [VisiCalc](https://en.wikipedia.org/wiki/VisiCalc), launched."
+//             }
+//         ]
+//     },
+//     {
+//         "decade": "1980",
+//         "events": [
+//             {
+//                 "year": "1981",
+//                 "event": "I Left Uni having been exposed to the joys of Fortran programming via punched cards, a 72 step programmable Commodore calculator, analogue computing (!) and a PDP-11.",
+//                 "markdown": "I Left Uni having been exposed to the joys of [Fortran](http://en.wikipedia.org/wiki/Fortran) programming via [punched cards](en.wikipedia.org/wiki/Punched_card), a [72 step programmable Commodore calculator](http://rskey.org/pr100), [analogue computing](en.wikipedia.org/wiki/Analog_computer) (!) and a [PDP-11](http://en.wikipedia.org/wiki/PDP-11)."
+//             },
+//             {
+//                 "year": "1981",
+//                 "event": "I Started fulltime work in IBM Mainframe operations, also learned to programme in the IBM APL mathematical language.",
+//                 "markdown": "_I Started fulltime work in IBM Mainframe operations, also learned to programme in the IBM [APL mathematical language.](http://en.wikipedia.org/wiki/BBC_Micro)_"
+//             },
+//             {
+//                 "year": "1981",
+//                 "event": "IBM PC launched. BBC Micro launched. Sinclair ZX81 launched. Commodore Vic-20 launched.",
+//                 "markdown": "[IBM PC](https://en.wikipedia.org/wiki/IBM_PC) launched. [BBC Micro](http://en.wikipedia.org/wiki/BBC_Micro) launched. [Sinclair ZX81](http://en.wikipedia.org/wiki/Sinclair_ZX81) launched. [Commodore Vic-20](http://en.wikipedia.org/wiki/Commodore_VIC-20) launched."
+//             },
+//             {
+//                 "year": "1981-12",
+//                 "event": "In December 1981 I Purchased a BBC 'Model A' microcomputer and waited several months for it to arrive!",
+//                 "markdown": "In December 1981 I Purchased a BBC “Model A” microcomputer and waited several months for it to arrive!"
+//             },
+//             {
+//                 "year": "Early 1980s",
+//                 "event": "Early 1980s sees launch of Acumen, an OLAP/BI language and database developed in the UK by Mars – based on Strategem. I would later (mid-80's) learn and support Acumen, developing a number of key business systems in it and writing a variety of utility functions including charting and date/time utilities.",
+//                 "markdown": "Early 1980s sees launch of [Acumen](http://freespace.virgin.net/john.elkin/acumen.htm), an OLAP/BI language and database developed in the UK by [Mars](http://www.mars.com) – based on Strategem. _I would later (mid-80's) learn and support Acumen, developing a number of key business systems in it and writing a variety of utility functions including charting and date/time utilities._"
+//             },
+//             {
+//                 "year": "1982",
+//                 "event": "Upgraded my BBC Model A to a Model B. My first go at soldering electronics. Blew the ADC chip and had to buy a replacement."
+//             },
+//             {
+//                 "year": "1982+",
+//                 "event": "Taught myself to programme in a variety of languages including BASIC, FORTH, PASCAL, LISP and 6502 Assembler. FORTH became my favourite and I joined the UK FIG (FORTH Interest Group).",
+//                 "markdown": "Taught myself to programme in a variety of languages including [BASIC](http://en.wikipedia.org/wiki/BASIC), [FORTH](http://en.wikipedia.org/wiki/Forth_(programming_language)), [PASCAL](http://en.wikipedia.org/wiki/Pascal_(programming_language)), [LISP](http://en.wikipedia.org/wiki/Lisp_(programming_language)) and [6502 Assembler](http://en.wikipedia.org/wiki/MOS_Technology_6502). FORTH became my favourite and I joined the [UK FIG (FORTH Interest Group)](http://www.forth.org/)."
+//             },
+//             {
+//                 "year": "1983",
+//                 "event": "TCP/IP is adopted as the protocol standard for ARPANET, the forerunner to the Internet. Acorn Electron launched, FidoNet starts up.",
+//                 "markdown": "[TCP/IP](https://www.britannica.com/technology/TCP-IP) is adopted as the protocol standard for [ARPANET](https://www.britannica.com/topic/ARPANET), the forerunner to the Internet. [Acorn Electron](https://en.wikipedia.org/wiki/Acorn_Electron) launched, [FidoNet](http://en.wikipedia.org/wiki/FidoNet) starts up."
+//             },
+//             {
+//                 "year": "1984",
+//                 "event": "Became an Analyst/Programmer learning COBOL and structured analysis and design. DNS services start, JANET UK universities network starts, Moderated newsgroups introduced on USENET, Apple Mac introduced.",
+//                 "markdown": "Became an Analyst/Programmer learning [COBOL](https://en.wikipedia.org/wiki/COBOL) and [structured analysis and design](https://en.wikipedia.org/wiki/Structured_analysis_and_design_technique). [DNS](https://en.wikipedia.org/wiki/Domain_Name_System) services start, [JANET UK universities network](https://www.ja.net/) starts, Moderated newsgroups introduced on [USENET](https://en.wikipedia.org/wiki/Usenet), Apple Mac introduced."
+//             },
+//             {
+//                 "year": "198?",
+//                 "event": "Replaced the BBC Micro with an Amstrad 6128 running CP/M, big mistake, a very boring machine.",
+//                 "markdown": "Replaced the BBC Micro with an Amstrad 6128 running CP/M, big mistake, a very boring machine."
+//             },
+//             {
+//                 "year": "1986",
+//                 "event": "NNTP created.",
+//                 "markdown": "[NNTP](https://en.wikipedia.org/wiki/Network_News_Transfer_Protocol) created."
+//             },
+//             {
+//                 "year": "January 1987",
+//                 "event": "Commodore Amiga A500 launched.",
+//                 "markdown": "Commodore [Amiga A500](https://en.wikipedia.org/wiki/Amiga_500) launched."
+//             },
+//             {
+//                 "year": "1987",
+//                 "event": "Moved from COBOL programming to “Personal Computing”, mainframe style using ISPF, APL, Information Builders FOCUS (a 4GL reporting tool), a mainframe spreadsheet called DynaSoft Dynaplan (AFAIK the first spreadsheet to use 3 dimensions) and and 4th generation tool called Acumen (which would now be called an OLAP tool).",
+//                 "markdown": "_Moved from COBOL programming to “Personal Computing”, mainframe style using [ISPF](http://en.wikipedia.org/wiki/ISPF), [APL](http://en.wikipedia.org/wiki/APL_language), [Information Builders FOCUS](http://www.informationbuilders.com/products/focus) (a 4GL reporting tool), a mainframe spreadsheet called [DynaSoft Dynaplan](http://www.wrkgrp.com/dynasoft/index.html) (AFAIK the first spreadsheet to use 3 dimensions) and and 4th generation tool called [Acumen](http://freespace.virgin.net/john.elkin/acumen.htm) (which would now be called an OLAP tool)._"
+//             },
+//             {
+//                 "year": "1987",
+//                 "event": "Also taught myself PL/1 to do some utility programs. Worked with colleagues to build functions that would allow a pseudo-GUI to be created on a colour text IBM terminal screen. Following the recently released IBM 'Common User Interface' GUI standards. Also built a library to use IBM's mainframe charting libraries without having to purchase the eyewateringly expensive charting package. Both libraries used to good effect creating business applications using Acumen.",
+//                 "markdown": "_Also taught myself [PL/1](http://en.wikipedia.org/wiki/PL/1) to do some utility programs. Worked with colleagues to build functions that would allow a pseudo-GUI to be created on a colour text IBM terminal screen. Following the recently released IBM “[Common User Interface](https://en.wikipedia.org/wiki/IBM_Common_User_Access)” GUI standards. Also built a library to use IBM's mainframe charting libraries without having to purchase the eyewateringly expensive charting package. Both libraries used to good effect creating business applications using Acumen._"
+//             },
+//             {
+//                 "year": "1987",
+//                 "event": "Document processing was done using a mainframe SGML based tool – a good early grounding for later HTML. Later on started to work with PC’s as well, OS/2 and IBM LAN Manager. Word processing using IBM Displaywrite then Lotus Ami Pro.",
+//                 "markdown": "_Document processing was done using a mainframe [SGML](http://en.wikipedia.org/wiki/Sgml) based tool – a good early grounding for later HTML. Later on started to work with PC’s as well, [OS/2](http://en.wikipedia.org/wiki/OS/2) and IBM LAN Manager. Word processing using [IBM Displaywrite](http://en.wikipedia.org/wiki/DisplayWrite) then [Lotus Ami Pro](http://en.wikipedia.org/wiki/Ami_Pro)._"
+//             },
+//             {
+//                 "year": "1987",
+//                 "event": "Acorn Archimedes launched.",
+//                 "markdown": "[Acorn Archimedes](https://en.wikipedia.org/wiki/Acorn_Archimedes) launched."
+//             },
+//             {
+//                 "year": "198?",
+//                 "event": "Replaced my Amstrad with a Commodore Amiga 500, a fantastic and imaginative personal computer. Learned about computer video, 3D imagery and rendering. The Amiga used Rexx for a system-wide scripting and automation language. I'd first learned Rexx on IBM mainframes.",
+//                 "markdown": "_Replaced my Amstrad with a Commodore Amiga 500, a fantastic and imaginative personal computer. Learned about computer video, 3D imagery and rendering. The Amiga used [Rexx](http://en.wikipedia.org/wiki/Rexx) for a system-wide scripting and automation language. I'd first learned Rexx on IBM mainframes._"
+//             },
+//             {
+//                 "year": "1988",
+//                 "event": "FidoNet is connected to the Internet. IBM Mainframe spreadsheet: Dynaplan from DynaSoft already in use.",
+//                 "markdown": "[FidoNet](https://en.wikipedia.org/wiki/FidoNet) is connected to the Internet. IBM Mainframe spreadsheet: [Dynaplan](http://www.highbeam.com/doc/1G1-6603432.html) from DynaSoft already in use."
+//             }
+//         ]
+//     },
+//     {
+//         "decade": "1990",
+//         "events": [
+//             {
+//                 "year": "1990",
+//                 "event": "ARPANET ceases to exist, Archie released, first commercial dial-up Internet provider."
+//             },
+//             {
+//                 "year": "1990-03",
+//                 "event": "Lotus introduce IBM mainframe version of 1-2-3 spreadsheet (DynaSoft release Dynaplan v4.0 same year).",
+//                 "markdown": "[Lotus introduce IBM mainframe version of 1-2-3 spreadsheet](http://findarticles.com/p/articles/mi_m0SMG/is_n3_v10/ai_8220232/?tag=content;col1) (DynaSoft release Dynaplan v4.0 same year)."
+//             },
+//             {
+//                 "year": "1991",
+//                 "event": "Moved from Mainframes to PC’s full time, Introduced to Lotus Notes (release 2) and loved it. Got my first palmtop, a Psion 3. Got myself an Amiga 3000 under Commodore’s developer program. Great for 3D modelling (Imagine, Real-3D and Lightwave) and experiments with video. WAIS, Gopher and WWW started, PGP created.",
+//                 "markdown": "Moved from Mainframes to PC’s full time, Introduced to Lotus Notes (release 2) and loved it. Got my first palmtop, a Psion 3. Got myself an Amiga 3000 under Commodore’s developer program. Great for 3D modelling (Imagine, Real-3D and Lightwave) and experiments with video.\nWAIS, Gopher and WWW started, PGP created."
+//             },
+//             {
+//                 "year": "1992",
+//                 "event": "Demon Internet Services started up in June, 1st low cost (£10 per month) service in the UK.",
+//                 "markdown": "[Demon Internet Services](https://en.wikipedia.org/wiki/Demon_Internet) started up in June, 1st low cost (£10 per month) service in the UK."
+//             },
+//             {
+//                 "year": "1993",
+//                 "event": "Got my second palmtop, a Psion 3a. The Amiga’s got stolen along with all my disks and backups!! Replaced them with an Amiga 4000.",
+//                 "markdown": "Got my second palmtop, a Psion 3a. The Amiga’s got stolen along with all my disks and backups!! Replaced them with an Amiga 4000."
+//             },
+//             {
+//                 "year": "1994",
+//                 "event": "“Official” start of SPAM (US law firm Canter & Siegel spam Internet newsgroups)"
+//             },
+//             {
+//                 "year": "1995",
+//                 "event": "Moved from using FIDOnet to the Internet thanks to Demon Internet Services."
+//             },
+//             {
+//                 "year": "1996",
+//                 "event": "Finally got my first PC at home after holding out for so many years! Demon Internet offers ISDN access for £10 per month."
+//             },
+//             {
+//                 "year": "1997",
+//                 "event": "Got my 3rd palmtop, a PalmPilot Professional."
+//             },
+//             {
+//                 "year": "1998",
+//                 "event": "Acorn leaves the personal computing market."
+//             }
+//         ]
+//     },
+//     {
+//         "decade": "2000",
+//         "events": [
+//             {
+//                 "year": "2000",
+//                 "event": "Got PC number 2, an AMD 1200MHz based one with 512MB of RAM."
+//             },
+//             {
+//                 "year": "2001",
+//                 "event": "Got my 4th palmtop, a Sony Clie PEG-T625 (Palm OS 4.1). The last ever Palm OS device I would own."
+//             },
+//             {
+//                 "year": "2004-03",
+//                 "event": "Finally got broadband! Say bye-bye to Demon Internet & modems, hello to PlusNet.",
+//                 "markdown": "Finally got broadband! Say bye-bye to Demon Internet & modems, hello to [PlusNet](https://en.wikipedia.org/wiki/Plusnet)."
+//             }
+//         ]
+//     },
+//     {
+//         "decade": "2010",
+//         "events": [
+//             {
+//                 "year": "2010-08",
+//                 "event": "Got an iPad 1 32GB."
+//             },
+//             {
+//                 "year": "2011-01",
+//                 "event": "Got a Humax HDR Fox T2 personal video recorder. Freeview HD, 2 channels."
+//             },
+//             {
+//                 "year": "2011-02",
+//                 "event": "Got iPhone 4 32GB – A massive step up from Windows Mobile."
+//             },
+//             {
+//                 "year": "2011",
+//                 "event": "Apple iPad 2 introduced."
+//             },
+//             {
+//                 "year": "2012",
+//                 "event": "Moved broadband onto an FTTC connection from Origin Broadband. 40Mbps down, 10Mbps up (could have more!). Bye-bye to “slow” old 2Mbps ADSL 2+, hello to downloading films in 5 minutes!",
+//                 "markdown": "Moved broadband onto an [FTTC](en.wikipedia.org/wiki/Fiber_to_the_x) connection from [Origin Broadband](http://www.origin-broadband.co.uk). 40Mbps down, 10Mbps up (could have more!). Bye-bye to “slow” old 2Mbps [ADSL 2+](en.wikipedia.org/wiki/G.992.5), hello to downloading films in 5 minutes!"
+//             }
+//         ]
+//     },
+//     {
+//         "decade": "2020",
+//         "events": [
+//             {
+//                 "year": "2023",
+//                 "event": "Moved off FTTC to a full FTTP connection. 150Mbps down, 30Mbps up. Bye-bye to “slow” old 40Mbps FTTC, hello to downloading films in 1 minute!",
+//                 "markdown": "Moved off FTTC to a full FTTP connection. 150Mbps down, 30Mbps up. Bye-bye to “slow” old 40Mbps FTTC, hello to downloading films in 1 minute!"
+//             }
+//         ]
+//     }
+// ]
+
+
+---
+
+<BaseLayout frontmatter={pageMeta}>
+    <section>
+        <p>My IT journey has been a long and varied one. Here are some of the key points along the way.</p>
+        <ul>
+        {timeline[0].data.map((decade) => (
+            <li key={decade.decade}>
+                <h3>{decade.decade}</h3>
+                <ul>
+                    {decade.events.map(async (event) => (
+                        <li key={event.year}>
+                            <strong>{event.year}:</strong> {await markdown.inline(event.markdown ? event.markdown : event.event)}
+                        </li>
+                    ))}
+                </ul>
+            </li>
+        ))}
+        </ul>
+    </section>
+
+    <h2>To Do</h2>
+    <ul>
+        <li>Other work stuff: Directories (LDAP, X.500), PKI, etc.</li>
+    </ul>
+
+    <h2>Links</h2>
+    <ul>
+        <li><a href="http://meyerweb.com/eric/browsers/timeline-structured.html" target="_blank">Browser Timeline</a> (Meyerweb, 1996-2011)</li>
+        <li><a href="http://news.bbc.co.uk/1/hi/technology/5243862.stm" target="_blank">BBC News: 15 Years of the Web</a> (1991-08-06)</li>
+        <li><a href="http://www.zakon.org/robert/internet/timeline/" target="_blank">Hobbes&#8217; Internet Timeline</a> (1993-2011)</li>
+        <li><a title="The Evolution of the Web" href="http://evolutionofweb.appspot.com" target="_blank">The Evolution of the Web</a> (Dynamic timeline of Internet standards)</li>
+        <li><a title="" href="http://www.roughlydrafted.com/2007/08/15/sco-linux-and-microsoft-in-the-history-of-os-1980s/" target="_blank">SCO, Linux, and Microsoft in the History of OS: 1980s (Roughly Drafted Magazine)</a> (2007-08-15)</li>
+    </ul>
+
+    <h2>Related stories (From RegHardware)</h2>
+    <ul>
+        <li><a href='http://www.reghardware.com/2012/10/01/compact_disc_is_30_years_old/' target='_blank' title='First commercial release 30 years ago today'>Happy birthday, Compact Disc</a> <small>(1 October 2012)<br /> </small></li>
+        <li><a href='http://www.reghardware.com/2012/09/21/jupiter_cantab_jupiter_ace_is_30_years_old/' target='_blank' title='Two Spectrum stars go Forth'><strong>Feature</strong> The Jupiter Ace is 30</a> <small>(21 September 2012)<br /> </small></li>
+        <li><a href='http://www.reghardware.com/2012/08/01/the_dragon_32_is_30_years_old/' target='_blank' title='Fire starter'><strong>Feature</strong> The Dragon 32 is 30</a> <small>(1 August 2012)<br /> </small></li>
+        <li><a href='http://www.reghardware.com/2012/07/02/newbury_labs_grundy_business_systems_newbrain_is_30_years_old/' target='_blank' title='The revolutionary product that came too late'><strong>Feature</strong> The Grundy NewBrain is 30</a> <small>(2 July 2012)<br /> </small></li>
+        <li><a href='http://www.reghardware.com/2012/04/23/retro_week_sinclair_zx_spectrum_at_30/' target='_blank' title='The story of an historic micro'><strong>Retro Week</strong> Happy 30th Birthday, Sinclair ZX Spectrum</a> <small>(23 April 2012)<br /> </small></li>
+        <li><a href='http://www.reghardware.com/2012/01/02/commodore_64_30_birthday/' target='_blank' title='The most successful 8-bit micro ever'>The Commodore 64 is 30</a> <small>(2 January 2012)<br /> </small></li>
+        <li><a href='http://www.reghardware.com/2011/11/30/bbc_micro_model_b_30th_anniversary/' target='_blank' title='The 8-bit 1980s dream machine'>The BBC Micro turns 30</a> <small>(30 November 2011)<br /> </small></li>
+        <li><a href='http://www.reghardware.com/2011/08/12/ibm_pc_30_anniversary/' target='_blank' title='On 12 August 1981, the world changed'>The IBM PC is 30</a> <small>(12 August 2011)<br /> </small></li>
+        <li><a href='http://www.reghardware.com/2011/07/27/ms_dos_turns_30/' target='_blank' title='Kudos to QDOS'>Microsoft&#8217;s MS-DOS is 30 today</a> <small>(27 July 2011)<br /> </small></li>
+    </ul>
+        
+
+</BaseLayout>

@@ -1,6 +1,6 @@
 {
   "name": "@totallyinformation/newblog",
-  "version": "2024.11.15",
+  "version": "2024.11.19",
   "description": "A fresh, new blog &amp; website at www.totallyinformation.net to replace it.knightnet.org.uk",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -25,6 +25,7 @@
     "@astrojs/mdx": "^3.1.8",
     "@astrojs/rss": "^4.0.9",
     "@astrojs/sitemap": "^3.2.1",
+    "@astropub/md": "^1.0.0",
     "astro": "^4.16.5",
     "astro-expressive-code": "^0.38.0",
     "rehype-autolink-headings": "^7.1.0",
