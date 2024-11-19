@@ -1,77 +1,72 @@
 ---
-title: 'What needs doing on the site?'
+title: 'What needs doing on this website'
 description: |
-    As the site is DIY built from scratch with the help of Astro, there is a lot to do to make the site robust, looking good, and usable.
-created: 2024-10-21 19:21:40
-updated: 2024-10-21 19:36:15
-tags: ["config", "to-do"]
+  As this website is DIY built using Astro and my own layouts, components,
+  and styles, there is rather a lot to create and finesse. This page documents
+  what is left to do.
+created: 2024-10-26 17:16:38
+updated: 2024-11-17 17:07:04
+tags: ["astro-v4", "website", "development", "web-development", "config", "to-do"]
 category: astro
 ---
 
 ## General
 
-* [ ] Better inline code - not enough differential from standard text.
-* [ ] Better font - not liking the current font.
-* [ ] Possibly increase the line spacing slightly.
-* [ ] Add metadata descriptions for collections, categories and tags.
+* Category/tag descriptions metadata
+* Search
+* Related posts
+* In scripts/fetchSoFlair.mjs, allow for other author names
+* Consider replacing default code formats with Prism
+* Consider fallback site image/alt in site-info.json and PageMeta
+* Consider moving to [rehype-callouts](https://github.com/lin-stephanie/rehype-callouts)
+* Consider allowing custom banner images - would need to add new frontmatter
 
-## Collections
+## Content
 
-* [ ] Add authors collection
+### **NEW**: Authors
 
-## Collection (Article) Listings
+* [ ] Make page profile links dependent on matching author meta
+* [ ] Add author meta types available to page meta
+* [ ] Get author additional meta from Authors content
 
-* [ ] Add frontmatter image support.
-* [ ] Add category/tag filters to `getAllArticles` module.
+### Article pages
 
-### Alternative views
+* Collapsible sections
+* ToC sidebar
+* [ ] Add reading time
+* [ ] Allow mermaid
+* [ ] Custom heading ids
 
-* [ ] Categories - a listing of categories + listings of articles for each category
-* [ ] Tags - a listing of tags + listings of articles for each tag
-* [ ] Year/month listings
+## RSS Feeds
 
-## Article Pages
+* Include full article content - but how?
+* Consider per-tag/category feeds - how?
+* Add page links to rss feeds
 
-* [ ] Add Date to metadata.
-* [ ] Add frontmatter image support.
-* [ ] Add "Back to xxxx" links - e.g. back to categories - may need client-side script.
-* [ ] Add Heading links to each `hx` heading.
-* [ ] Add a page toc (astro-custom-toc?).
-* [ ] Add Page Previous/next
+## Ongoing Stylesheet improvements
 
-### Markdown
+## Components needed or improvements
 
-* Better callouts
+### PageFooter
 
-## Page footer
+* Move inline SVG to files
 
-* [ ] Use article Date to update copyright date.
+### PageNav
 
+* Multi-layer main nav bar
+* Add search link
+* Consider moving theme-switcher to the navbar (or maybe the footer)
+* Fix mobile sizing
 
------------------------------
+### PageMeta
 
-## Ideas
+* [x] Add author & updated date to left-hand side
+* [x] Make tags list right-aligned
 
-### Possible plugins
+### ThemeChanger
 
-* [`astro-expressive-code](https://github.com/expressive-code/expressive-code/tree/main/packages/astro-expressive-code) - Extended code blocks with headings, etc.
+* Change from sun/moon & theme switch to a cog containing theme switch and other controls such as colour, maybe sizing, font, etc.
 
-#### Remark/Rehype
+### ArticlesListNav
 
-* Diagrams
-  * https://github.com/remcohaszing/remark-mermaidjs
-  * [remark-simple-plantuml](https://github.com/akebifiky/remark-simple-plantuml) — turn PlantUML code blocks to images
-  * remark-graphviz
-
-
------------------------------
-
-## Inspiration
-
-### Themes & Templates
-
-* [Starlight](https://starlight.astro.build/getting-started/) - Official Astro documentation template
-
-### Course & Articles
-
-* [Understanding Astro](https://understanding-astro-webook.vercel.app)
+* [x] Add some bottom margin
