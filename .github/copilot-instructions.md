@@ -15,6 +15,7 @@
 - For browsers, use features available to 90%+ browsers/users
 - No trailing semicolons
 - Single quotes for strings
+- Indent code blocks with 4 spaces
 - Use const by default, let when needed
 - Prefer arrow functions
 - Use optional chaining
@@ -38,6 +39,7 @@
 - Follow BEM naming convention
 - Include print styles
 - Always use hsl colors
+- Indent code blocks with 4 spaces
 
 ## Testing
 
