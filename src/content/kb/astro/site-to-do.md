@@ -5,7 +5,7 @@ description: |
   and styles, there is rather a lot to create and finesse. This page documents
   what is left to do.
 created: 2024-10-26 17:16:38
-updated: 2024-11-17 17:07:04
+updated: 2024-11-21 20:26:08
 tags: ["astro-v4", "website", "development", "web-development", "config", "to-do"]
 category: astro
 ---
@@ -13,7 +13,6 @@ category: astro
 ## General
 
 * Category/tag descriptions metadata
-* Search
 * Related posts
 * In scripts/fetchSoFlair.mjs, allow for other author names
 * Consider replacing default code formats with Prism
@@ -51,22 +50,7 @@ category: astro
 
 * Move inline SVG to files
 
-### PageNav
-
-* Multi-layer main nav bar
-* Add search link
-* Consider moving theme-switcher to the navbar (or maybe the footer)
-* Fix mobile sizing
-
-### PageMeta
-
-* [x] Add author & updated date to left-hand side
-* [x] Make tags list right-aligned
-
 ### ThemeChanger
 
+* Consider moving theme-switcher to the the footer
 * Change from sun/moon & theme switch to a cog containing theme switch and other controls such as colour, maybe sizing, font, etc.
-
-### ArticlesListNav
-
-* [x] Add some bottom margin
