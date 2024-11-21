@@ -278,7 +278,7 @@ const timeline = await getCollection('it-timeline');
 
 <BaseLayout frontmatter={pageMeta}>
     <section>
-        <Image src={techTimeline} alt="Tech Timeline AI generated image" style="float: right; width: 25%; height: auto;" />
+        <Image src={techTimeline} alt={pageMeta.coverAlt} style="float: right; width: 25%; height: auto;" />
     
         <p>My IT journey has been a long and varied one. Here are some of the key points along the way.</p>
         <ul>
