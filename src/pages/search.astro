@@ -1,0 +1,17 @@
+---
+/** Site search */
+
+import BaseLayout from '@/layouts/BaseLayout.astro'
+// import SearchComponent from "astro-pagefind/components/Search";
+import SearchComponent from "@/components/SearchPanel.astro";
+import siteInfo from '@/site-info.json';
+
+// Page metadata
+const pageMeta = siteInfo.pages.filter( (pg) => pg.path === new URL(Astro.request.url).pathname)[0] ?? {};
+pageMeta.title = "Totally Information: Site Search";
+// pageMeta.subtitle = "Ramblings by Julian Knight on all things Digital, Technology and Life";
+
+---
+<BaseLayout frontmatter={pageMeta}>
+    <SearchComponent id="search" className="pagefind-ui" uiOptions={{ showImages: false }} />
+</BaseLayout>
