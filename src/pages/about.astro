@@ -4,15 +4,20 @@
 import siteInfo from '../site-info.json';
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { Image } from 'astro:assets';
+import coverImg from "@/resources/images/large-icon-1.webp";
 import seFlairImg from "@/resources/StackExchangeFlair.jpg";
 
 // Page metadata
 const pageMeta = siteInfo.pages.filter( (pg) => pg.path === new URL(Astro.request.url).pathname)[0] ?? {};
 pageMeta.title = "About This Site, TotallyInformation and me";
 pageMeta.subtitle = "... and my new GROWING Astro site!";
+pageMeta.description = "All about this website";
+pageMeta.coverAlt = "Totally Information AI generated logo";
+pageMeta.cover = coverImg;
 
 ---
 <BaseLayout frontmatter={pageMeta}>
+    <Image src={coverImg} alt={pageMeta.coverAlt} style="float: right; width: 25%; height: auto;" />
     <h2>About this site</h2>
     <p>
         This is my latest website and blog. This is about my 5th website since the early days of the Internet.
