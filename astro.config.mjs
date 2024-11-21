@@ -12,6 +12,7 @@ import rehypeSlug from 'rehype-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import {h} from 'hastscript'
 import markdownIntegration from '@astropub/md'
+import pagefind from "astro-pagefind";
 
 // ❌ import remarkAdmonitions from 'remark-admonitions'
 
@@ -90,6 +91,11 @@ const generateNewContentList = async () => {
 const tiHooks = {
     name: 'ti-hooks',
     hooks: {
+        /** CF Env
+         * CF_PAGES_URL: 'https://f65b2d1e.totallyinformation.pages.dev',
+         * npm_package_name: '@totallyinformation/newblog',
+         * NODE_ENV: 'production'
+         */
         'astro:build:start': async () => {
             console.log('[astro:build:start] >> ', process.cwd, process.env)
         },
@@ -111,6 +117,8 @@ export default defineConfig({
         expressiveCode(),
         // Official MDX support
         mdx(),
+        // @astropub/md - allow markdown in data content
+        markdownIntegration(),
         // @astrojs/sitemap - outputs /sitemap-index.xml
         sitemap({
             filter: (page) => page !== 'https://www.totallyinformation.net/tests/',
@@ -119,7 +127,8 @@ export default defineConfig({
             //     return item
             // },
         }),
-        markdownIntegration(),
+        // astro-pagefind - outputs /pagefind.json
+        pagefind(),
     ],
 
     markdown: {
