@@ -15,12 +15,32 @@
  * Twitter title, description, & image fall back to og equivalents if not set
  */
 
+import { getImage } from 'astro:assets'
 import siteInfo from '@/site-info.json';
 let pageMeta = Astro.props.frontmatter
 
 const pageUrl = `${Astro.site}${pageMeta.path.replace('/','')}`
 const pageCover = pageMeta.cover ? `${Astro.site}${pageMeta.cover.src.replace('/','')}` : undefined
 const description = pageMeta.description || "Article"
+
+// import faviconSrc from '@/resources/images/large-icon-1.webp'
+import faviconSrc from '@/resources/images/site-icon.png'
+import faviconSrcSvg from '@/resources/images/site-icon.svg'
+
+const favicon = await getImage({
+  src: faviconSrc,
+  width: 32,
+  height: 32,
+  format: 'png'
+})
+const appleTouchIcon = await getImage({
+  src: faviconSrc,
+  width: 180,
+  height: 180,
+  format: 'png'
+})
+const faviconSvg = await getImage({ src: faviconSrcSvg, format: 'svg' })
+// console.log(favicon)
 
 ---
 <!-- PageMeta -->
@@ -46,7 +66,9 @@ const description = pageMeta.description || "Article"
 {pageCover ? <meta property="og:image" content={pageCover} /> : ''}
 {pageMeta.coverAlt ? <meta property="og:image:alt" content={pageMeta.coverAlt} /> : ''}
 
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" href={favicon.src} />
+<link rel="icon" href={faviconSvg.src} type="image/svg+xml" />
+<link rel="apple-touch-icon" href={appleTouchIcon.src} />
 <link rel="alternate" type="application/rss+xml" title={`${siteInfo.name} | Latest Articles`} href={new URL("rss.xml", Astro.site)} />
 <link rel="sitemap" href="/sitemap-index.xml" />
 
