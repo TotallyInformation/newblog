@@ -145,7 +145,7 @@ export default defineConfig({
                 /** Using my own custom version. `> [!NOTE]`, etc.
                  *  https://github.com/escwxyz/remark-obsidian-callout
                  *  https://github.com/TotallyInformation/remark-obsidian-callout-fixed
-                 *  Only use note, tip and warning to overlap with gitub, obsidian and docsify
+                 *  Only use note, tip and warning to overlap with github, obsidian and docsify
                  *  obsidian://open?vault=Obsidian%20Vault&file=Programming%2Fuibuilder%2FDocs%20-%20Alerts%20%26%20Callouts
                  */
             }],
