@@ -1,10 +1,11 @@
 ---
-title: 'Astro: Questions and ideas'
+title: "Astro: Questions and ideas"
 description: |
   What do I need to know?
 created: 2024-10-20 15:54:55
-updated: 2024-10-21 16:00:14
-tags: ["astro-v4"]
+updated: 2024-11-23 13:03:57
+tags:
+  - astro-v4
 category: astro
 ---
 

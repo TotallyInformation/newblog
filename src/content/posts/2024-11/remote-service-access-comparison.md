@@ -1,26 +1,23 @@
 ---
-title: 'Comparison of remote service access services'
+title: Comparison of remote service access services
 created: 2024-11-01 11:10:11
-updated: 2024-11-06 15:10:16
-
+updated: 2024-11-23 13:03:57
 description: |
   Businesses, especially large ones, can afford to provide security infrastructure that lets them provide
   secure access to their digital services. For small businesses and non-professional uses however, while
   still possible to do, it can be daunting. This article examines the various options open to people who
   may wish to provide secure access to services at minimal cost and complexity.
 draft: false
-tags: ["remote", "remote access", "security", "vpn", "cloud"]
+tags:
+  - remote
+  - remote access
+  - security
+  - vpn
+  - cloud
 category: security
-author: 'Julian Knight'
-# cover: './remote-service-access-comparison.png'
-cover: '@/resources/images/SASE.jpg'
-coverAlt: 'Generic image'
-
-#subtitle: A subtitle
-#language: en
-#series:
-#  name: 'My Series'
-#  number: 1
+author: Julian Knight
+cover: "@/resources/images/SASE.jpg"
+coverAlt: Generic image
 ---
 
 > [!Info] Article Status

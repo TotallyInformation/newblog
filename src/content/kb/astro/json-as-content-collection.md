@@ -1,22 +1,18 @@
 ---
-title: 'How to use a JSON file as an Astro content collection'
+title: How to use a JSON file as an Astro content collection
 created: 2024-11-19 17:29:58
-updated: 2024-11-19 17:29:58
-
+updated: 2024-11-23 13:03:57
 description: |
   Learn how to use Astro Markdown to render Markdown content within a JSON file, as Astro does not automatically render JSON files in content collections.
 draft: false
-tags: ["astro", "markdown", "json", "content-collection", "development"]
+tags:
+  - astro
+  - markdown
+  - json
+  - content-collection
+  - development
 category: astro
-author: 'Julian Knight'
-
-#cover: './{Filename}.png'
-#coverAlt: 'Generic Image'
-#subtitle: A subtitle
-#language: en
-#series:
-#  name: 'My Series'
-#  number: 1
+author: Julian Knight
 ---
 
 To render Markdown content to HTML, we can use an Astro plugin called [Astro Markdown](<https://github.com/astro-community/md).

@@ -1,21 +1,21 @@
 ---
-title: 'My experiences with GitHub CoPilot'
-description: 'Capturing my thoughts on GitHub CoPilot and its integration with VSCode, assessing its value for an unfunded open source developer.'
+title: My experiences with GitHub CoPilot
+description: Capturing my thoughts on GitHub CoPilot and its integration with VSCode, assessing its value for an unfunded open source developer.
 created: 2024-11-06 11:37:10
-updated: 2024-11-16 16:31:47
-
+updated: 2024-11-25 13:37:00
+subtitle: A software review
 draft: false
-tags: ["vscode","github","copilot","ai","llm"]
-category: development
-author: 'Julian Knight'
-
-cover: './using-guthub-copilot.png'
-coverAlt: 'CoPilot chat'
-#subtitle: A subtitle
-#language: en
-#series:
-#  name: 'My Series'
-#  number: 1
+tags:
+  - vscode
+  - github
+  - copilot
+  - ai
+  - llm
+  - development
+category: reviews
+author: Julian Knight
+cover: ./using-guthub-copilot.png
+coverAlt: CoPilot chat
 ---
 
 > [!Info] Article Status
@@ -48,6 +48,8 @@ Summary: [RTFM!](https://code.visualstudio.com/docs/copilot/overview). 😊
 * With an Astro Markdown content file open, I asked both CoPilot and Claude `In the selected file, how can I tell Astro via the markdown to apply a specific class to the copilot-ctrl-i.png image?`. Both models completely failed to give a correct, workable answer. Both models started to go round in circles after a few attempts, trying to suggest the same, incorrect answers.
 
 * When trying to get CoPilot to generate a `.d.ts` definition file for my `uibuilder.module.js` library which is around 3,300 lines long, it failed to generate a complete file. When forced, it started to hallucinate methods that didn't exist. It claims not to have a size limit on source reference files but when pressed it admitted that it may truncate references which it clearly does. I don't think that the file size was that large so this is clearly a major issue to watch out for.
+
+* I tried to get Copilot to generate an [ESLINT](https://github.com/eslint/eslint) v9 (current version) [flat configuration file](https://github.com/eslint/eslint?tab=readme-ov-file#configuration) and it could not. It thought that v8 was the latest. V9 has been live since April 2024 (nearly 8 months at the time of writing). This clearly shows limitations of the `4o` model.
 
 Summary: As with all LLM-based AI tools, they only really work when they have plenty of source material to work with. The more specialist the data/question, the less likely to are to get a decent answer.
 

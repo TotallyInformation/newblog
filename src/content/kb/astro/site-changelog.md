@@ -1,10 +1,11 @@
 ---
-title: 'What has been done to the site?'
+title: What has been done to the site?
 description: |
-    This is a record of the major changes to the site over time.
+  This is a record of the major changes to the site over time.
 created: 2024-10-21 19:21:40
-updated: 2024-10-21 19:38:01
-tags: ["config"]
+updated: 2024-11-23 13:03:57
+tags:
+  - config
 category: astro
 ---
 

@@ -1,22 +1,16 @@
 ---
-title: 'Using Windows PowerToys Paste'
+title: Using Windows PowerToys Paste
 created: 2024-11-06 10:52:56
-updated: 2024-11-06 15:11:30
-
-description: |
-  
+updated: 2024-11-23 13:03:57
+description: ""
 draft: false
-tags: ["utilities", "how-to"]
+tags:
+  - utilities
+  - how-to
 category: windows
-author: 'Julian Knight'
-
-cover: './windows-powertoys-paste.png'
-coverAlt: 'Generic Image'
-#subtitle: A subtitle
-#language: en
-#series:
-#  name: 'My Series'
-#  number: 1
+author: Julian Knight
+cover: ./windows-powertoys-paste.png
+coverAlt: Generic Image
 ---
 
 Microsoft's PowerToys for Windows is a handy set of utilities that is always one of the first things that I install when I get a new PC.

@@ -1,10 +1,12 @@
 ---
-title: 'Astro: How to output a paginated list of article summaries'
+title: "Astro: How to output a paginated list of article summaries"
 description: |
-    While the Astro docs talk about pagination, it is buried in amongst other things and hard to comprehend at the start.
+  While the Astro docs talk about pagination, it is buried in amongst other things and hard to comprehend at the start.
 created: 2024-10-21 19:58:19
-updated: 2024-10-21 19:58:20
-tags: ["astro-v4", "how-to"]
+updated: 2024-11-23 13:03:57
+tags:
+  - astro-v4
+  - how-to
 category: astro
 ---
 

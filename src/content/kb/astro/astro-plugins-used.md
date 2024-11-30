@@ -1,10 +1,13 @@
 ---
-title: 'Astro: Plugins used to create this site'
+title: "Astro: Plugins used to create this site"
 description: |
-    These are the Astro, and Remark plugins I've used to create and manage this site
+  These are the Astro, and Remark plugins I've used to create and manage this site
 created: 2024-10-21 19:21:40
-updated: 2024-10-21 19:21:44
-tags: ["astro-v4", "config", "plugins"]
+updated: 2024-11-23 13:03:57
+tags:
+  - astro-v4
+  - config
+  - plugins
 category: astro
 ---
 

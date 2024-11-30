@@ -1,12 +1,18 @@
 ---
-title: 'What needs doing on this website'
+title: What needs doing on this website
 description: |
   As this website is DIY built using Astro and my own layouts, components,
   and styles, there is rather a lot to create and finesse. This page documents
   what is left to do.
 created: 2024-10-26 17:16:38
-updated: 2024-11-21 20:26:08
-tags: ["astro-v4", "website", "development", "web-development", "config", "to-do"]
+updated: 2024-11-23 13:28:12
+tags:
+  - astro-v4
+  - website
+  - development
+  - web-development
+  - config
+  - to-do
 category: astro
 ---
 
@@ -30,6 +36,7 @@ category: astro
 
 ### Article pages
 
+* Add status to frontmatter and show on page
 * Collapsible sections
 * ToC sidebar
 * [ ] Add reading time

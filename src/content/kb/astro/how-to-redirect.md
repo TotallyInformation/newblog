@@ -1,24 +1,17 @@
 ---
-title: 'Astro: How to redirect a route'
+title: "Astro: How to redirect a route"
 created: 2024-10-21 16:26:07
-updated: 2024-10-21 16:52:46
-
+updated: 2024-11-23 13:03:57
 description: |
   Sometimes you need to redirect a page or sub-section of a site from one place to another. While this is often done in the web server configuration,
   you may want to do it in Astro.
 draft: true
-tags: ["astro-v4", "routing", "redirect", "how-to"]
+tags:
+  - astro-v4
+  - routing
+  - redirect
+  - how-to
 category: astro
-
-#subtitle: A subtitle
-#author: 'Astro Learner'
-#image:
-#  src: 'https://docs.astro.build/assets/rose.webp'
-#  alt: 'The Astro logo on a dark background with a pink glow.'
-#language: en
-#series:
-#  name: 'My Series'
-#  number: 1
 ---
 
 One specific Astro use-case is where you are using dynamic routing for the pages in a paginated list of entries. 

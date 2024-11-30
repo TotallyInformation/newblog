@@ -1,22 +1,17 @@
 ---
-title: 'Styling images in Astro content markdown files'
+title: Styling images in Astro content markdown files
 created: 2024-11-08 18:19:41
-updated: 2024-11-08 18:19:41
-
+updated: 2024-11-23 13:03:57
 description: |
   Markdown has no native way to pass styles to elements. This presents a workaround specifically for styling images. Mostly used to add a class for floating the image left or right on the page.
 draft: false
-tags: ["markdown","style","css","formatting"]
+tags:
+  - markdown
+  - style
+  - css
+  - formatting
 category: astro
-author: 'Julian Knight'
-
-#cover: './{Filename}.png'
-#coverAlt: 'Generic Image'
-#subtitle: A subtitle
-#language: en
-#series:
-#  name: 'My Series'
-#  number: 1
+author: Julian Knight
 ---
 
 > [!Note]

@@ -1,24 +1,18 @@
 ---
-title: 'Thoughts on using AI when coding'
+title: Thoughts on using AI when coding
 created: 2024-11-01 10:02:02
-updated: 2024-11-01 10:16:08
-
+updated: 2024-11-23 13:03:57
 description: |
   AI might be used casually via things like ChatGPT or via dedicated tools such as GitHub CoPilot.
   These are some of my thoughts on usage, viability, cost, security, and best practices.
 draft: false
-tags: ["development", "programming", "AI", "security"]
+tags:
+  - development
+  - programming
+  - AI
+  - security
 category: AI
-author: 'Julian Knight'
-
-#subtitle: A subtitle
-#image:
-#  src: 'https://docs.astro.build/assets/rose.webp'
-#  alt: 'The Astro logo on a dark background with a pink glow.'
-#language: en
-#series:
-#  name: 'My Series'
-#  number: 1
+author: Julian Knight
 ---
 
 AI coding assistants, just like human coders are never going to be 100% accurate or reliable. Failure to understand this and to keep it in mind at all times **_IS_** going to get you into trouble at some stage.
