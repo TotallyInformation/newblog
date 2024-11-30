@@ -21,7 +21,7 @@ if (!frontmatter?.subtitle) frontmatter.subtitle = ''
 ---
 <header data-component="PageHeader">
     <div id="head-banner">
-        <Image id="head-img" src={BrimhamRocks} alt="Brimham Rocks, Yorkshire, UK" />
+        <Image id="head-img" src={BrimhamRocks} alt="Brimham Rocks, Yorkshire, UK" loading="eager" />
         <div id="head-text">
             <h1 id="head-h1" class:list={['head-h1', {'with-subtitle': frontmatter.subtitle}]}>{frontmatter.title}</h1>
             { frontmatter.subtitle && <div role="doc-subtitle" id="head-subh1">{frontmatter.subtitle}</div> }
