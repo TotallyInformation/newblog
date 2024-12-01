@@ -110,6 +110,22 @@ const tiHooks = {
 export default defineConfig({
     site: "https://www.totallyinformation.net",
     scopedStyleStrategy: 'class',
+    prefetch: { // Enables data-astro-prefetch attribute on links
+        defaultStrategy: 'viewport'
+    },
+
+    vite: {
+        css: {
+            transformer: "lightningcss",
+            // lightningcss: {
+            //     targets: {},
+			// 	include: Features.Nesting,
+            // },
+        },
+        build: {
+            cssMinify: 'lightningcss'
+        },
+    },
 
     integrations: [
         tiHooks,
@@ -167,5 +183,12 @@ export default defineConfig({
                 }
             ],
         ],
+    },
+
+    experimental: {
+        directRenderScript: true, // default in v5
+        contentCollectionCache: true,
+        contentIntellisense: true,
+        contentLayer: true, // https://docs.astro.build/en/reference/configuration-reference/#fetching-data-with-a-loader
     },
 });
