@@ -2,12 +2,12 @@
 /** Layout for most pages */
 
 import siteInfo from '@/site-info.json';
+import '@/resources/uib-brand.css';
 import PageMeta from '@/components/PageMeta.astro';
 import PageHeader from '@/components/PageHeader.astro';
 import PageFooter from '@/components/PageFooter.astro';
 import PageSidebar from '@/components/PageSidebar.astro';
 import PageComments from '@/components/PageComments.astro';
-import '@/resources/uib-brand.css';
 
 // Page metadata
 const meta = Astro.props?.frontmatter ?? {};
