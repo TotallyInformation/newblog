@@ -1,0 +1,13 @@
+
+# Additional site security
+/*
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
+
+# Preload the main CSS file
+/_astro/*.css
+  Link: </_astro/:splat.css>; rel=preload; as=style
+
+# Don't let search engines index the dev versions
+https://:project.pages.dev/*
+  X-Robots-Tag: noindex
