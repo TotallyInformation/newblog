@@ -2,7 +2,7 @@
 title: My experiences with GitHub CoPilot
 description: Capturing my thoughts on GitHub CoPilot and its integration with VSCode, assessing its value for an unfunded open source developer.
 created: 2024-11-06 11:37:10
-updated: 2024-11-25 13:37:00
+updated: 2024-12-09 17:03:46
 subtitle: A software review
 draft: false
 tags:
@@ -66,6 +66,13 @@ Summary: As with all LLM-based AI tools, they only really work when they have pl
 ### Failures
 
 * <span class="imgright">![copilot vscode editor prompt](./copilot-ctrl-i.png)</span>OMG! Why choose one of THE most common keyboard shortcuts, <kbd>Ctrl</kbd>-<kbd>i</kbd> to kick CoPilot into doing something in the editor! 😕 I even asked a GitHub staffer and had it confirmed that there is no way to change it. However, you can 
+
+## Help with GIT
+
+### Successes
+
+* When you've made a bunch of changes to code but not yet committed them, CoPilot can suggest a commit message for you. It mostly does a pretty good job even when you have multiple changes in the file.
+
 
 ## Steering CoPilot Responses
 
